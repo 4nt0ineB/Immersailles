@@ -1,5 +1,5 @@
 # Immersailles
-DUT Info 2 - TD A /  Bastos Antoine 
+Bastos Antoine                              DUT Info 2 - TD A
 
 
 
