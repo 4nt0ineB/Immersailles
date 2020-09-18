@@ -1,0 +1,155 @@
+@font-face {
+    font-family: "Apollo";
+    src: url('');
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    padding: 0px;
+    background-color: black;
+}
+
+.navbar img {
+    height: 60px;
+}
+
+/* End navbar */
+
+/* Div before Map container*/
+
+#title-current-place {
+    font-size: x-large;
+}
+
+#title-nav2 {
+    margin-left: 15px;
+}
+
+.nav2 {
+    color: black;
+    font-size: 10px;
+    margin-left: -38px;
+
+}
+
+.nav2 ul {
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.nav2 li {
+    display: inline;
+    font-weight: bold;
+    margin-right: 10px;
+
+}
+
+.nav2 a {
+    color: black;
+}
+
+
+/* End Div before Map container*/
+
+/* Map section */
+.map {
+    background-color: grey;
+    height: 628px;
+}
+
+
+
+/* info bubble */
+.info-bubble {
+    color: #a0a0a0;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: black;
+    height: 628px;
+    width: 500px;
+}
+
+.info-bubble img {
+    width: 100%;
+
+}
+
+.container-img {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.top-left {
+    font-size: large;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+.bottom-right {
+    color: #e7e7e7;
+    font-size: x-large;
+    position: absolute;
+    bottom: 0px;
+    right: 16px;
+}
+
+.label-info {
+    color: #C8AD7F;
+    font-size: larger;
+    font-weight: bold;
+}
+
+/* End Map section */
+
+
+/* Timeline navigation */
+.timeline-nav {
+    color: #C8AD7F;
+}
+
+.timeline-div {
+    background-color: rgb(219, 219, 219);
+}
+
+
+/* Timeline navigation */
+
+/* Footer */
+footer {
+    padding-top: 10px;
+    ;
+}
+
+.page-footer {
+    color: white;
+    background-color: black;
+    font-size: 12px;
+}
+
+.title-footer p {
+    color: #C8AD7F;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.link-footer a {
+    margin-top: -4px;
+    font-weight: bold;
+    color: white;
+}
+
+/* End Footer */
+
+
+
+.change-section {
+    margin-top: 5px;
+}
