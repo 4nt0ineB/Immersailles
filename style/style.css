@@ -7,6 +7,15 @@ body {
     overflow-x: hidden;
 }
 
+.dot{
+    margin: 6px 6px 0px 0px;
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 /* Navbar */
 .navbar {
     padding: 0px;
@@ -59,11 +68,12 @@ body {
 
 /* Map section */
 .map {
-    background-color: grey;
     height: 628px;
 }
 
-
+.plan img{
+    width: 100%;
+}
 
 /* info bubble */
 .info-bubble {
@@ -72,7 +82,7 @@ body {
     font-size: 12px;
     background-color: black;
     height: 628px;
-    width: 500px;
+    width: 340px;
 }
 
 .info-bubble img {
@@ -86,6 +96,10 @@ body {
     color: white;
 }
 
+.container-img a{
+    color: white;
+    
+}
 .top-left {
     font-size: large;
     position: absolute;
@@ -98,6 +112,13 @@ body {
     font-size: x-large;
     position: absolute;
     bottom: 0px;
+    right: 16px;
+}
+
+.top-right{
+    font-size: large;
+    position: absolute;
+    top: 8px;
     right: 16px;
 }
 
@@ -115,10 +136,9 @@ body {
     color: #C8AD7F;
 }
 
-.timeline-div {
-    background-color: rgb(219, 219, 219);
+.timeline-div img{
+    width: 300px;
 }
-
 
 /* Timeline navigation */
 
@@ -146,6 +166,10 @@ footer {
     color: white;
 }
 
+.justify-content-center{
+    margin-right: 0 !important;
+}
+
 /* End Footer */
 
 
@@ -153,3 +177,4 @@ footer {
 .change-section {
     margin-top: 5px;
 }
+

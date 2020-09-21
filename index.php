@@ -33,6 +33,12 @@
                     <li class="nav-item">
                         <a class="nav-link scroll" href="">A PROPOS <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a href=""><span class="dot"></span> </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href=""><span class="dot"></span></a>
+                    </li>
 
                     <!--
             <li class="nav-item dropdown">
@@ -84,19 +90,20 @@
     </div>
 
     <!--MAP-->
-    <div class="map">
+    <div class="map" style="background-image: url('img/plan.png');">
 
+        
         <div class="float-right info-bubble">
             <div class="container">
                 <div class="row">
                     <div class="container container-img">
                         <img src="img/fauteuil.jpg">
                         <div class="top-left">[Ici, la photo de l'objet]</div>
+                        <div class="top-right"> <a href="">X</a> </div>
+
                         <div class="bottom-right">NOM DE L'OBJET</div>
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="container">
                         <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
@@ -111,13 +118,12 @@
                         <p><span class="label-info">Liens utiles :</span><br> Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
-
                 </div>
             </div>
-
+            
         </div>
 
-
+        
     </div><br>
 
     </div>
@@ -132,8 +138,8 @@
                 <div class="row justify-content-center">
                     <h2 id="title-current-place">Règne de Louis XIV</h2>
                 </div>
-                <div class="row timeline-div ">
-                    <br>
+                <div class="row timeline-div justify-content-center">
+                <img src="img/timeline.png">
                 </div>
 
             </div>
@@ -141,16 +147,17 @@
                 <div class="row justify-content-center">
                     <h2 id="title-current-place">Règne de Louis XIV</h2>
                 </div>
-                <div class="row timeline-div ">
-                    <br>
+                <div class="row timeline-div justify-content-center">
+                    <img src="img/timeline.png">
                 </div>
             </div>
             <div class="col-lg text-center my-auto">
                 <div class="row justify-content-center">
                     <h2 id="title-current-place">Règne de Louis XIV</h2>
                 </div>
-                <div class="row timeline-div ">
-                    <br>
+                <div class="row timeline-div justify-content-center">
+                    <img src="img/timeline.png">
+                    
                 </div>
             </div>
         </div>
