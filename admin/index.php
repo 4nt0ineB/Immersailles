@@ -1,3 +1,5 @@
+<?php include("../includes/mysql.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,27 +47,6 @@
                         <a href=""><span class="dot"></span></a>
                     </li>
 
-                    <!--
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            -->
                 </ul>
             </div>
         </div>
@@ -82,17 +63,99 @@
 
 
                 <div id="box">
+            <?php
+                if(isset($_SESSION["logged"])) // si une session est déjà lancée
+            {
+            header("location: index.php"); // redirection vers l'index
+            }
+
+            if(isset($_REQUEST['send'])) //si le formulaire est envoyé avec un clic bouton -> "submitBtnLogin"
+            {
+            $login = strip_tags($_REQUEST["login"]);
+            $password  = strip_tags($_REQUEST["pass"]);
+
+            if(empty($login)){ // si le nom est vide
+                $errorMsg[]="Veuillez saisir le login administrateur"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
+            }
+
+            else if(empty($password)){ // si le mdp est vide
+                $errorMsg[]="Veuillez saisir le mot de passe administrateur"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
+            }
+            else
+            {
+                try
+                {
+                $select_registered_users=$db->prepare("SELECT * FROM users WHERE login=:login"); // on selectionne les utilisateurs avec ce pseudo ou cet email
+                $select_registered_users->execute(array(':login'=>$login)); // et on execute la requete avec les champs rentrés par l'utilisateur
+                $row=$select_registered_users->fetch(PDO::FETCH_ASSOC); // avec la methode de recherche
+
+                if($select_registered_users->rowCount() > 0) // si la requête compte plus de zéro lignes alors
+                {
+                if($login==$row["login"]) // on vérifie si la ligne est bien égale avec le pseudo et l'email rentré par l'utilisateur
+                {
+                if(password_verify($password, $row["password"])) // on compare le mdp encrypté stocké en base de donné et le mdp rentré par l'utilisateur
+                {
+                    $_SESSION["logged"] = $row["id"]; // on démarre une session avec l'id user_login qui correspondra a l'id de l'adherent
+                    $loginMsg = "Connecté avec succès ! Redirection...";  // on initialise un message de succès
+                    header("refresh:2; index.php");   // après 2 secondes on redirige l'utilisateur sur la page d'index
+                }
+                else // si la vérification du mot de passe échoue
+                {
+                    $errorMsg[]="Mauvais mot de passe"; // on inscrit un msg d'erreur
+                }
+                }
+                else // si la comparaison avec l'entrée de l'utilisateur et la db echoue
+                {
+                $errorMsg[]="Mauvais login"; // on inscrit un msg d'erreur
+                }
+                }
+                else // si la comparaison avec l'entrée de l'utilisateur et la db echoue
+                {
+                $errorMsg[]="Mauvais login";// on inscrit un msg d'erreur
+                }
+                }
+                catch(PDOException $e)
+                {
+                $e->getMessage();
+                }
+            }
+            }
+            ?>
+            <?php
+            if(isset($errorMsg)) // si le tableau errorMsg est initialisé
+            {
+             foreach($errorMsg as $error) // pour chaque ligne du tableau on initalise une variable
+             {
+             ?>
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Oups !</strong> <?php echo $error // on affiche la variable ; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+              </div>
+                <?php
+             }
+            }
+            if(isset($loginMsg)) // si un message de succès est initialisé
+            {
+            ?>
+             <div class="alert alert-success" role="alert">
+              <?php echo $loginMsg; // on affiche ce message ?>
+             </div>
+            <?php
+            }
+            ?>
                 <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Adresse email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Votre email">
+                    <input type="email" name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Votre email">
 
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Mot de passe</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Votre mot de passe">
+                    <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Votre mot de passe">
                 </div>
-                <button type="submit" class="btn btn-primary">Se connecter</button>
+                <button type="submit" name="submitBtnLogin" class="btn btn-primary">Se connecter</button>
                 </form>
             <br>
             </div>
