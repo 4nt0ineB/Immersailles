@@ -60,53 +60,7 @@
     
 
     <!-- Footer -->
-    <footer class="page-footer mt-auto font-small white">
-        <!-- Copyright -->
-        <div class="row justify-content-center .links">
-            <div class="col-1">
-                <p></p>
-            </div>
-            <div class="col-1">
-                <div class="row title-footer">
-                    <p>Crédits</p>
-                </div>
-                <div class="row link-footer">
-                    <a href="">Lorem</a>
-                </div>
-                <div class="row link-footer">
-                    <a href="">Lorem</a>
-                </div>
-            </div>
-            <div class="col-2 ">
-                <div class="row title-footer">
-                    <p>Mentions légales</p>
-                </div>
-                <div class="row link-footer">
-                    <a href="">Lorem</a>
-                </div>
-            </div>
-            <div class="col-1">
-                <div class="row title-footer">
-                    <p>Lorem</p>
-                </div>
-                <div class="row link-footer">
-                    <a href="">Lorem</a>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="row title-footer">
-                    <p>Lorem</p>
-                </div>
-                <div class="row link-footer">
-                    <a href="">Lorem</a>
-                </div>
-            </div>
-        </div>
-        <div id="footp" class="footer-copyright text-center py-3">
-            Copyright © 2020 x Inc. Tous droit réservés
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <?php include("../includes/footer.php"); ?>
     <!-- Footer -->
 </body>
 
