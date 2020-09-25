@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Se connecter</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
@@ -19,7 +19,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="../style/style.css" />
 
 </head>
 
@@ -27,7 +27,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href=""><img src="img/logo_mini.png" /> <i>IMMERSAILLES</i></a>
+            <a class="navbar-brand" href=""><img src="../img/logo_mini.png" /> <i>IMMERSAILLES</i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -71,103 +71,42 @@
         </div>
     </nav>
     <!--Fin navbar -->
-
     <!--Div before Map container-->
     <div class="container change-section">
-        <div class="row">
-            <div class="col-lg">
-                <div class="row">
-                    <h5 id="title-nav2">Trier par <span style="color: #aabbd4">Objets (330)</span></h5>
+        
+        <div class="row h-100 align-self-center">
+    
+            <div class="col-lg text-center">
+
+                <h2 id="title-current-place" style="padding: 10px;">Se connecter au panel de gestion</h2>
+
+
+                <div id="box">
+                <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Adresse email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Votre email">
+
                 </div>
-                <ul class="nav2">
-                    <li><a href="">Tout(330)</a></li>
-                    <li><a href="">Oeuvres d'art (120)</a></li>
-                    <li><a href=""> Mobilier (100)</a></li>
-                    <li><a href="">Décoration (110)</a></li>
-                </ul>
-            </div>
-            <div class="col-lg text-center my-auto">
-
-                <h2 id="title-current-place">Aile Ouest du château - RDC</h2>
-            </div>
-            <div class="col-lg"></div>
-        </div>
-    </div>
-
-    <!--MAP-->
-    <div class="map" style="background-image: url('img/plan2.png');">
-
-
-        <div class="float-right info-bubble">
-            <div class="container">
-                <div class="row">
-                    <div class="container container-img">
-                        <img src="img/fauteuil.jpg">
-                        <!--div class="top-left">[Ici, la photo de l'objet]</!-->
-                        <div class="top-right"> <a href="">X</a> </div>
-
-                        <div class="bottom-right">NOM DE L'OBJET</div>
-                    </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Mot de passe</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Votre mot de passe">
                 </div>
-                <div class="row">
-                    <div class="container">
-                        <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
-                        <p> <span class="label-info">Date d'arrivée et de départ :</span> 1682</p>
-                        <p> <span class="label-info">Localisation :</span> appartement de Louis XIV</p>
-                        <p> <span class="label-info">Description :</span><br>Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur.
-                        </p>
-                        <p><span class="label-info">Liens utiles :</span><br> Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                </div>
+                <button type="submit" class="btn btn-primary">Se connecter</button>
+                </form>
+            <br>
             </div>
 
+            </div>
+            
         </div>
 
 
-    </div><br>
-
     </div>
-    <!--MAP-->
 
-    <!--Timeline navigation-->
-    <div class="container change-section timeline-nav">
 
-        <div class="row">
 
-            <div class="col-lg my-auto">
-                <div class="row justify-content-center">
-                    <h2 id="title-current-place">Règne de Louis XIV</h2>
-                </div>
-                <div class="row timeline-div justify-content-center">
-                    <img src="img/timeline.png">
-                </div>
-
-            </div>
-            <div class="col-lg my-auto">
-                <div class="row justify-content-center">
-                    <h2 id="title-current-place">Règne de Louis XIV</h2>
-                </div>
-                <div class="row timeline-div justify-content-center">
-                    <img src="img/timeline.png">
-                </div>
-            </div>
-            <div class="col-lg text-center my-auto">
-                <div class="row justify-content-center">
-                    <h2 id="title-current-place">Règne de Louis XIV</h2>
-                </div>
-                <div class="row timeline-div justify-content-center">
-                    <img src="img/timeline.png">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Timeline navigation-->
+    
 
     <!-- Footer -->
     <footer class="page-footer mt-auto font-small white">
