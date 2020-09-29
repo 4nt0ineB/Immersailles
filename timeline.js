@@ -1,5 +1,5 @@
 //Sample dates
-var dates = ["6/12/2015", "8/15/2015", "10/22/2015", "11/2/2015", "12/22/2015"];
+var dates = ["6/12/1756", "8/15/1760", "10/22/1789", "11/2/1792", "12/22/1800"];
 //For the purpose of stringifying MM/DD/YYYY date format
 var monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -39,9 +39,9 @@ function makeCircles() {
     var lastInt = ((lastMonth - firstMonth) * 30) + (lastDay - firstDay);
 
     //Draw first date circle
-    $("#line").append('<div class="circle" id="circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]) + '</div></div>');
-    
-    $("#mainCont").append('<span id="span0" class="center">' + dateSpan(dates[0]) + '</span>');
+    $("#line").append('<div class="circle" id="circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]).split(' ')[2] + '</div></div>');
+
+    $("#mainCont").append('<span id="span0" class="center">' + dateSpan(dates[0]).split(' ')[2] + '</span>');
 
     //Loop through middle dates
     for (i = 1; i < dates.length - 1; i++) {
@@ -55,15 +55,15 @@ function makeCircles() {
       var relativeInt = thisInt / lastInt;
 
       //Draw the date circle
-      $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]) + '</div></div>');
-      
-      $("#mainCont").append('<span id="span' + i + '" class="right">' + dateSpan(dates[i]) + '</span>');
+      $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(dates[i]).split(' ')[2] + '</div></div>');
+
+      $("#mainCont").append('<span id="span' + i + '" class="right">' + dateSpan(dates[i]).split(' ')[2] + '</span>');
     }
 
     //Draw the last date circle
-    $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + 99 + '%;"><div class="popupSpan">' + dateSpan(dates[dates.length - 1]) + '</div></div>'); 
-    
-    $("#mainCont").append('<span id="span' + i + '" class="right">' + dateSpan(dates[i]) + '</span>');
+    $("#line").append('<div class="circle" id="circle' + i + '" style="left: ' + 99 + '%;"><div class="popupSpan">' + dateSpan(dates[dates.length - 1]).split(' ')[2] + '</div></div>');
+
+    $("#mainCont").append('<span id="span' + i + '" class="right">' + dateSpan(dates[i]).split(' ')[2] + '</span>');
   }
 
   $(".circle:first").addClass("active");
@@ -71,15 +71,15 @@ function makeCircles() {
 
 makeCircles();
 
-$(".circle").mouseenter(function() {
+$(".circle").mouseenter(function () {
   $(this).addClass("hover");
 });
 
-$(".circle").mouseleave(function() {
+$(".circle").mouseleave(function () {
   $(this).removeClass("hover");
 });
 
-$(".circle").click(function() {
+$(".circle").click(function () {
   var spanNum = $(this).attr("id");
   selectDate(spanNum);
 });
@@ -88,10 +88,10 @@ function selectDate(selector) {
   $selector = "#" + selector;
   $spanSelector = $selector.replace("circle", "span");
   var current = $selector.replace("circle", "");
-  
+
   $(".active").removeClass("active");
   $($selector).addClass("active");
-  
+
   if ($($spanSelector).hasClass("right")) {
     $(".center").removeClass("center").addClass("left")
     $($spanSelector).addClass("center");
@@ -100,5 +100,5 @@ function selectDate(selector) {
     $(".center").removeClass("center").addClass("right");
     $($spanSelector).addClass("center");
     $($spanSelector).removeClass("left");
-  }; 
+  };
 };
