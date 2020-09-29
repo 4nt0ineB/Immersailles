@@ -210,7 +210,8 @@ circle:before {
     position: absolute;
     top: -40px;
     left: -21px;
-    display: none;
+    /* none pour affichage de la date au deplacement */
+    display: block;
     transition: all 0.1s ease-out;
 
 }
@@ -284,7 +285,7 @@ footer {
 
 .page-footer a:hover {
     text-decoration: none;
-    color: #C8AD7F;
+    color: #;
     transition: 200ms ease-in-out;
 
 }

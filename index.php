@@ -17,6 +17,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/timeline.css" />
 
 </head>
 
@@ -90,16 +91,31 @@
     <!--Timeline navigation-->
     <div class="container change-section timeline-nav">
 
-        <div class="row">
+        <div class="cd-horizontal-timeline" style="width: 100%;">
+            <div class="timeline">
+                <div class="events-wrapper">
+                    <div class="events">
+                        <ol style="list-style-type: none;">
+                            <li><a href="#0" data-date="00/00/2001" class="selected">2001</a></li>
+                            <li><a href="#0" data-date="01/01/2002">2002</a></li>
 
-            <div id="lineCont">
-                <br>
-                <div id="line"></div>
-                <div id="span">Date Placeholder</div>
+                            <li><a href="#0" data-date="23/00/2020">2020</a></li>
+                        </ol>
+
+                        <span class="filling-line" aria-hidden="true"></span>
+                    </div>
+                    <!-- .events -->
+                </div>
+                <!-- .events-wrapper -->
+
+                <ul class="cd-timeline-navigation" style="list-style-type: none;">
+                    <li><a href="#0" class="prev inactive">Prev</a></li>
+                    <li><a href="#0" class="next">Next</a></li>
+                </ul>
+                <!-- .cd-timeline-navigation -->
             </div>
-            <br>
-            <br>
-            <br>
+            <!-- .timeline -->
+
         </div>
     </div>
     <!--Timeline navigation-->
