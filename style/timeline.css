@@ -95,6 +95,7 @@ Main Components
 }
 
 .cd-horizontal-timeline .events a {
+    text-decoration: none;
     position: absolute;
     width: 100px;
     bottom: 0;
