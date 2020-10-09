@@ -17,4 +17,8 @@
         return $randomString;
     }
 
+    function refresh_user_session(){
+        $_SESSION["user"]->refreshSession();
+    }
+
 ?>

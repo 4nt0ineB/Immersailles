@@ -1,4 +1,5 @@
 <?php
+require_once("../class/user.php");
 
 define('HOST', '51.210.15.73');
 define('DB_NAME', 'immersailles');
@@ -10,6 +11,7 @@ try {
     $db = new PDO("mysql:host=" . HOST . ";dbname=" . DB_NAME, USER, PASS);
     $db->exec("set names utf8");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    User::$db = $db;
 } catch (PDOException $e) {
     echo $e;
 }

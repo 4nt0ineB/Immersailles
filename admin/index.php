@@ -1,5 +1,6 @@
 <?php include("../includes/mysql.php"); ?>
 <?php include("includes/checkperms.php"); ?>
+<?php include("includes/functions.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">

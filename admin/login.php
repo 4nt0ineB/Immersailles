@@ -1,4 +1,5 @@
-<?php include("../includes/mysql.php"); ?>
+<?php include("../includes/mysql.php");
+?>
 <?php session_start(); ?>
 
 <!DOCTYPE html>
@@ -91,7 +92,13 @@
                                     {
                                         if (password_verify($password, $row["pwd_hash"])) // on compare le mdp encrypté stocké en base de donné et le mdp rentré par l'utilisateur
                                         {
-                                            $_SESSION["logged"] = $row["id_user"]; // on démarre une session avec l'id user_login qui correspondra a l'id de l'adherent
+
+                                            $user = new User($row["id_user"]); // creation d'un nouvel user avec la bdd pour l'acces direct depuis
+                                            if($user->connect()){
+                                                
+                                            }
+                                            $_SESSION["user"] = $user; // on stock obj user dans la session
+                                            $user->setSession($_SESSION['logged']);
                                             $loginMsg = "Connecté avec succès ! Redirection...";  // on initialise un message de succès
                                             header("refresh:2; index.php");   // après 2 secondes on redirige l'utilisateur sur la page d'index
                                         } else // si la vérification du mot de passe échoue
