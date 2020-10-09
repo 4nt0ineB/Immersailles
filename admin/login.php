@@ -73,30 +73,33 @@
 
                     if (isset($_REQUEST['send'])) //si le formulaire est envoyé avec un clic bouton -> "submitBtnLogin"
                     {
-                        $login = strip_tags($_REQUEST["login"]);
+
+                        $email = strip_tags($_REQUEST["email"]);
                         $password  = strip_tags($_REQUEST["pass"]);
 
-                        if (empty($login)) { // si le nom est vide
+                        if (empty($email)) { // si le nom est vide
+
                             $errorMsg[] = "Veuillez saisir le login administrateur"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
                         } else if (empty($password)) { // si le mdp est vide
                             $errorMsg[] = "Veuillez saisir le mot de passe administrateur"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
                         } else {
                             try {
-                                $select_registered_users = $db->prepare("SELECT * FROM USERS WHERE login=:login"); // on selectionne les utilisateurs avec ce pseudo ou cet email
-                                $select_registered_users->execute(array(':login' => $login)); // et on execute la requete avec les champs rentrés par l'utilisateur
+                                $select_registered_users = $db->prepare("SELECT * FROM USERS WHERE email=:email"); // on selectionne les utilisateurs avec ce pseudo ou cet email
+                                $select_registered_users->execute(array(':email' => $email)); // et on execute la requete avec les champs rentrés par l'utilisateur
                                 $row = $select_registered_users->fetch(PDO::FETCH_ASSOC); // avec la methode de recherche
 
                                 if ($select_registered_users->rowCount() > 0) // si la requête compte plus de zéro lignes alors
                                 {
-                                    if ($login == $row["login"]) // on vérifie si la ligne est bien égale avec le pseudo et l'email rentré par l'utilisateur
+
+                                    if ($email == $row["email"]) // on vérifie si la ligne est bien égale avec le pseudo et l'email rentré par l'utilisateur
                                     {
                                         if (password_verify($password, $row["pwd_hash"])) // on compare le mdp encrypté stocké en base de donné et le mdp rentré par l'utilisateur
                                         {
 
                                             $user = new User($row["id_user"]); // creation d'un nouvel user avec la bdd pour l'acces direct depuis
+                                            $user->setSession(session_id());
                                             $user->connect();
                                             $_SESSION["user"] = $user; // on stock obj user dans la session
-                                            $user->setSession($_SESSION['logged']);
                                             $loginMsg = "Connecté avec succès ! Redirection...";  // on initialise un message de succès
                                             header("refresh:2; index.php");   // après 2 secondes on redirige l'utilisateur sur la page d'index
                                         } else // si la vérification du mot de passe échoue
@@ -113,6 +116,7 @@
                                 }
                             } catch (PDOException $e) {
                                 $e->getMessage();
+                                echo $e;
                             }
                         }
                     }
@@ -146,7 +150,7 @@
                     <form method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Adresse email</label>
-                            <input type="email" name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Votre email">
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Votre email">
 
                         </div>
                         <div class="form-group">
@@ -157,17 +161,9 @@
                     </form>
                     <br>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
-
-
-
-
 
     <!-- Footer -->
     <?php include("../includes/footer.php"); ?>

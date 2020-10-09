@@ -123,7 +123,7 @@
     <!-- Footer -->
     <?php include("includes/footer.php"); ?>
     <!-- Footer -->
-    <script src="timeline.js"></script>
+    <script src="scripts/js/timeline.js"></script>
 </body>
 
 </html>
