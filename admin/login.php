@@ -1,6 +1,13 @@
 <?php include("../includes/mysql.php");
 ?>
-<?php session_start(); ?>
+
+<?php session_start();
+if (isset($_SESSION['user'])) {
+    if ($_SESSION["user"]->refreshSession()) {
+        header("location:index.php"); // redirection user déjà connecté
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -97,6 +104,7 @@
                                         {
 
                                             $user = new User($row["id_user"]); // creation d'un nouvel user avec la bdd pour l'acces direct depuis
+
                                             $user->setSession(session_id());
                                             $user->connect();
                                             $_SESSION["user"] = $user; // on stock obj user dans la session
@@ -116,7 +124,6 @@
                                 }
                             } catch (PDOException $e) {
                                 $e->getMessage();
-                                echo $e;
                             }
                         }
                     }
