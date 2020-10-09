@@ -285,7 +285,7 @@ footer {
 
 .page-footer a:hover {
     text-decoration: none;
-    color: #;
+    color: #C8AD7F;
     transition: 200ms ease-in-out;
 
 }
@@ -315,4 +315,37 @@ footer {
     box-shadow: 0px 2px rgba(0, 0, 0, 0.18);
     border-radius: 5px;
     border: 1px solid black;
+}
+
+
+#card_recap{
+    width: 100%;
+    height: 75px;
+    padding: 5px;
+    border-radius: 5px;
+    display:inline-block;
+    margin:0 auto;
+    color: #fff;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%) !important;
+  }
+  
+  .text_recap{
+  float:left;
+  font-weight: bold;
+  opacity: .8;
+  font-size: 16px;
+  }
+  
+  
+  .text_right {
+      float: right;
+      font-weight: bold;
+      font-size: 2.3rem;
+      line-height: 0.8;
+  }
+
+  #card_recap span {
+    font-size: 14px;
+    opacity: .5;
+    float: left;
 }

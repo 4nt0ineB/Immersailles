@@ -19,6 +19,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="../style/style.css" />
+    <style>
+#row {
+  width: 100%;
+  text-align: center;
+}
+
+table {
+  margin: 0 auto;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+    width: 33.3%;
+    padding-right: 17px;
+}
+</style>
+
 
 </head>
 
@@ -31,14 +49,40 @@
 
         <div class="row h-100 align-self-center">
 
-            <div class="col-lg text-center">
+            <div class="col-md-12 text-center">
 
                 <h2 id="title-current-place" style="padding: 10px;">Panel de gestion</h2>
 
 
                 <div id="box">
-                    Bienvenue <?php echo $row["name"]; ?>
+                    <h3>Bienvenue <?php echo $row["name"]; ?></h3>
                     <br>
+                    <table>
+<tbody>
+<tr>
+<td>
+
+  <div id="card_recap">
+<div class="text_recap">Utilisateurs</div><br>
+<span>Nombre total d'utilisateurs confondus</span>
+<div class="text_right">10</div>
+</div>
+
+</td>
+<td>  <div id="card_recap" style="background-image: radial-gradient(circle 248px at center, #5f5f5f 0%, #505050 47%, #3e3e3e 100%) !important;">
+  <div class="text_recap">Marqueurs</div><br>
+  <span>Nombre total de marqueurs</span>
+  <div class="text_right">20</div>
+</div></td>
+<td>  <div id="card_recap" style="background-image: linear-gradient(to bottom, #C8AD7F 0%, #af8132 100%) !important">
+  <div class="text_recap">Plans</div><br>
+  <span>Nombre de plans disponibles</span>
+  <div class="text_right">10</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+<br>
                     <a href="logout.php">Se déconnecter</a>
                 </div>
 
