@@ -31,24 +31,6 @@
             } );
         });
     </script>
-    <style>
-#row {
-  width: 100%;
-  text-align: center;
-}
-
-table {
-  margin: 0 auto;
-  width: 100%;
-  table-layout: fixed;
-}
-
-td {
-    width: 33.3%;
-    padding-right: 17px;
-}
-</style>
-
 
 </head>
 
