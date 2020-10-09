@@ -60,14 +60,20 @@
                 <h3>Bienvenue <?php echo $row["name"]; ?></h3>
                   <div class="container">
 
-                    <div class="row">
-                      <div class="col card_recap mr-3"><div class="text_recap">Utilisateurs</div> <div class="align-middle text_right">10</div>
+                    <div class="row text-left">
+                      <div class="col card_recap mr-3"><div class="text_recap">Utilisateurs<br><span>Nombre total d'utilisateurs</span></div> 
+                      <div class="align-middle text_right">
+                      <?php    
+                        echo $db->query("SELECT COUNT(*) FROM USERS")->rowCount();
+                      ?>
+                      </div>
+                      
                       </div>
                       <div class="col card_recap mr-3" style="background-image: radial-gradient(circle 248px at center, #5f5f5f 0%, #505050 47%, #3e3e3e 100%) !important;"> 
-                        <div class="text_recap">Marqueurs</div> <div class="text_right">20</div>
+                        <div class="text_recap">Marqueurs<br><span>Nombre total de marqueurs</span></div> <div class="text_right">20</div>
                       </div>
                       <div class="col card_recap" style="background-image: linear-gradient(to bottom, #C8AD7F 0%, #af8132 100%) !important">
-                      <div class="text_recap">Plans</div> <div class="text_right">3</div></div>
+                      <div class="text_recap">Plans<br><span>Nombre total de plans disponibles</span></div> <div class="text_right">3</div></div>
                     </div>
 
                     <div class="row" style="margin-top: 10px;">

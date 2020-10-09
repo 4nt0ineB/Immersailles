@@ -346,6 +346,13 @@ footer {
 
   .card_recap span {
     font-size: 14px;
+    font-weight: normal;
     opacity: .5;
     float: left;
+}
+
+@media screen and (max-width:1000px){
+    .card_recap span {
+        display: none;
+    }
 }
