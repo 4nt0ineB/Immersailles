@@ -83,6 +83,10 @@ td {
 </tbody>
 </table>
 <br>
+<a href="#" class="btn btn-dark">Gestion des utilisateurs</a>
+<a href="#" class="btn btn-dark">Gestion des marqueurs</a>
+<a href="#" class="btn btn-dark">Gestion des plans</a>
+<br><br>
                     <a href="logout.php">Se déconnecter</a>
                 </div>
 
