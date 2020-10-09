@@ -1,6 +1,6 @@
 # Immersailles
 
-Research project carried by the **Centre de Recherche du the Château de Versailles** (GIP-CRCV), the University Gustave Eiffel (computer science department of the IUT of Marne-la-Vallée) and the University of Rennes 2.
+Research project carried by the **Centre de Recherche du Château de Versailles** (GIP-CRCV), the University Gustave Eiffel (computer science department of the IUT of Marne-la-Vallée) and the University of Rennes 2.
 
 The "Immersailles" project aims to make available online the **historico-spatialized identification of Ancien Régime characters on period plans of the Château of Versailles**. Each character will also be provided with a descriptive sheet in order to allow users to learn more about these former tenants.
 
