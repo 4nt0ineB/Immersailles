@@ -78,49 +78,44 @@ if (isset($_SESSION['user'])) {
                         header("location: index.php"); // redirection vers l'index
                     }
 
-                    if (isset($_REQUEST['send'])) //si le formulaire est envoyé avec un clic bouton -> "submitBtnLogin"
+                    if (isset($_REQUEST['send'])) //si le formulaire "send" reçu
                     {
 
                         $email = strip_tags($_REQUEST["email"]);
                         $password  = strip_tags($_REQUEST["pass"]);
 
-                        if (empty($email)) { // si le nom est vide
-
-                            $errorMsg[] = "Veuillez saisir le login administrateur"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
-                        } else if (empty($password)) { // si le mdp est vide
-                            $errorMsg[] = "Veuillez saisir le mot de passe administrateur"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
+                        if (empty($email)) {
+                            $errorMsg[] = "Veuillez saisir le login administrateur"; // add msg d'erreu
+                        } else if (empty($password)) {
+                            $errorMsg[] = "Veuillez saisir le mot de passe administrateur"; // add msg d'erreu
                         } else {
                             try {
                                 $select_registered_users = $db->prepare("SELECT * FROM USERS WHERE email=:email"); // on selectionne les utilisateurs avec ce pseudo ou cet email
-                                $select_registered_users->execute(array(':email' => $email)); // et on execute la requete avec les champs rentrés par l'utilisateur
-                                $row = $select_registered_users->fetch(PDO::FETCH_ASSOC); // avec la methode de recherche
+                                $select_registered_users->execute(array(':email' => $email));
+                                $row = $select_registered_users->fetch(); // avec la methode de recherche
 
-                                if ($select_registered_users->rowCount() > 0) // si la requête compte plus de zéro lignes alors
+                                if ($select_registered_users->rowCount() > 0) // si + de zéro lignes
                                 {
 
-                                    if ($email == $row["email"]) // on vérifie si la ligne est bien égale avec le pseudo et l'email rentré par l'utilisateur
-                                    {
-                                        if (password_verify($password, $row["pwd_hash"])) // on compare le mdp encrypté stocké en base de donné et le mdp rentré par l'utilisateur
-                                        {
+                                    if ($email == $row["email"]) {
+                                        if (password_verify($password, $row["pwd_hash"])) {
 
-                                            $user = new User($row["id_user"]); // creation d'un nouvel user avec la bdd pour l'acces direct depuis
-
-                                            $user->setSession(session_id());
+                                            $user = new User($row["id_user"]); // nouvel user
+                                            $user->setSession(session_id()); // definition user session_id
                                             $user->connect();
-                                            $_SESSION["user"] = $user; // on stock obj user dans la session
-                                            $loginMsg = "Connecté avec succès ! Redirection...";  // on initialise un message de succès
-                                            header("refresh:2; index.php");   // après 2 secondes on redirige l'utilisateur sur la page d'index
-                                        } else // si la vérification du mot de passe échoue
+                                            $_SESSION["user"] = $user; // stock obj user dans la session
+                                            $loginMsg = "Connecté avec succès ! Redirection...";
+                                            header("refresh:2; index.php");   // redirection
+
+                                        } else // vérif mdp échoue
                                         {
-                                            $errorMsg[] = "Mauvais mot de passe"; // on inscrit un msg d'erreur
+                                            $errorMsg[] = "Mauvais mot de passe";
                                         }
-                                    } else // si la comparaison avec l'entrée de l'utilisateur et la db echoue
-                                    {
-                                        $errorMsg[] = "Mauvais login"; // on inscrit un msg d'erreur
+                                    } else { // données entrées et ddb != 
+                                        $errorMsg[] = "Mauvais login";
                                     }
-                                } else // si la comparaison avec l'entrée de l'utilisateur et la db echoue
-                                {
-                                    $errorMsg[] = "Mauvais login"; // on inscrit un msg d'erreur
+                                } else { // vérif mdp échoue
+                                    $errorMsg[] = "Mauvais login";
                                 }
                             } catch (PDOException $e) {
                                 $e->getMessage();
@@ -129,10 +124,9 @@ if (isset($_SESSION['user'])) {
                     }
                     ?>
                     <?php
-                    if (isset($errorMsg)) // si le tableau errorMsg est initialisé
+                    if (isset($errorMsg)) // si tableau errorMsg initialisé
                     {
-                        foreach ($errorMsg as $error) // pour chaque ligne du tableau on initalise une variable
-                        {
+                        foreach ($errorMsg as $error) {
                     ?>
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <strong>Oups !</strong> <?php echo $error // on affiche la variable ; 
@@ -148,7 +142,7 @@ if (isset($_SESSION['user'])) {
                     {
                         ?>
                         <div class="alert alert-success" role="alert">
-                            <?php echo $loginMsg; // on affiche ce message 
+                            <?php echo $loginMsg; // on affiche le msg 
                             ?>
                         </div>
                     <?php
