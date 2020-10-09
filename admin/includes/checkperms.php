@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['user'])){
-  $id = $_SESSION['user']->idUser;
+  $id = $_SESSION['user']->getId();
 
   $select_user_info = $db->prepare("SELECT * FROM USERS WHERE id_user=:uid"); // Je séléctionne les paramètres de l'utilisateur
   $select_user_info->execute(array(":uid"=>$id));

@@ -94,9 +94,7 @@
                                         {
 
                                             $user = new User($row["id_user"]); // creation d'un nouvel user avec la bdd pour l'acces direct depuis
-                                            if($user->connect()){
-                                                
-                                            }
+                                            $user->connect();
                                             $_SESSION["user"] = $user; // on stock obj user dans la session
                                             $user->setSession($_SESSION['logged']);
                                             $loginMsg = "Connecté avec succès ! Redirection...";  // on initialise un message de succès
