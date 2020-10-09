@@ -20,21 +20,23 @@
     </script>
     <link rel="stylesheet" href="../style/style.css" />
     <style>
-#row {
-  width: 100%;
-  text-align: center;
-}
+    #row {
+      width: 100%;
+      text-align: center;
+    }
+ 
+    table {
+      margin: 0 auto;
+      width: 100%;
+      table-layout: fixed;
+    }
 
-table {
-  margin: 0 auto;
-  width: 100%;
-  table-layout: fixed;
-}
+    td {
+        width: 33.3%;
+        padding-right: 17px;
+    }
 
-td {
-    width: 33.3%;
-    padding-right: 17px;
-}
+
 </style>
 
 
@@ -55,39 +57,34 @@ td {
 
 
                 <div id="box">
-                    <h3>Bienvenue <?php echo $row["name"]; ?></h3>
-                    <br>
-                    <table>
-<tbody>
-<tr>
-<td>
+                <h3>Bienvenue <?php echo $row["name"]; ?></h3>
+                  <div class="container">
 
-  <div id="card_recap">
-<div class="text_recap">Utilisateurs</div><br>
-<span>Nombre total d'utilisateurs confondus</span>
-<div class="text_right">10</div>
-</div>
+                    <div class="row">
+                      <div class="col card_recap mr-3"><div class="text_recap">Utilisateurs</div> <div class="align-middle text_right">10</div>
+                      </div>
+                      <div class="col card_recap mr-3" style="background-image: radial-gradient(circle 248px at center, #5f5f5f 0%, #505050 47%, #3e3e3e 100%) !important;"> 
+                        <div class="text_recap">Marqueurs</div> <div class="text_right">20</div>
+                      </div>
+                      <div class="col card_recap" style="background-image: linear-gradient(to bottom, #C8AD7F 0%, #af8132 100%) !important">
+                      <div class="text_recap">Plans</div> <div class="text_right">3</div></div>
+                    </div>
 
-</td>
-<td>  <div id="card_recap" style="background-image: radial-gradient(circle 248px at center, #5f5f5f 0%, #505050 47%, #3e3e3e 100%) !important;">
-  <div class="text_recap">Marqueurs</div><br>
-  <span>Nombre total de marqueurs</span>
-  <div class="text_right">20</div>
-</div></td>
-<td>  <div id="card_recap" style="background-image: linear-gradient(to bottom, #C8AD7F 0%, #af8132 100%) !important">
-  <div class="text_recap">Plans</div><br>
-  <span>Nombre de plans disponibles</span>
-  <div class="text_right">10</div>
-</div></td>
-</tr>
-</tbody>
-</table>
-<br>
-<a href="#" class="btn btn-dark">Gestion des utilisateurs</a>
-<a href="#" class="btn btn-dark">Gestion des marqueurs</a>
-<a href="#" class="btn btn-dark">Gestion des plans</a>
-<br><br>
-                    <a href="logout.php">Se déconnecter</a>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-lg-12" >
+                        <a href="#" class="btn btn-dark">Gestion des utilisateurs</a>
+                        <a href="#" class="btn btn-dark">Gestion des marqueurs</a>
+                        <a href="#" class="btn btn-dark">Gestion des plans</a>
+                        </div>
+                    </div>
+                    <div class="row content-justify-center" style="margin-top: 10px;">
+                      <div class="col-lg-12 content-justify-center">
+                        <a class="text-center" href="logout.php">Se déconnecter</a>
+
+                      </div>
+                    </div>
+
+  </div>
                 </div>
 
             </div>
