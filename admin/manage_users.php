@@ -69,6 +69,8 @@ td {
                 <div id="box">
                     <h3>Gestion des utilisateurs</h3>
                     <br>
+                        <div class="row float-right" style="margin: 10px auto;"><a href="create_user.php" class="btn btn-dark">Créer un nouvel utilisateur</a></div>
+                    <br>
                     <table id="datatable" class="table table-striped table-bordered" width="100%">
                                             <thead>
                                                 <tr>
