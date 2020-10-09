@@ -64,7 +64,7 @@
                       <div class="col card_recap mr-3"><div class="text_recap">Utilisateurs<br><span>Nombre total d'utilisateurs</span></div> 
                       <div class="align-middle text_right">
                       <?php    
-                        echo $db->query("SELECT COUNT(*) FROM USERS")->rowCount();
+                        echo $db->query("SELECT COUNT(*) FROM USERS GROUP BY id_user")->rowCount();
                       ?>
                       </div>
                       

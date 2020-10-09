@@ -1,6 +1,6 @@
 <?php include("../includes/mysql.php"); ?>
 <?php include("includes/checkperms.php"); ?>
-
+<?php include("includes/functions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,39 +34,118 @@
             <div class="col-md-12 text-center">
 
                 <h2 id="title-current-place" style="padding: 10px;">Panel de gestion</h2>
+                
+                <?php
+  if(isset($_REQUEST['createUser'])) // si le btn submitCourse est cliqué
+  {
+    $nom = strip_tags($_REQUEST["nom"]); // on stock toutes les valeurs
+    $prenom = strip_tags($_REQUEST["prenom"]);
+    $email = strip_tags($_REQUEST["email"]);
+    if  (isset($_REQUEST["role"])){
+        $role = strip_tags($_REQUEST["role"]);
+    }
+     try
+     {
 
+      if (empty($nom) || strlen($nom) < 3){ // si le nom est vide ou inférieur a 3 caractères
+        $errorMsg[]="Merci de saisir un nom valide";
+      }
+
+      if (empty($prenom) || strlen($prenom) < 3){ // si le nom est vide ou inférieur a 3 caractères
+        $errorMsg[]="Merci de saisir un prénom valide";
+      }
+
+      if (!isset($role)){
+        $errorMsg[]="Merci de saisir un rôle valide";
+      }
+
+      else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){ // si l'email n'est pas valide
+        $errorMsg[]="Merci de saisir une adresse électronique valide"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
+      }
+
+      $email_exist = $db->query("SELECT * FROM USERS WHERE email=\"$email\"");
+      if ($email_exist->rowCount() > 0){
+        $errorMsg[]="Cette adresse email est déjà utilisée";
+      }
+
+      else if(!isset($errorMsg)) // si aucun msg d'erreur
+      {
+
+       $insert_user=$db->prepare("INSERT INTO USERS VALUES (NULL, :mdp, :nom, :prenom, :email, :roleU, NULL);");   // on insert le parcours
+
+       $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
+
+       if($insert_user->execute(array(':mdp'=>$mdp, ':nom'=>$nom,':prenom'=>$prenom, ':email'=>$email, ':roleU'=>$role))){
+
+        $successMsg="L'utilisateur a été créé avec succès. Redirection..."; // msg de succès
+        header("refresh:3; manage_users.php?id=$id");
+       }
+      }
+     }
+     catch(PDOException $e)
+     {
+      echo $e->getMessage();
+     }
+    }
+   ?>
 
                 <div id="box">
                     <h3>Création d'un nouvel utilisateur</h3>
                     <br>
-                    <form style="text-align: left;"> 
+                    <?php
+                    if (isset($errorMsg)) // si le tableau errorMsg est initialisé
+                    {
+                        foreach ($errorMsg as $error) // pour chaque ligne du tableau on initalise une variable
+                        {
+                    ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Oups !</strong> <?php echo $error // on affiche la variable ; 
+                                                        ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php
+                        }
+                    }
+                    if (isset($successMsg)) // si un message de succès est initialisé
+                    {
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $successMsg; // on affiche ce message 
+                            ?>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <form method="POST" style="text-align: left;"> 
                     <div class="form-row">
                         <div class="form-group col-md-12">
                         <label for="email">Adresse e-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                         <label for="nom">Nom</label>
-                        <input type="text" class="form-control" id="nom" placeholder="Nom" required>
+                        <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom" required>
                         </div>
                         <div class="form-group col-md-6">
                         <label for="prenom">Prénom</label>
-                        <input type="text" class="form-control" id="prenom" placeholder="Prénom" required>
+                        <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="role">Rôle de l'utilisateur</label>
-                        <select id="role" class="form-control" required>
+                        <select id="role" name="role" class="form-control" required>
                             <option selected disabled>Rôle</option>
-                            <option>...</option>
+                            <option value="1">Administrateur</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-dark">Ajouter l'utilisateur</button>
+                    <button type="submit" name="createUser" class="btn btn-dark">Ajouter l'utilisateur</button>
                     </form>
                     <br><hr><br>
-                    <a href="index.php" class="btn btn-dark">Retour à l'accueil</a>
+                    <a href="manage_users.php" class="btn btn-dark">Retour à l'accueil</a>
                 </div>
 <br>
             </div>
