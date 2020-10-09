@@ -1,10 +1,10 @@
 # Immersailles
 
-Research project carried by the research center of the Chateau de Versailles (GIP-CRCV), the University Gustave Eiffel (computer science department of the IUT of Marne-la-Vallée) and the University of Rennes 2.
+Research project carried by the **Centre de Recherche du the Château de Versailles** (GIP-CRCV), the University Gustave Eiffel (computer science department of the IUT of Marne-la-Vallée) and the University of Rennes 2.
 
-The "Immersailles" project aims to make available online the historico-spatialized identification of Ancien Régime characters on period plans of the Palace of Versailles. Each character will also be provided with a descriptive sheet in order to allow users to learn more about these former tenants.
+The "Immersailles" project aims to make available online the **historico-spatialized identification of Ancien Régime characters on period plans of the Château of Versailles**. Each character will also be provided with a descriptive sheet in order to allow users to learn more about these former tenants.
 
-Developed in an open source evolutionary logic and with the integration of data from the opendata, this openscience project - at the meeting of history and digital humanities - is seen as a tool for cultural and scientific mediation. Ultimately, it will allow users to learn more about the different families who lived at court during the reigns of Louis XIV, Louis XV and Louis XVI, their environment, their activities, etc...
+Developed in an **open source** evolutionary logic and with the integration of data from the opendata, this openscience project - at the meeting of history and digital humanities - is seen as a tool for cultural and scientific mediation. Ultimately, it will allow users to learn more about the different families who lived at court during the reigns of Louis XIV, Louis XV and Louis XVI, their environment, their activities, etc...
 
 This project will allow:
 -  from the analysis of several sources (plans and censuses) provided by the CRCV to identify the former tenants of the Palace at different times ;
