@@ -72,7 +72,7 @@
 
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-lg-12" >
-                        <a href="#" class="btn btn-dark">Gestion des utilisateurs</a>
+                        <a href="manage_users.php" class="btn btn-dark">Gestion des utilisateurs</a>
                         <a href="#" class="btn btn-dark">Gestion des marqueurs</a>
                         <a href="#" class="btn btn-dark">Gestion des plans</a>
                         </div>

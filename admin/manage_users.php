@@ -1,6 +1,6 @@
 <?php include("../includes/mysql.php"); ?>
 <?php include("includes/checkperms.php"); ?>
-
+<?php include("includes/functions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +92,7 @@ td {
                                                             <td>' . $u['surname'] . '</td>
                                                             <td>' . $u['name'] . '</td>
                                                             <td>' . $u['email'] . '</td>
-                                                            <td>' . $u['role'] . '</td>
+                                                            <td>' . getRole($u['role']) . '</td>
                                                             <td><a href="#" class="btn btn-dark">éditer</a></td>
                                                             </tr>';
 
