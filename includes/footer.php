@@ -7,7 +7,7 @@
                     <td><span class="label-info">Lorem</span><br>ifhuiosfhio</td>
                     <td><span class="label-info">Lorem</span><br>ifhuiosfhio</td>
                     <td><span class="label-info">Lorem</span><br>ifhuiosfhio</td>
-                    <td><span class="label-info">CRCV</span><br><a href="admin/">Connexion</a></td>
+                    <td><span class="label-info">CRCV</span><br><a href="admin">Connexion</a></td>
                 </tr>
             </tbody>
         </table>

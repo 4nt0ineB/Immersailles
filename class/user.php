@@ -33,6 +33,11 @@ class User
         return 1;
     }
 
+    public function disconnect()
+    {
+        User::$db->query("UPDATE USERS SET session_id = default WHERE id_user = '$this->idUser'");
+    }
+
     public function refreshSession()
     { /* si l'id de la session dans la db est différent du session_id de l'user (bdd) on détruit la session. 
         retourne 0 si déconnecté, 1 si non */
@@ -43,5 +48,11 @@ class User
             return 0;
         }
         return 1;
+    }
+
+    public static function numberConnectedUsers()
+    {
+        $r = User::$db->query("SELECT count(*) AS nb FROM USERS WHERE session_id != ''")->fetch();
+        return $r["nb"];
     }
 }
