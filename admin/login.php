@@ -68,7 +68,7 @@ if (isset($_SESSION['user'])) {
 
             <div class="col-lg text-center">
 
-                <h2 id="title-current-place" style="padding: 10px;">Se connecter au panel de gestion</h2>
+                <h2 id="title-current-place" style="padding: 10px;">Connexion</h2>
 
 
                 <div id="box">
@@ -159,6 +159,7 @@ if (isset($_SESSION['user'])) {
                             <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Votre mot de passe">
                         </div>
                         <button type="submit" name="send" class="btn btn-primary">Se connecter</button>
+                        <a href="recovery.php" style="font-size: 10px;">mot de passe oublié</a>
                     </form>
                     <br>
                 </div>
