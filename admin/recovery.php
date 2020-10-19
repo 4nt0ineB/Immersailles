@@ -95,7 +95,9 @@ require_once("../includes/mysql.php");
 
                             $htmlContent = ' 
                                 <html> 
-                                
+                                <head> 
+                                    <meta charset="UTF-8" />
+                                </head>
                                 <body> 
                                     <h2>Demande de récupération de mot de passe</h2> 
                                     <p>Vous avez effectué une demande de récupération de mot de passe. 
@@ -104,7 +106,7 @@ require_once("../includes/mysql.php");
                                     <br>
                                     <p> Le lien de de récupération sera valable pendant deux heures.</p>
                                     <br>
-                                    <a href="https://immersailles.me/recovery.php"></a>
+                                    <a href="https://immersailles.me/recovery.php">https://immersailles.me/recovery.php</a>
                                 </body> 
                                 </html>';
 
