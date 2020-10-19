@@ -397,6 +397,10 @@ footer {
     border-color: #A37C39; 
     box-shadow: 0 0 0 0.2rem rgba(134, 107, 61, 0.38);
   } 
+
+  .btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(134, 107, 61, 0.38);
+}
    
   .btn-primary .badge { 
     color: #B39664; 
