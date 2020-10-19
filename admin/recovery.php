@@ -88,7 +88,7 @@ require_once("../includes/mysql.php");
                             echo "ok";
                             $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
                             $message = $token;
-                            mail($mail, 'Récupération de mot de passe', $message, 'From: no-reply@immersailles.me');
+                            var_dump(mail($mail, 'Récupération de mot de passe', $message, 'From: no-reply@immersailles.me'));
                         }
                     } else {
                     }
