@@ -20,7 +20,7 @@ For the attention of developers
 
 PHP classes are included trough the mysql.php import at the top of the page, because most of the time classes require sql query.
 
-
+```Bash
 |
 ├── admin
 │   ├── contributeur.php
@@ -56,3 +56,4 @@ PHP classes are included trough the mysql.php import at the top of the page, bec
 └── style
     ├── style.css
     └── timeline.css
+```
