@@ -407,3 +407,7 @@ footer {
     background-color: #866b3d; 
     border-color: #A37C39; 
 }
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(134, 107, 61, 0.38);
+}
