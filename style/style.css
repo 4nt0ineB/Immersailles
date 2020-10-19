@@ -418,21 +418,6 @@ footer {
 }
 
 .cd-horizontal-timeline .events a {
-    text-decoration: none;
-    position: absolute;
-    width: 100px;
-    bottom: 0;
-    z-index: 2;
-    text-align: center;
-    font-size: 1.1rem;
-    padding-bottom: 15px;
-    color: #383838;
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
-    color: #967c50;
-    padding: 5px;
-    margin-bottom: 20px;
+    font-size: 1.1rem !important;
+    color: #967c50 !important; 
 }
