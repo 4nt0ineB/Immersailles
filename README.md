@@ -19,3 +19,43 @@ For the attention of developers
 ------------------------------------------------------------------------------------
 
 PHP classes are included trough the mysql.php import at the top of the page, because most of the time classes require sql query.
+
+
+|
+| __/Admin
+|    __/includes
+|         contributeur.php
+|         create_user.php    
+|         index.php
+|         login.php
+|         logout.php
+|         manage_user.php
+|         recovery.php
+|
+| __/class
+|       bdd.php
+|       user.php
+|
+| __/img
+|     ...
+|
+| __/includes
+|       footer.php
+|       mysql.php
+|       navbar.php
+|
+| __/scripts
+|     __/js
+|        timeline.js
+|
+| __/style
+|     style.css
+|     timeline.css
+|
+| index.php
+| 
+|
+|
+|
+|
+|
