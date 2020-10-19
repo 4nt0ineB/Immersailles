@@ -88,21 +88,34 @@ require_once("../includes/mysql.php");
                             $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
                             $message = $token;
                             mail($mail, 'Récupération de mot de passe', $message);
-
-                            print phpinfo();
                         }
 
+                        try {
+                            mail($to, $subject, $htmlContent, $headers);
+                        } catch (Exception $e) {
+                            echo $e;
+                        }
+                        // Send email 
+                        if (mail($to, $subject, $htmlContent, $headers)) {
                     ?>
+                            <div class="alert alert-success" role="alert">
+                                Si vous possedez un compte un mail de récupération vous sera envoyé
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="alert alert-success" role="alert">
+                                Une erreur est survenue
+                            </div>
+                        <?php
+                        }
+                    } else {
+                        ?>
                         <div class="alert alert-success" role="alert">
                             Si vous possedez un compte un mail de récupération vous sera envoyé
                         </div>
                     <?php
-
-
-
-
                     }
-
 
 
 
