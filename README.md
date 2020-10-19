@@ -20,6 +20,8 @@ For the attention of developers
 
 PHP classes are included trough the mysql.php import at the top of the page, because most of the time classes require sql query.
 
+### Project tree
+
 ```Bash
 |
 ├── admin
