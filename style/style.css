@@ -421,3 +421,7 @@ footer {
     font-size: 1.1rem !important;
     color: #967c50 !important; 
 }
+
+.cd-horizontal-timeline .timeline {
+    max-width: none !important;
+}
