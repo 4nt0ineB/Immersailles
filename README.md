@@ -37,7 +37,6 @@ PHP classes are included trough the mysql.php import at the top of the page, bec
 ├── class
 │   ├── bdd.php
 │   └── user.php
-├── github-sync.php
 ├── img
 │   ├── fauteuil.jpg
 │   ├── logo_mini.png
@@ -49,7 +48,6 @@ PHP classes are included trough the mysql.php import at the top of the page, bec
 │   ├── mysql.php
 │   └── navbar.php
 ├── index.php
-├── README.md
 ├── scripts
 │   └── js
 │       └── timeline.js
