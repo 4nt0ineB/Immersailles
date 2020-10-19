@@ -87,27 +87,28 @@ require_once("../includes/mysql.php");
                         if (!empty($id_user)) {
                             $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
                             $message = $token;
-                            mail($mail, 'Récupération de mot de passe', $message);
-                        }
+                            try {
+                                mail($mail, 'Récupération de mot de passe', $message);
+                            } catch (Exception $e) {
+                                echo $e;
+                            }
 
-                        try {
-                            mail($to, $subject, $htmlContent, $headers);
-                        } catch (Exception $e) {
-                            echo $e;
-                        }
-                        // Send email 
-                        if (mail($to, $subject, $htmlContent, $headers)) {
+
+
+                            // Send email 
+                            if (mail($to, $subject, $htmlContent, $headers)) {
                     ?>
-                            <div class="alert alert-success" role="alert">
-                                Si vous possedez un compte un mail de récupération vous sera envoyé
-                            </div>
+                                <div class="alert alert-success" role="alert">
+                                    Si vous possedez un compte un mail de récupération vous sera envoyé
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="alert alert-success" role="alert">
+                                    Une erreur est survenue
+                                </div>
                         <?php
-                        } else {
-                        ?>
-                            <div class="alert alert-success" role="alert">
-                                Une erreur est survenue
-                            </div>
-                        <?php
+                            }
                         }
                     } else {
                         ?>
