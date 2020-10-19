@@ -395,6 +395,7 @@ footer {
   fieldset[disabled] .btn-primary.active { 
     background-color: #B39664; 
     border-color: #A37C39; 
+    box-shadow: 0 0 0 0.2rem rgba(134, 107, 61, 0.38);
   } 
    
   .btn-primary .badge { 
