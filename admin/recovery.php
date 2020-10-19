@@ -82,8 +82,8 @@ require_once("../includes/mysql.php");
                         $token = generateRandomString(40);
                         $date = date('Y-m-d H:i:s');
                         $mail = $_POST["email"];
-                        $id_user = $db->query("SELECT id_user FROM USERS WHERE email = '$mail'")->fetch();
-                        $id_user = $id_user["id_user"];
+                        $r = $db->query("SELECT id_user FROM USERS WHERE email = '$mail'")->fetch();
+                        $id_user = $r["id_user"];
                         if (!empty($id_user)) {
                             $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
 
@@ -91,26 +91,20 @@ require_once("../includes/mysql.php");
                             $from = 'no-reply@immersailles.me';
                             $fromName = 'no-reply';
 
-                            $subject = "Send HTML Email in PHP by CodexWorld";
+                            $subject = "Récupération de mot de passe";
 
                             $htmlContent = ' 
                                 <html> 
-                                <head> 
-                                    <title>Welcome to CodexWorld</title> 
-                                </head> 
+                                
                                 <body> 
-                                    <h1>Thanks you for joining with us!</h1> 
-                                    <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
-                                        <tr> 
-                                            <th>Name:</th><td>CodexWorld</td> 
-                                        </tr> 
-                                        <tr style="background-color: #e0e0e0;"> 
-                                            <th>Email:</th><td>contact@codexworld.com</td> 
-                                        </tr> 
-                                        <tr> 
-                                            <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
-                                        </tr> 
-                                    </table> 
+                                    <h2>Demande de récupération de mot de passe</h2> 
+                                    <p>Vous avez effectué une demande de récupération de mot de passe. 
+                                        <br>Si vous n\'êtes pas à l\'origine de cette demande ignorez ce mail .
+                                    </p>
+                                    <br>
+                                    <p> Le lien de de récupération sera valable pendant deux heures.</p>
+                                    <br>
+                                    <a href="https://immersailles.me/recovery.php"></a>
                                 </body> 
                                 </html>';
 

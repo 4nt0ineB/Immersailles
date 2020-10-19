@@ -1,0 +1,10 @@
+# mod_rewrite starts here
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Check for file in directory with .html / .php extension
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(([A-Za-z0-9\-]+/)*[A-Za-z0-9\-]+)?$ $1.php
