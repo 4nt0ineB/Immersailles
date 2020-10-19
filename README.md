@@ -20,6 +20,12 @@ For the attention of developers
 
 PHP classes are included trough the mysql.php import at the top of the page, because most of the time classes require sql query.
 
+
+### To do
+- [ ] No multiple token for recover a password (don't send a mail before expiration of previous one)
+- [ ] Finish set up of password recovery
+
+
 ### Project tree
 
 ```Bash
