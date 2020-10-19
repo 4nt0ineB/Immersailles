@@ -84,12 +84,49 @@ require_once("../includes/mysql.php");
                         $mail = $_POST["email"];
                         $id_user = $db->query("SELECT id_user FROM USERS WHERE email = '$mail'")->fetch();
                         $id_user = $id_user["id_user"];
-                        echo "ok";
                         if (!empty($id_user)) {
-                            echo "ok";
                             $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
-                            $message = $token;
-                            var_dump(mail($mail, 'Récupération de mot de passe', $message, 'From: no-reply@immersailles.me'));
+
+                            $to = $mail;
+                            $from = 'no-reply@immersailles.me';
+                            $fromName = 'no-reply';
+
+                            $subject = "Send HTML Email in PHP by CodexWorld";
+
+                            $htmlContent = ' 
+                                <html> 
+                                <head> 
+                                    <title>Welcome to CodexWorld</title> 
+                                </head> 
+                                <body> 
+                                    <h1>Thanks you for joining with us!</h1> 
+                                    <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
+                                        <tr> 
+                                            <th>Name:</th><td>CodexWorld</td> 
+                                        </tr> 
+                                        <tr style="background-color: #e0e0e0;"> 
+                                            <th>Email:</th><td>contact@codexworld.com</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
+                                        </tr> 
+                                    </table> 
+                                </body> 
+                                </html>';
+
+                            // Set content-type header for sending HTML email 
+                            $headers = "MIME-Version: 1.0" . "\r\n";
+                            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                            // Additional headers 
+                            $headers .= 'From: ' . $fromName . '<' . $from . '>' . "\r\n";
+
+                            // Send email 
+                            if (mail($to, $subject, $htmlContent, $headers)) {
+                                echo 'Email has sent successfully.';
+                            } else {
+                                echo 'Email sending failed.';
+                            }
                         }
                     } else {
                     }
