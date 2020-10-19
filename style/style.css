@@ -401,3 +401,9 @@ footer {
     color: #B39664; 
     background-color: #ffffff; 
   }
+
+  .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #866b3d; 
+    border-color: #A37C39; 
+}
