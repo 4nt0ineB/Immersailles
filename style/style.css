@@ -416,3 +416,23 @@ footer {
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(134, 107, 61, 0.38);
 }
+
+.cd-horizontal-timeline .events a {
+    text-decoration: none;
+    position: absolute;
+    width: 100px;
+    bottom: 0;
+    z-index: 2;
+    text-align: center;
+    font-size: 1.1rem;
+    padding-bottom: 15px;
+    color: #383838;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    color: #967c50;
+    padding: 5px;
+    margin-bottom: 20px;
+}
