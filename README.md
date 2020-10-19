@@ -40,11 +40,8 @@ PHP classes are included trough the mysql.php import at the top of the page, bec
 │   ├── bdd.php
 │   └── user.php
 ├── img
-│   ├── fauteuil.jpg
-│   ├── logo_mini.png
-│   ├── plan2.png
-│   ├── plan.png
-│   └── timeline.png
+│   ├...
+│
 ├── includes
 │   ├── footer.php
 │   ├── mysql.php
