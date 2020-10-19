@@ -90,37 +90,63 @@ require_once("../includes/mysql.php");
 
 
                             $to      = $mail;
-                            $subject = 'Récupération du mot de passe';
-                            $headers = 'From: no-reply@immersailles.me' . "\r\n";
+                            $from = 'no-reply@immersailles.me';
+                            $fromName = 'no-reply';
+
+                            $subject = "Send HTML Email in PHP by CodexWorld";
+
+                            $htmlContent = ' 
+                                <html> 
+                                <head> 
+                                    <title>Welcome to CodexWorld</title> 
+                                </head> 
+                                <body> 
+                                    <h1>Thanks you for joining with us!</h1> 
+                                    <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
+                                        <tr> 
+                                            <th>Name:</th><td>CodexWorld</td> 
+                                        </tr> 
+                                        <tr style="background-color: #e0e0e0;"> 
+                                            <th>Email:</th><td>contact@codexworld.com</td> 
+                                        </tr> 
+                                        <tr> 
+                                            <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
+                                        </tr> 
+                                    </table> 
+                                </body> 
+                                </html>';
+
+                            // Set content-type header for sending HTML email 
+                            $headers = "MIME-Version: 1.0" . "\r\n";
                             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                            $message = '\n\nAttention ce lien est valable pendant deux heures.';
-                            $message = ' 
-                                    <html> 
-                                    <head> 
-                                        <title>Immersailles</title> 
-                                    </head> 
-                                    <body> 
-                                        <h1>Thanks you for joining with us!</h1> 
-                                        <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
-                                            <tr> 
-                                                <th>Name:</th><td>CodexWorld</td> 
-                                            </tr> 
-                                            <tr style="background-color: #e0e0e0;"> 
-                                                <th>Email:</th><td>contact@codexworld.com</td> 
-                                            </tr> 
-                                            <tr> 
-                                                <th>Website:</th><td><a href="http://www.codexworld.com">' . $token . '</a></td> 
-                                            </tr> 
-                                        </table> 
-                                    </body> 
-                                    </html>';
-                            mail($to, $subject, $message, $headers);
+
+                            // Additional headers 
+                            $headers .= 'From: ' . $fromName . '<' . $from . '>' . "\r\n";
+
+                            // Send email 
+                            if (mail($to, $subject, $htmlContent, $headers)) {
+                    ?>
+                                <div class="alert alert-success" role="alert">
+                                    Si vous possedez un compte un mail de récupération vous sera envoyé
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <div class="alert alert-success" role="alert">
+                                    Une erreur est survenue
+                                </div>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <div class="alert alert-success" role="alert">
+                                Si vous possedez un compte un mail de récupération vous sera envoyé
+                            </div>
+                        <?php
                         }
 
-                    ?>
-                        <div class="alert alert-success" role="alert">
-                            Si vous possedez un compte un mail de récupération vous sera envoyé
-                        </div>
+                        ?>
+
                     <?php
 
 
