@@ -99,14 +99,13 @@ require_once("../includes/mysql.php");
                                     <meta charset="UTF-8" />
                                 </head>
                                 <body> 
-                                    <h2>Demande de récupération de mot de passe</h2> 
+                                    <h3 style="background-color: black; color: white;">Demande de récupération de mot de passe</h3> 
                                     <p>Vous avez effectué une demande de récupération de mot de passe. 
                                         <br>Si vous n\'êtes pas à l\'origine de cette demande ignorez ce mail .
                                     </p>
                                     <br>
-                                    <p> Le lien de de récupération sera valable pendant deux heures.</p>
-                                    <br>
-                                    <a href="https://immersailles.me/recovery.php">https://immersailles.me/recovery.php</a>
+                                    <p> Le lien de récupération ne sera valable que pendant deux heures.</p>
+                                    <a href="https://immersailles.me/recovery.php">https://lienboulshit.com</a>
                                 </body> 
                                 </html>';
 
@@ -119,9 +118,19 @@ require_once("../includes/mysql.php");
 
                             // Send email 
                             if (mail($to, $subject, $htmlContent, $headers)) {
-                                echo 'Email has sent successfully.';
+                    ?>
+                                <div class="alert alert-success" role="alert">
+                                    Si vous possedez un compte un mail de récupération vous sera envoyé.
+                                </div>
+
+                            <?php
                             } else {
-                                echo 'Email sending failed.';
+                            ?>
+                                <div class="alert alert-success" role="alert">
+                                    Une erreur est survenue votre demande n'a pas pu être prise en compte.
+                                </div>
+
+                    <?php
                             }
                         }
                     } else {
