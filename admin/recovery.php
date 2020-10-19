@@ -85,6 +85,7 @@ require_once("../includes/mysql.php");
                         $id_user = $db->query("SELECT id_user FROM USERS WHERE email = '$mail'")->fetch();
                         $id_user = $id_user["id_user"];
                         if (!empty($id_user)) {
+                            echo "ok";
                             $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
                             $message = $token;
                             mail($mail, 'Récupération de mot de passe', $message, 'From: no-reply@immersailles.me');
