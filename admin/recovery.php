@@ -92,9 +92,8 @@ require_once("../includes/mysql.php");
                             } catch (Exception $e) {
                                 echo $e;
                             }
-
+                        }
                     } else {
-                       
                     }
 
 
