@@ -1,6 +1,7 @@
 <?php
 
 require_once("../includes/mysql.php");
+error_reporting(E_ALL);
 
 ?>
 
