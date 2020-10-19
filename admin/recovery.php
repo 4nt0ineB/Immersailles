@@ -89,7 +89,7 @@ require_once("../includes/mysql.php");
                             $message = $token;
                             mail($mail, 'Récupération de mot de passe', $message);
                           
-  
+    print phpinfo();  
 
                         }
 
