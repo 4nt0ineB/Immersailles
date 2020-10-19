@@ -356,3 +356,48 @@ footer {
         display: none;
     }
 }
+.btn-primary { 
+    color: #ffffff; 
+    background-color: #B39664; 
+    border-color: #A37C39; 
+  } 
+   
+  .btn-primary:hover, 
+  .btn-primary:focus, 
+  .btn-primary:active, 
+  .btn-primary.active, 
+  .open .dropdown-toggle.btn-primary { 
+    color: #ffffff; 
+    background-color: #A88C5C; 
+    border-color: #A37C39; 
+  } 
+   
+  .btn-primary:active, 
+  .btn-primary.active, 
+  .open .dropdown-toggle.btn-primary { 
+    background-image: none; 
+  } 
+   
+  .btn-primary.disabled, 
+  .btn-primary[disabled], 
+  fieldset[disabled] .btn-primary, 
+  .btn-primary.disabled:hover, 
+  .btn-primary[disabled]:hover, 
+  fieldset[disabled] .btn-primary:hover, 
+  .btn-primary.disabled:focus, 
+  .btn-primary[disabled]:focus, 
+  fieldset[disabled] .btn-primary:focus, 
+  .btn-primary.disabled:active, 
+  .btn-primary[disabled]:active, 
+  fieldset[disabled] .btn-primary:active, 
+  .btn-primary.disabled.active, 
+  .btn-primary[disabled].active, 
+  fieldset[disabled] .btn-primary.active { 
+    background-color: #B39664; 
+    border-color: #A37C39; 
+  } 
+   
+  .btn-primary .badge { 
+    color: #B39664; 
+    background-color: #ffffff; 
+  }
