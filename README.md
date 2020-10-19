@@ -22,40 +22,37 @@ PHP classes are included trough the mysql.php import at the top of the page, bec
 
 
 |
-| __/Admin
-|    __/includes
-|         contributeur.php
-|         create_user.php    
-|         index.php
-|         login.php
-|         logout.php
-|         manage_user.php
-|         recovery.php
-|
-| __/class
-|       bdd.php
-|       user.php
-|
-| __/img
-|     ...
-|
-| __/includes
-|       footer.php
-|       mysql.php
-|       navbar.php
-|
-| __/scripts
-|     __/js
-|        timeline.js
-|
-| __/style
-|     style.css
-|     timeline.css
-|
-| index.php
-| 
-|
-|
-|
-|
-|
+├── admin
+│   ├── contributeur.php
+│   ├── create_user.php
+│   ├── includes
+│   │   ├── checkperms.php
+│   │   ├── functions.php
+│   │   └── navbar.php
+│   ├── index.php
+│   ├── login.php
+│   ├── logout.php
+│   ├── manage_users.php
+│   └── recovery.php
+├── class
+│   ├── bdd.php
+│   └── user.php
+├── github-sync.php
+├── img
+│   ├── fauteuil.jpg
+│   ├── logo_mini.png
+│   ├── plan2.png
+│   ├── plan.png
+│   └── timeline.png
+├── includes
+│   ├── footer.php
+│   ├── mysql.php
+│   └── navbar.php
+├── index.php
+├── README.md
+├── scripts
+│   └── js
+│       └── timeline.js
+└── style
+    ├── style.css
+    └── timeline.css
