@@ -1,7 +1,6 @@
 <?php
 
 require_once("../includes/mysql.php");
-error_reporting(E_ALL);
 
 ?>
 
@@ -88,11 +87,7 @@ error_reporting(E_ALL);
                         if (!empty($id_user)) {
                             $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
                             $message = $token;
-                            try {
-                                mail($mail, 'Récupération de mot de passe', $message);
-                            } catch (Exception $e) {
-                                echo $e;
-                            }
+                            mail($mail, 'Récupération de mot de passe', $message, 'From: no-reply@immersailles.me');
                         }
                     } else {
                     }
