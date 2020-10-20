@@ -54,7 +54,7 @@ class User
         if (!empty($id_user)) {
             $nowNCooldown = date("Y-m-d H:i:s", strtotime("-2 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 2h pour chaque nouveau token
             $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date < '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
-            echo $actualToken;
+            echo "SELECT * FROM PSSWD_RECOVER WHERE date < '$nowNCooldown' AND id_user = $id_user";
             if (($actualToken == 0)) {
                 $token = generateRandomString(40);
                 User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)"); // def le token pour l'utilisateur
