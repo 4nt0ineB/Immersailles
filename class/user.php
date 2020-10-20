@@ -52,8 +52,9 @@ class User
         $r = User::$db->query("SELECT id_user FROM USERS WHERE email = \"$mail\"")->fetch(); // id de l'user pour le mail donnée
         $id_user = $r["id_user"];
         if (!empty($id_user)) {
-            $nowNCooldown = strtotime("-2 hour", strtotime(date("Y-m-d H:i:s"))); //heure actuelle - cooldown de 2h pour chaque nouveau token
-            $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date < '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
+            $dat = date("Y-m-d H:i:s");
+            $nowNCooldown = date("Y-m-d H:i:s", strtotime("-2 hour", strtotime($dat))); //heure actuelle - cooldown de 2h pour chaque nouveau token
+            $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE id_user = $id_user AND date BETWEEN '$nowNCooldown' AND '$dat'")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
             if (($actualToken == 0)) {
                 $token = generateRandomString(40);
                 User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)"); // def le token pour l'utilisateur
@@ -73,7 +74,6 @@ class User
                         </p>
                         <br>
                         <p> Le lien de récupération ne sera valable que pendant deux heures.</p>
-                        <a href="https://immersailles.me/recovery.php?re=' . $token . '">réinitialiser mon mot de passe</a>
                         <a href="https://immersailles.me/admin/recovery.php?re=' . $token . '">réinitialiser le mot de passe</a>
                     </body> 
                     </html>';
