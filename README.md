@@ -19,3 +19,44 @@ For the attention of developers
 ------------------------------------------------------------------------------------
 
 PHP classes are included trough the mysql.php import at the top of the page, because most of the time classes require sql query.
+
+
+### To do
+- [ ] No multiple token for recover a password (don't send a mail before expiration of previous one)
+- [ ] Finish set up of password recovery
+
+
+### Project tree
+
+```Bash
+|
+├── admin
+│   ├── contributeur.php
+│   ├── create_user.php
+│   ├── includes
+│   │   ├── checkperms.php
+│   │   ├── functions.php
+│   │   └── navbar.php
+│   ├── index.php
+│   ├── login.php
+│   ├── logout.php
+│   ├── manage_users.php
+│   └── recovery.php
+├── class
+│   ├── bdd.php
+│   └── user.php
+├── img
+│   ├...
+│
+├── includes
+│   ├── footer.php
+│   ├── mysql.php
+│   └── navbar.php
+├── index.php
+├── scripts
+│   └── js
+│       └── timeline.js
+└── style
+    ├── style.css
+    └── timeline.css
+```
