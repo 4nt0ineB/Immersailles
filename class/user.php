@@ -74,7 +74,6 @@ class User
                         </p>
                         <br>
                         <p> Le lien de récupération ne sera valable que pendant deux heures.</p>
-                        <p>' . $rr . '</p>
                         <a href="https://immersailles.me/admin/recovery.php?re=' . $token . '">réinitialiser le mot de passe</a>
                     </body> 
                     </html>';
@@ -86,6 +85,8 @@ class User
                 $headers .= 'From: ' . $fromName . '<' . $from . '>' . "\r\n";
                 // Send email 
                 return mail($to, $subject, $htmlContent, $headers);
+            } else {
+                return -1;
             }
         }
     }

@@ -68,13 +68,23 @@ require_once("../includes/mysql.php");
 
                     if (isset($_POST["send"])) {
                         $mail = $_POST["email"];
-                        if (User::sendTokenRecovery($mail)) {
+                        $exec = User::sendTokenRecovery($mail);
+                        if ($exec == -1) {
                     ?>
+                            <div class="alert alert-success" role="alert">
+                                Un mail de récupération à déjà été envoyé à cette adresse.
+                            </div>
+
+                        <?php
+
+                        } elseif ($exec == 0) {
+                        ?>
                             <div class="alert alert-success" role="alert">
                                 Si vous possedez un compte un mail de récupération vous sera envoyé.
                             </div>
 
                         <?php
+
                         } else {
                         ?>
                             <div class="alert alert-success" role="alert">
