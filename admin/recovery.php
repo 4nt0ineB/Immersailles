@@ -11,18 +11,7 @@ require_once("../includes/mysql.php");
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mot de passe perdu</title>
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-
-    <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-    </script>
-    <link rel="stylesheet" href="../style/style.css" />
-
+    <?php require_once("includes/head.html") ?>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -78,63 +67,25 @@ require_once("../includes/mysql.php");
                     <?php
 
                     if (isset($_POST["send"])) {
-
-                        $token = generateRandomString(40);
-                        $date = date('Y-m-d H:i:s');
                         $mail = $_POST["email"];
-                        $r = $db->query("SELECT id_user FROM USERS WHERE email = '$mail'")->fetch();
-                        $id_user = $r["id_user"];
-                        if (!empty($id_user)) {
-                            $db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)");
 
-                            $to = $mail;
-                            $from = 'no-reply@immersailles.me';
-                            $fromName = 'no-reply';
-
-                            $subject = "Récupération de mot de passe";
-
-                            $htmlContent = ' 
-                                <html> 
-                                <head> 
-                                    <meta charset="UTF-8" />
-                                </head>
-                                <body> 
-                                    <h3 style="background-color: black; color: white;">Demande de récupération de mot de passe</h3> 
-                                    <p>Vous avez effectué une demande de récupération de mot de passe. 
-                                        <br>Si vous n\'êtes pas à l\'origine de cette demande ignorez ce mail .
-                                    </p>
-                                    <br>
-                                    <p> Le lien de récupération ne sera valable que pendant deux heures.</p>
-                                    <a href="https://immersailles.me/recovery.php">https://lienboulshit.com</a>
-                                </body> 
-                                </html>';
-
-                            // Set content-type header for sending HTML email 
-                            $headers = "MIME-Version: 1.0" . "\r\n";
-                            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-                            // Additional headers 
-                            $headers .= 'From: ' . $fromName . '<' . $from . '>' . "\r\n";
-
-                            // Send email 
-                            if (mail($to, $subject, $htmlContent, $headers)) {
+                        if (User::sendTokenRecovery($mail)) {
                     ?>
-                                <div class="alert alert-success" role="alert">
-                                    Si vous possedez un compte un mail de récupération vous sera envoyé.
-                                </div>
+                            <div class="alert alert-success" role="alert">
+                                Si vous possedez un compte un mail de récupération vous sera envoyé.
+                            </div>
 
-                            <?php
-                            } else {
-                            ?>
-                                <div class="alert alert-success" role="alert">
-                                    Une erreur est survenue votre demande n'a pas pu être prise en compte.
-                                </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="alert alert-success" role="alert">
+                                Une erreur est survenue votre demande n'a pas pu être prise en compte.
+                            </div>
 
                     <?php
-                            }
                         }
-                    } else {
                     }
+
 
 
 

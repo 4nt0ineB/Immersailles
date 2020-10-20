@@ -1,6 +1,5 @@
-<?php include("../includes/mysql.php"); ?>
-<?php include("includes/checkperms.php"); ?>
-<?php include("includes/functions.php"); ?>
+<?php require_once("../includes/mysql.php"); ?>
+<?php require_once("includes/checkperms.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,31 +7,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestion des utilisateurs</title>
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-
-    <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-    </script>
+    <?php require_once("includes/head.html"); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" href="../style/style.css" />
-    <script>
-        $(document).ready( function () {
-            $('#datatable').DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/French.json'
-                },
-                responsive: true
-            } );
-        });
-    </script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+    <script src="../scripts/js/datatable.js"></script>
 
 </head>
 
@@ -53,37 +33,43 @@
                 <div id="box">
                     <h3>Gestion des utilisateurs</h3>
                     <br>
-                        <div class="row float-right" style="margin: 10px auto;"><a href="create_user.php" class="btn btn-dark">Créer un nouvel utilisateur</a></div>
+                    <div class="row float-right" style="margin: 10px auto;"><a href="create_user.php" class="btn btn-dark">Créer un nouvel utilisateur</a></div>
                     <br>
                     <table id="datatable" class="table table-striped table-bordered" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Nom</th>
-                                                    <th>Prénom</th>
-                                                    <th>Email</th>
-                                                    <th>Rôle</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Email</th>
+                                <th>Rôle</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                                            <?php
-                                                $users = $db->query("SELECT * FROM USERS");
-                                                while ($u = $users->fetch()) {
-                                                    echo '<tr>
+                            <?php
+                            $users = $db->query("SELECT * FROM USERS");
+                            while ($u = $users->fetch()) {
+                                echo '<tr>
                                                             <td>' . $u['id_user'] . '</td>
                                                             <td>' . $u['surname'] . '</td>
                                                             <td>' . $u['name'] . '</td>
                                                             <td>' . $u['email'] . '</td>
                                                             <td>' . getRole($u['role']) . '</td>
-                                                            <td><a href="#" class="btn btn-dark">éditer</a></td>
+                                                            <td>
+                                                                <a href="#" class="">
+                                                                    <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="black" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </td>
                                                             </tr>';
-
-                                                }
-                                            ?>
+                            }
+                            ?>
                         </tbody>
-                      </table>
+                    </table>
                     <br><br>
                     <a href="index.php" class="btn btn-dark">Retour à l'accueil</a>
                 </div>
