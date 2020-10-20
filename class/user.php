@@ -73,9 +73,8 @@ class User
 
         if (!empty($id_user)) {
 
-            $date = date("Y-m-d H:i:s");
-            $nowNCooldown = strtotime("-2 hour", strtotime($date)); //heure actuelle - cooldown de 2h pour chaque nouveau token
-            $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE id_user = $id_user AND date BETWEEN '$nowNCooldown' AND '$date' ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
+            $nowNCooldown = strtotime("-2 hour", strtotime(date("Y-m-d H:i:s"))); //heure actuelle - cooldown de 2h pour chaque nouveau token
+            $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date < '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
             if (($actualToken == 0)) {
 
                 $token = generateRandomString(40);
@@ -99,7 +98,7 @@ class User
                         </p>
                         <br>
                         <p> Le lien de récupération ne sera valable que pendant deux heures.</p>
-                        <a href="https://immersailles.me/admin/recovery.php?re=' . $token . '">réinitialiser le mot de passe</a>
+                        <a href="https://immersailles.me/recovery.php?re=' . $token . '">réinitialiser mon mot de passe</a>
                     </body> 
                     </html>';
 
