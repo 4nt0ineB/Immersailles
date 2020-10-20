@@ -98,7 +98,7 @@ class User
                         </p>
                         <br>
                         <p> Le lien de récupération ne sera valable que pendant deux heures.</p>
-                        <a href="https://immersailles.me/recovery.php?re=' . $token . '">réinitialiser mon mot de passe</a>
+                        <a href="https://immersailles.me/admin/recovery.php?re=' . $token . '">réinitialiser le mot de passe</a>
                     </body> 
                     </html>';
 
