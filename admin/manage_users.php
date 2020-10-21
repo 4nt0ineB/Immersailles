@@ -13,6 +13,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
     <script src="../scripts/js/datatable.js"></script>
+    
 
 </head>
 

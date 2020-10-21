@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Se connecter</title>
   <?php require_once("includes/head.html") ?>
+  <script src="../scripts/js/inactivity.js"></script>
 
   <style>
     #row {

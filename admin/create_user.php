@@ -10,6 +10,7 @@
     <?php require_once("includes/head.html") ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../scripts/js/inactivity.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
