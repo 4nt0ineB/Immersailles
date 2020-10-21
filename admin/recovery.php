@@ -115,6 +115,8 @@ if (isset($_SESSION["user"])) {
                         <?php
 
 
+                        } else {
+                            header("location:../index.php"); // redirection si token invalide
                         }
                     } else {
                         ?>
