@@ -57,7 +57,7 @@ class User
             $rr = "SELECT * FROM PSSWD_RECOVER WHERE date < '$nowNCooldown' AND id_user = $id_user";
             if (($actualToken == 0)) {
                 $token = generateRandomString(40);
-                User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user)"); // def le token pour l'utilisateur
+                User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user, 0)"); // def le token pour l'utilisateur
                 $to = $mail;
                 $from = 'no-reply@immersailles.me';
                 $fromName = 'no-reply';
