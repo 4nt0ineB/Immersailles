@@ -90,7 +90,7 @@ class User
                                         text-shadow: 1px 1px #6c5835;
                                         text-align: center;
                                         border: 2px solid #97815c;">Réinitialiser le mot de passe</a></p>
-                                        <p><small>ATTENTION : Le lien de récupération ne sera valable que pendant deux heures.</small></p>
+                                        <p><small>ATTENTION : Le lien de récupération ne sera valable que pendant une heure.</small></p>
                                         <p><small>Si vous n\'êtes pas à l\'origine de cette demande de réinitialisation, merci d\'ignorer cet e-mail.</small></p>
                                     </center>
                                     </div>
