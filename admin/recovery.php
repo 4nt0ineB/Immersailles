@@ -59,7 +59,8 @@ if (isset($_SESSION["user"])) {
 
             <div class="col-lg text-center">
 
-                <h2 id="title-current-place" style="padding: 10px;">Réinitialiser le mot de passe</h2>
+                <h2 id="title-current-place" style="padding: 10px;"><?php if (isset($_GET["cr"])) echo "Création du mot de passe";
+                                                                    else echo "Réinitialiser le mot de passe"; ?></h2>
                 <div id="box">
                     <?php
 
