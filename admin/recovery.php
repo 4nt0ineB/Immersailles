@@ -64,16 +64,17 @@ if (isset($_SESSION["user"])) {
                     <?php
 
                     if (isset($_POST["sendpass"])) {
-                        $id_user = $_POST["id_user"];
-                        $mdp = $_POST["pass1"];
-                        if ($db->query("UPDATE USERS set mdp=\"$mdp\" WHERE id_user=$id_user")) {
-                            $db->query("")
+                        $id_user = str_replace('.', '', $_POST["id_user"]);
+                        $mdp = password_hash($_POST["pass1"], PASSWORD_DEFAULT);
+                        $r = $db->query("UPDATE USERS SET pwd_hash=\"$mdp\" WHERE id_user=$id_user");
+                        if ($r) {
                     ?>
                             <div class="alert alert-success" role="alert">
-                                Votre mot de passe à été changé avec succès.
+                                Votre mot de passe à été changé avec succès. Redirection...
                             </div>
 
                         <?php
+                            header("refresh:1; login.php");   // redirection vers la page de connexion
                         } else {
                         ?>
                             <div class="alert alert-danger" role="alert">
@@ -84,25 +85,27 @@ if (isset($_SESSION["user"])) {
                         }
                     }
 
-
-
                     if (isset($_GET["re"])) {
                         $existUser = "";
                         if ($_GET["re"]) {
                             $token = htmlspecialchars($_GET["re"]);
                             if (!empty("$token")) {
-                                $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\"");
+                                $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\"")->fetch();
+                                $existUser = $existUser["id_user"];
                             }
                         }
                         if (!empty($existUser)) {
                         ?>
                             <form method="POST" action="recovery.php">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nouveau mot de passe</label>
+                                    <label for="password">Nouveau mot de passe</label>
                                     <input type="password" required name="pass1" class="form-control" id="password" placeholder="Mot de passe">
                                     <br>
                                     <input type="password" required name="pass2" class="form-control" id="confirm_password" placeholder="Confirmer le mot de passe">
-                                    <input type="hidden" name="id_user" value="<?php echo $existUser; ?>" </div> <button type="submit" name="sendpass" class="btn btn-primary">Envoyer</button>
+                                    <input type="hidden" name="id_user" value="<?php echo $existUser; ?>">
+                                    <br>
+                                    <button type="submit" name="sendpass" class="btn btn-primary">Envoyer</button>
+                                </div>
                             </form>
                             <br>
                             <script src="../scripts/js/confirmpsswd.js"></script> <!-- js correspondance mdp-->
@@ -112,8 +115,6 @@ if (isset($_SESSION["user"])) {
                         }
                     } else {
                         ?>
-
-
                         <form method="POST">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Adresse email</label>
