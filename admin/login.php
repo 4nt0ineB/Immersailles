@@ -90,8 +90,7 @@ if (isset($_SESSION['user'])) {
 
                                     if ($email == $row["email"]) {
                                         if (password_verify($password, $row["pwd_hash"])) {
-
-                                            $user = new User($row["id_user"]); // nouvel user
+                                            $user = new User($row["id_user"], $row["pwd_hash"]); // nouvel user
                                             $user->setSession(session_id()); // definition user session_id
                                             $user->connect();
                                             $_SESSION["user"] = $user; // stock obj user dans la session
