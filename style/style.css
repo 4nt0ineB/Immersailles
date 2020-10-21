@@ -88,6 +88,8 @@ body {
     background-color: rgba(0, 0, 0, 0.80);
     height: 628px;
     width: 340px;
+    position: relative;
+    z-index: 999;
 }
 
 .info-bubble img {

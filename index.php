@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Immersailles</title>
+
+	<!-- Leaflet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
 
@@ -18,7 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/timeline.css" />
-
+    
+    
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -49,9 +54,9 @@
     </div>
 
     <!--MAP-->
-    <div class="map" style="background-image: url('img/plan2.png');">
+    <div id="mapid" style="width: 100%; height: 628px;">
 
-
+<div id="noscroll">
         <div class="float-right info-bubble">
             <div class="container">
                 <div class="row">
@@ -81,6 +86,7 @@
             </div>
 
         </div>
+    </div>
 
 
     </div><br>
@@ -123,6 +129,7 @@
     <!-- Footer -->
     <?php include("includes/footer.php"); ?>
     <!-- Footer -->
+    <script src="scripts/js/map.js"></script>
     <script src="scripts/js/timeline.js"></script>
 </body>
 
