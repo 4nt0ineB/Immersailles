@@ -66,45 +66,30 @@ class User
                                     <head>
                                         <meta charset="utf8">
                                     </head>
-                                    <style>
-                                    body {
-                                        font-family: Tahoma;
+
+                                    <body style="font-family: Tahoma;
                                         background-color: black;
-                                        color: white;
-                                    }
-                                    #box {
-                                        width: 70%;
+                                        color: white;">
+                                        <div id="box" style="width: 70%;
                                         margin: 0 auto;
                                         border-radius: 10px;
                                         padding: 5px;
-                                        background-color: #353535;
-                                    }
-                                    img {
-                                        width: 100px;
-                                    }
-                                    a { text-decoration: none; }
-                                    .bouton {
-                                        background-color: #C8AD7F;
+                                        background-color: #353535;">
+                                        <center>
+                                        <img src="https://immersailles.me/img/logo_mini.png" style="width: 100px;">
+                                        <p><h3>Réinitialisation de votre mot de passe</h3></p>
+                                        <hr>
+                                        <p>Vous avez perdu votre mot de passe ? Cela arrive même aux meilleurs !<br>
+                                        <br>Cliquez sur le bouton suivant pour le réinitialiser :</p>
+                                        <br>
+                                        <p><a href="https://immersailles.me/admin/recovery.php?re=' . $token . '" style="text-decoration: none;background-color: #C8AD7F;
                                         color: white;
                                         padding: 7px;
                                         border-radius: 5px;
                                         font-weight: bold;
                                         text-shadow: 1px 1px #6c5835;
                                         text-align: center;
-                                        border: 2px solid #97815c;
-                                    }
-                                        </style>
-
-                                    <body>
-                                        <div id="box">
-                                        <center>
-                                        <img src="img/logo_mini.png">
-                                        <p><h3>Réinitialisation de votre mot de passe</h3></p>
-                                        <hr>
-                                        <p>Vous avez perdu votre mot de passe ? Cela arrive même aux meilleurs !<br>
-                                        <br>Cliquez sur le bouton suivant pour le réinitialiser :</p>
-                                        <br>
-                                        <p><a href="https://immersailles.me/admin/recovery.php?re=' . $token . '" class="bouton">Réinitialiser le mot de passe</a></p>
+                                        border: 2px solid #97815c;">Réinitialiser le mot de passe</a></p>
                                         <p><small>ATTENTION : Le lien de récupération ne sera valable que pendant deux heures.</small></p>
                                         <p><small>Si vous n\'êtes pas à l\'origine de cette demande de réinitialisation, merci d\'ignorer cet e-mail.</small></p>
                                     </center>
