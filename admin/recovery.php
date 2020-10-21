@@ -68,6 +68,8 @@ if (isset($_SESSION["user"])) {
                         $mdp = password_hash($_POST["pass1"], PASSWORD_DEFAULT);
                         $r = $db->query("UPDATE USERS SET pwd_hash=\"$mdp\" WHERE id_user=$id_user");
                         if ($r) {
+                            $token = $_POST["token"];
+                            $db->query("UPDATE PSSWD_RECOVER SET state=1 WHERE token=\"$token\"");
                     ?>
                             <div class="alert alert-success" role="alert">
                                 Votre mot de passe à été changé avec succès. Redirection...
@@ -90,7 +92,7 @@ if (isset($_SESSION["user"])) {
                         if ($_GET["re"]) {
                             $token = htmlspecialchars($_GET["re"]);
                             if (!empty("$token")) {
-                                $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\"")->fetch();
+                                $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0")->fetch();
                                 $existUser = $existUser["id_user"];
                             }
                         }
@@ -103,6 +105,7 @@ if (isset($_SESSION["user"])) {
                                     <br>
                                     <input type="password" required name="pass2" class="form-control" id="confirm_password" placeholder="Confirmer le mot de passe">
                                     <input type="hidden" name="id_user" value="<?php echo $existUser; ?>">
+                                    <input type="hidden" name="token" value="<?php echo $token; ?>">
                                     <br>
                                     <button type="submit" name="sendpass" class="btn btn-primary">Envoyer</button>
                                 </div>
