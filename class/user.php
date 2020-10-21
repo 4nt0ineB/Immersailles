@@ -52,7 +52,7 @@ class User
         $r = User::$db->query("SELECT id_user FROM USERS WHERE email = \"$mail\"")->fetch(); // id de l'user pour le mail donnée
         $id_user = $r["id_user"];
         if (!empty($id_user)) {
-            $nowNCooldown = date("Y-m-d H:i:s", strtotime("-2 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 2h pour chaque nouveau token
+            $nowNCooldown = date("Y-m-d H:i:s", strtotime("-1 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 2h pour chaque nouveau token
             $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date >= '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
             $rr = "SELECT * FROM PSSWD_RECOVER WHERE date < '$nowNCooldown' AND id_user = $id_user";
             if (($actualToken == 0)) {
@@ -80,7 +80,7 @@ class User
                                         <p><h3>Réinitialisation de votre mot de passe</h3></p>
                                         <hr>
                                         <p>Vous avez perdu votre mot de passe ? Cela arrive même aux meilleurs !<br>
-                                        <br>Cliquez sur le bouton suivant pour le réinitialiser :</p>
+                                        <br>Cliquez sur le bouton pour le réinitialiser :</p>
                                         <br>
                                         <p><a href="https://immersailles.me/admin/recovery.php?re=' . $token . '" style="text-decoration: none;background-color: #C8AD7F;
                                         color: white;
