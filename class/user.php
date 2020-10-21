@@ -167,9 +167,8 @@ class User
             $headers .= 'From: ' . $fromName . '<' . $from . '>' . "\r\n";
             // Send email 
             return mail($to, $subject, $htmlContent, $headers);
-            } else {
-                return -1;
-            }
+        } else {
+            return -1;
         }
     }
 }
