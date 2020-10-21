@@ -5,12 +5,12 @@ class User
     private $idUser;
     private $name;
     private $sessionId;
-    private $psswd;
+    private $psswd_hash;
     public function __construct($idUser, $psswd)
     {
         $this->sessionId = "";
         $this->idUser = $idUser;
-        $this->psswd = $psswd;
+        $this->psswd_hash = $psswd;
     }
     public function getId()
     {
@@ -36,7 +36,7 @@ class User
         /* si l'id de la session dans la db est différent du session_id de l'user (bdd) on détruit la session. 
         retourne 0 si déconnecté, 1 si non */
         $result = User::$db->query("SELECT session_id FROM USERS WHERE id_user = $this->idUser")->fetch();
-        if ($result["pwd_hash"] != $this->psswd) {
+        if ($result["pwd_hash"] != $this->psswd_hash) {
             header("refresh:0; logout.php");
             return 0;
         }
