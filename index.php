@@ -57,15 +57,15 @@
     <div id="mapid" style="width: 100%; height: 628px;">
 
 <div id="noscroll">
-        <div class="float-right info-bubble">
+        <div class="float-right info-bubble" id="overlay">
             <div class="container">
                 <div class="row">
                     <div class="container container-img">
                         <img src="img/fauteuil.jpg">
                         <!--div class="top-left">[Ici, la photo de l'objet]</!-->
-                        <div class="top-right"> <a href="">X</a> </div>
+                        <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
-                        <div class="bottom-right">NOM DE L'OBJET</div>
+                        <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
                     </div>
                 </div>
                 <div class="row">
