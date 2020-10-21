@@ -129,6 +129,7 @@ if (isset($_SESSION["user"])) {
                     if (isset($_POST["send"])) {
                         $mail = $_POST["email"];
                         $exec = User::sendTokenRecovery($mail);
+                        echo $exec;
                         if ($exec == -1) {
                         ?>
                             <div class="alert alert-warning" role="alert">
