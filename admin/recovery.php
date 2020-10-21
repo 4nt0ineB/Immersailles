@@ -135,19 +135,20 @@ if (isset($_SESSION["user"])) {
                         $mail = $_POST["email"];
                         $exec = User::sendTokenRecovery($mail);
                         echo $exec;
-                        if ($exec == -1) {
+                        if ($exec == "1") {
+                        ?>
+                            <div class="alert alert-success" role="alert">
+                                Si vous possedez un compte un mail de récupération vous sera envoyé.
+                            </div>
+
+                        <?php
+
+                        } elseif ($exec == "-1") {
                         ?>
                             <div class="alert alert-warning" role="alert">
                                 Un mail de récupération à déjà été envoyé à cette adresse. Patientez une heure entres deux demandes.
                             </div>
 
-                        <?php
-
-                        } elseif ($exec == 0) {
-                        ?>
-                            <div class="alert alert-success" role="alert">
-                                Si vous possedez un compte un mail de récupération vous sera envoyé.
-                            </div>
 
                         <?php
 
