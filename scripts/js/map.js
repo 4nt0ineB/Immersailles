@@ -8,7 +8,7 @@ var map = L.map('mapid', {
 
 
     var bounds = [[0,0], [2319,6507]];
-	var image = L.imageOverlay('http://localhost/Immersailles/admin/upload/plan_1735.png', bounds).addTo(map);
+	var image = L.imageOverlay('././admin/upload/plan_1735.png', bounds).addTo(map);
 
 	map.fitBounds(bounds);
 
