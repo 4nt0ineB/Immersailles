@@ -62,7 +62,7 @@
                             $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
 
                             if ($insert_user->execute(array(':mdp' => $mdp, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':roleU' => $role))) {
-
+                                User::sendAccountCreation($email); // envoie du mail pour définir son mot de passe
                                 $successMsg = "L'utilisateur a été créé avec succès. Redirection..."; // msg de succès
                                 header("refresh:3; manage_users.php?id=$id");
                             }
