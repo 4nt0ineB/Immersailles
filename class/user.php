@@ -106,7 +106,7 @@ class User
                                         <br>
                                         <p><a href="https://immersailles.me/admin/recovery.php?re=' . $token . '" class="bouton">Réinitialiser le mot de passe</a></p>
                                         <p><small>ATTENTION : Le lien de récupération ne sera valable que pendant deux heures.</small></p>
-                                        <p><small>Si vous n\'êtes pas à l'origine de cette demande de réinitialisation, merci d\'ignorer cet e-mail.</small></p>
+                                        <p><small>Si vous n\'êtes pas à l\'origine de cette demande de réinitialisation, merci d\'ignorer cet e-mail.</small></p>
                                     </center>
                                     </div>
                                     </body>
