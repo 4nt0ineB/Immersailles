@@ -89,7 +89,7 @@ if (isset($_SESSION["user"])) {
 
                     if (isset($_GET["re"]) || isset($_GET["cr"])) {
                         $existUser = "";
-                        if ($_GET["re"]) {
+                        if (isset($_GET["re"])) {
                             $token = htmlspecialchars($_GET["re"]);
                             if (!empty("$token")) {
 
@@ -100,7 +100,7 @@ if (isset($_SESSION["user"])) {
                                     $existUser = $existUser["id_user"];
                                 }
                             }
-                        } elseif ($_GET["cr"]) {
+                        } elseif (isset($_GET["cr"])) {
                             $token = htmlspecialchars($_GET["cr"]);
                             if (!empty("$token")) {
                                 $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0")->fetch();

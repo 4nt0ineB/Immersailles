@@ -145,7 +145,7 @@ class User
                                     <p><h3>Création du compte Immersailles</h3></p>
                                     <hr>
                                     <p>Bienvenue !<br>
-                                    <br>Cliquez sur le bouton pour le définir le mot de passe de votre compte :</p>
+                                    <br>Cliquez sur le bouton pour définir le mot de passe de votre compte :</p>
                                     <br>
                                     <p><a href="https://immersailles.me/admin/recovery.php?cr=' . $token . '" style="text-decoration: none;background-color: #C8AD7F;
                                     color: white;
