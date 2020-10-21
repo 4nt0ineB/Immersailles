@@ -148,10 +148,17 @@ if (isset($_SESSION['user'])) {
                             <label for="exampleInputPassword1">Mot de passe</label>
                             <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Votre mot de passe">
                         </div>
-                        <button type="submit" name="send" class="btn btn-primary">Se connecter</button>
-                        <a href="recovery.php" style="font-size: 10px;">mot de passe oublié</a>
+                        <button type="submit" name="send" class="btn btn-primary">Se connecter</button><br>
+
+
                     </form>
                     <br>
+
+
+                    <a href="recovery.php" style="font-size: 11px; float: right; top: 10px;color: black;">Mot de passe oublié</a>
+                    <br>
+
+
                 </div>
             </div>
         </div>

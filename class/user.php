@@ -35,7 +35,7 @@ class User
     {
         /* si l'id de la session dans la db est différent du session_id de l'user (bdd) on détruit la session. 
         retourne 0 si déconnecté, 1 si non */
-        $result = User::$db->query("SELECT session_id FROM USERS WHERE id_user = $this->idUser")->fetch();
+        $result = User::$db->query("SELECT session_id, pwd_hash FROM USERS WHERE id_user = $this->idUser")->fetch();
         if ($result["pwd_hash"] != $this->psswd_hash) {
             header("refresh:0; logout.php");
             return 0;
