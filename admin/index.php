@@ -47,7 +47,7 @@
 
 
         <div id="box">
-          <h3>Bienvenue <?php echo $row["name"]; ?></h3>
+          <h3>Bienvenue <?php echo $row["surname"]; ?></h3>
           <div class="container">
 
             <div class="row text-left">
