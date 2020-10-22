@@ -36,7 +36,11 @@ for(let i = 0; i < jsonMarkers.length; i++) {
 		
 	var obj = jsonMarkers[i];
 
+if (typeof obj.latitude === 'undefined'){ // si le marqueur a une latitude nulle c meme pas la peine de continuer, c le tableau vide
+			// ne rien faire
+} else  {
 	L.marker([obj.latitude, obj.longitude], {icon: immersaillesIcon}).addTo(map).on('click', onClick);
+}
 
 }
 
@@ -51,7 +55,6 @@ for(let i = 0; i < jsonMarkers.length; i++) {
 		}
 	}
 
-//.bindPopup("Grande salle des gardes")
 	
 
 

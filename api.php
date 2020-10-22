@@ -11,16 +11,31 @@
 header('Content-Type: application/json');
 
 $markersList = $db->query("SELECT * FROM MARKERS");
+$mapList = $db->query("SELECT * FROM MAPS");
 
 $data = array();
 
-    for ($i=0; $i < $markersList->rowCount(); $i++) { 
-        $marker = $db->query("SELECT * FROM MARKERS WHERE id_marker=$i")->fetch();
+    $i = 0;
+    foreach ($mapList as $map) {
+            $i+=1;
+            $data["Maps"][] = array();
+            $data["Maps"][$i]["id"] = $map["id_map"];
+            $data["Maps"][$i]["hauteur"] = $map["hauteur"];
+            $data["Maps"][$i]["largeur"] = $map["largeur"];
+            $data["Maps"][$i]["lien"] = $map["lien"];
+            $data["Maps"][$i]["libelle"] = $map["libelle"];
+            $data["Maps"][$i]["zoom"] = $map["zoom"];
+    }
 
+
+    $i = 0;
+    foreach ($markersList as $marker) {
+            $i+=1;
             $data["Markers"][] = array();
             $data["Markers"][$i]["id"] = $marker["id_marker"];
             $data["Markers"][$i]["latitude"] = $marker["latitude"];
             $data["Markers"][$i]["longitude"] = $marker["longitude"];
+            $data["Markers"][$i]["map"] = $marker["id_map"];
             $data["Markers"][$i]["level"] = $marker["level"];
     }
 
@@ -30,3 +45,4 @@ $data = array();
     
 
 ?>
+
