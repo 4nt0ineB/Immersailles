@@ -1,6 +1,7 @@
 <?php
-require_once("../class/user.php"); //attention les classes sont importés ici, car la plupart du temps les classe nécessite la bdd
 require_once("../admin/includes/functions.php");
+require_once("../class/user.php"); //attention les classes sont importés ici, car la plupart du temps les classe nécessite la bdd
+
 
 define('HOST', '51.210.15.73');
 define('DB_NAME', 'immersailles');

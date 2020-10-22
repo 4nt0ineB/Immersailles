@@ -66,11 +66,11 @@ if (isset($_SESSION["user"])) {
 
                     if (isset($_POST["sendpass"])) {
                         $id_user = str_replace('.', '', $_POST["id_user"]);
-                        $mdp = password_hash($_POST["pass1"], PASSWORD_DEFAULT);
-                        $r = $db->query("UPDATE USERS SET pwd_hash=\"$mdp\" WHERE id_user=$id_user");
-                        if ($r) {
+                        $mdp = password_hash($_POST["pass1"], PASSWORD_DEFAULT); // hash du nouveau mdp
+                        $r = $db->query("UPDATE USERS SET pwd_hash=\"$mdp\" WHERE id_user=$id_user"); // set le nouveau mdp
+                        if ($r) { // requete executé
                             $token = $_POST["token"];
-                            $db->query("UPDATE PSSWD_RECOVER SET state=1 WHERE token=\"$token\"");
+                            $db->query("UPDATE PSSWD_RECOVER SET state = 1 WHERE token=\"$token\""); // token consommé
                     ?>
                             <div class="alert alert-success" role="alert">
                                 Votre mot de passe à été changé avec succès. Redirection...
@@ -91,18 +91,14 @@ if (isset($_SESSION["user"])) {
                     if (isset($_GET["re"]) || isset($_GET["cr"])) {
                         $existUser = "";
                         if (isset($_GET["re"])) {
-                            $token = htmlspecialchars($_GET["re"]);
+                            $token = strip_tags($_GET["re"]);
                             if (!empty("$token")) {
-                                $getTokendate = $db->query("SELECT date FROM PSSWD_RECOVER where token=\"$token\" ")->fetch();
-                                $nowNCooldown = date("Y-m-d H:i:s", strtotime("-1 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
-                                $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0 AND date >= '$nowNCooldown'")->fetch();
-                                $existUser = $existUser["id_user"];
+                                $existUser = User::isValidToken($token, "-1");
                             }
                         } elseif (isset($_GET["cr"])) {
-                            $token = htmlspecialchars($_GET["cr"]);
+                            $token = strip_tags($_GET["cr"]);
                             if (!empty("$token")) {
-                                $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0")->fetch();
-                                $existUser = $existUser["id_user"];
+                                $existUser = User::isValidToken($token, "-720"); // cooldown de 30 jours (720 heures)
                             }
                         }
                         if (!empty($existUser)) {
@@ -165,14 +161,9 @@ if (isset($_SESSION["user"])) {
                             <div class="alert alert-danger" role="alert">
                                 Une erreur est survenue votre demande n'a pas pu être prise en compte.
                             </div>
-
                     <?php
                         }
                     }
-
-
-
-
                     ?>
                 </div>
             </div>

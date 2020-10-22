@@ -27,6 +27,13 @@
                 <h2 id="title-current-place" style="padding: 10px;">Panel de gestion</h2>
 
                 <?php
+
+
+                $isModify = isset($_GET["mod"]);
+                if ($isModify) {
+                    $infos = User::getUserInfo($_GET["mod"]);
+                }
+
                 if (isset($_REQUEST['createUser'])) // si le btn submitCourse est cliqué
                 {
                     $nom = strip_tags($_REQUEST["nom"]); // on stock toutes les valeurs
@@ -37,11 +44,7 @@
                     }
                     try {
 
-                        if (empty($nom) || strlen($nom) < 3) { // si le nom est vide ou inférieur a 3 caractères
-                            $errorMsg[] = "Merci de saisir un nom valide";
-                        }
-
-                        if (empty($prenom) || strlen($prenom) < 3) { // si le nom est vide ou inférieur a 3 caractères
+                        if (strlen($prenom) < 3) { // si le nom est vide ou inférieur a 3 caractères
                             $errorMsg[] = "Merci de saisir un prénom valide";
                         }
 
@@ -51,20 +54,24 @@
                             $errorMsg[] = "Merci de saisir une adresse électronique valide"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
                         }
 
-                        $email_exist = $db->query("SELECT * FROM USERS WHERE email=\"$email\"");
-                        if ($email_exist->rowCount() > 0) {
+                        $idUTestmail = '';
+                        if ($isModify) {
+                            $idUTestmail = $infos["id_user"];
+                        }
+                        if (User::existEmail($email, $idUTestmail) > '0') {
                             $errorMsg[] = "Cette adresse email est déjà utilisée";
-                        } else if (!isset($errorMsg)) // si aucun msg d'erreur
-                        {
+                        } else if (!isset($errorMsg)) { // si aucun msg d'erreur
 
-                            $insert_user = $db->prepare("INSERT INTO USERS VALUES (NULL, :mdp, :nom, :prenom, :email, :roleU, NULL);");   // on insert le parcours
-
-                            $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
-
-                            if ($insert_user->execute(array(':mdp' => $mdp, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':roleU' => $role))) {
-                                User::sendAccountCreation($email); // envoie du mail pour définir son mot de passe
-                                $successMsg = "L'utilisateur a été créé avec succès. Redirection..."; // msg de succès
-                                header("refresh:3; manage_users.php?id=$id");
+                            if (!$isModify) {
+                                if (User::createUser($nom, $prenom, $email, $role)) {
+                                    $successMsg = "L'utilisateur a été créé avec succès. Redirection..."; // msg de succès
+                                    header("refresh:2; manage_users.php?id=$id");
+                                }
+                            } else if ($isModify) {
+                                if ((User::modifyUser(array(':name' => $nom, ':surname' => $prenom, ':email' => $email, ':role' => $role), $infos["id_user"]))) {
+                                    $successMsg = "L'utilisateur a été modifié avec succès. Redirection..."; // msg de succès
+                                    header("refresh:2; manage_users.php?");
+                                }
                             }
                         }
                     } catch (PDOException $e) {
@@ -74,7 +81,8 @@
                 ?>
 
                 <div id="box">
-                    <h3>Création d'un nouvel utilisateur</h3>
+                    <h3><?php if ($isModify) echo "Modifier l'utilisateur";
+                        else echo "Création d'un nouvel utilisateur"; ?></h3>
                     <br>
                     <?php
                     if (isset($errorMsg)) // si le tableau errorMsg est initialisé
@@ -102,35 +110,38 @@
                     <?php
                     }
                     ?>
-                    <form method="POST" style="text-align: left;">
+                    <form method="POST" action="<?php if ($isModify) echo '"create_user.php?=' . $infos["id_user"]; ?>" style=" text-align: left;">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="email">Adresse e-mail</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" required value="<?php if ($isModify) echo $infos["email"] ?>">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="nom">Nom</label>
-                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom" required>
+                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom" required value="<?php if ($isModify) echo $infos["name"] ?>">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="prenom">Prénom</label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" required>
+                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prénom" required value="<?php if ($isModify) echo $infos["surname"] ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="role">Rôle de l'utilisateur</label>
                             <select id="role" name="role" class="form-control" required>
-                                <option selected disabled>Rôle</option>
-                                <option value="1">Administrateur</option>
+                                <option <?php if (!$isModify) echo "selected"; ?> disabled>Rôle</option>
+                                <option <?php if ($isModify && $infos["role"] == "1") echo "selected"; ?> value="1">Administrateur</option>
+                                <option <?php if ($isModify && $infos["role"] == "2") echo "selected"; ?> value="2">Contributeur</option>
+                                <option <?php if ($isModify && $infos["role"] == "3") echo "selected"; ?> value="3">Bloqué</option>
                             </select>
                         </div>
-                        <button type="submit" name="createUser" class="btn btn-dark">Ajouter l'utilisateur</button>
+                        <button type="submit" name="createUser" class="btn btn-dark"><?php if ($isModify) echo "Modifier ";
+                                                                                        else echo "Ajouter" ?>l'utilisateur</button>
                     </form>
                     <br>
                     <hr><br>
-                    <a href="manage_users.php" class="btn btn-dark">Retour à l'accueil</a>
+                    <a href="manage_users.php" class="btn btn-dark">Retour</a>
                 </div>
                 <br>
             </div>

@@ -46,12 +46,78 @@ class User
         }
         return 1;
     }
+
+    public static function userExist($id)
+    {
+        /* Renvoie true si l'id de l'utilisateur existe */
+        return User::$db->query("SELECT id_user FROM USERS WHERE id_user = $id")->rowCount();
+    }
+
+
+    public static function createUser($nom, $prenom, $email, $role)
+    {
+        /* renvoie true si l'utilisateur a eté créé */
+        $insert_user = User::$db->prepare("INSERT INTO USERS VALUES (NULL, :mdp, :nom, :prenom, :email, :roleU, NULL);");   // on insert le parcours
+        $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
+        $success = $insert_user->execute(array(':mdp' => $mdp, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':roleU' => $role));
+        if ($success) {
+            User::sendAccountCreation($email); // envoie du mail pour définir son mot de passe
+        }
+        return $success;
+    }
+
+    public static function modifyUser($datas, $id)
+    {
+        /* requete la bdd pour modifier l'utilisateur*/
+        try {
+            User::$db->beginTransaction();
+            $result = User::$db->prepare("UPDATE USERS SET name= :name, surname=:surname, email=:email, role=:role WHERE id_user=$id");
+            $result = $result->execute($datas);
+            $result = User::$db->commit();
+            return $result;
+        } catch (Exception $e) {
+            User::$db->rollBack();
+            echo "Failed: "; //. $e->getMessage();
+            return 0;
+        }
+    }
+
+    public static function getUserInfo($id)
+    {
+        /* Renvoie les données d'un utilisateur s'il existe */
+        if (User::userExist($id)) {
+            return USer::$db->query("SELECT * FROM USERS WHERE id_user = $id")->fetch();
+        }
+        return 0;
+    }
+
+    public static function existEmail($email, $id = '')
+    {
+        /* Renvoie true si l'email est attribué à un utilisateur */
+        $requete = "SELECT id_user FROM USERS WHERE email=\"$email\"";
+        if (!empty($id)) {
+            $requete .= " AND id_user != $id";
+        }
+        $x = User::$db->query($requete)->rowCount();
+        return $x;
+    }
+
     public static function numberConnectedUsers()
     {
         /* Retourne le nombre d'utilisateurs ayant un session_id différent de NULL */
         $r = User::$db->query("SELECT count(*) AS nb FROM USERS WHERE session_id != ''")->fetch();
         return $r["nb"];
     }
+
+    public static function isValidToken($token, $cooldown = "-1")
+    {
+        /* Retourne l'utilisateur associé  à un token valide (existe plus cooldown non dépassé) */
+        $nowNCooldown = date("Y-m-d H:i:s", strtotime($cooldown . " hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
+        $existUser = User::$db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state = 0 AND date >= '$nowNCooldown'")->fetch();
+        $existUser = $existUser["id_user"];
+        return $existUser;
+    }
+
     public static function sendTokenRecovery($mail)
     {
         /* Envoie un mail de recup mdp avec un lien avec un token dans le GET */
