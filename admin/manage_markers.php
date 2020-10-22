@@ -12,7 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
     <?php require_once("includes/head.html"); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     
 
 </head>
@@ -36,10 +37,22 @@
                     <br>
                     <div class="row float-right" style="margin: 10px auto;"><a href="create_marker.php" class="btn btn-dark">Créer un nouveau marqueur</a></div>
                     <br>
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <select class="form-control select2" onchange="changeMap();" name="maplayer" id="maplayer">
+                                    <?php 
+                                    $maps = $db->query("SELECT * FROM MAPS");
+                                    while ($map_item = $maps->fetch()):  ?>
+                                  <option value="<?php echo $map_item["id_map"]; ?>"><?php echo htmlspecialchars($map_item["libelle"]); ?></option>
+                                  <?php endwhile; ?>
+                            </select>
+                        </div>
+                    </div>
                     <div id="mapid" style="width: 100%; height: 628px;"></div>
                     <br><br>
                     <a href="index.php" class="btn btn-dark">Retour à l'accueil</a>
                 </div>
+                <br>
 
             </div>
 
@@ -58,6 +71,17 @@
     <?php include("../includes/footer.php"); ?>
     <!-- Footer -->
     <script src="../scripts/js/manage_map.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
+        function changeMap() {
+            var selectBox = document.getElementById("maplayer");
+            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+            changeMapLayer(selectedValue);
+       }
+    </script>
 </body>
 
 </html>
