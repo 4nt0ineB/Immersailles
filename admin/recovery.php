@@ -96,7 +96,7 @@ if (isset($_SESSION["user"])) {
                                 $getTokendate = $db->query("SELECT date FROM PSSWD_RECOVER where token=\"$token\"")->fetch();
                                 $nowNCooldown = date("Y-m-d H:i:s", strtotime("-1 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
                                 $getTokendate = date("Y-m-d H:i:s", strtotime($getTokendate["date"]));
-
+                                echo $nowNCooldown . '<' . $getTokendate;
                                 if ($nowNCooldown < $getTokendate) { //date token + 1h <= maintenant
                                     $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0")->fetch();
                                     $existUser = $existUser["id_user"];
