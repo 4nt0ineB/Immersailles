@@ -15,18 +15,22 @@ This project will allow:
 The project (in french): [projet immersailles](http://chateauversailles-recherche.fr/francais/recherche/projets-scientifiques-et-recherche-appliquee/projet-fressin-2019-2022 "Google's Homepage")
 
 ------------------------------------------------------------------------------------
-For the attention of developers
+## A l'attention des développeurs - Documentation
 ------------------------------------------------------------------------------------
 
-PHP classes are included trough the mysql.php import at the top of the page, because most of the time classes require sql query.
+
+Les classes php sont importées dans le mysql.php car la plus part du temps elles requièrent la base de données.
+
+### Modification de mot de passe
+
+Token
 
 
-### To do
-- [ ] No multiple token for recover a password (don't send a mail before expiration of previous one)
-- [ ] Finish set up of password recovery
+### 
 
 
-### Project tree
+
+## Project tree
 
 ```Bash
 |
