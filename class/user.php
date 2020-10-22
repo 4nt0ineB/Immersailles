@@ -110,7 +110,6 @@ class User
                 $sendsuccess = mail($to, $subject, $htmlContent, $headers);
                 if ($sendsuccess) {
                     $date = date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s")));
-                    echo $date;
                     User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', '$date', $id_user, 0)"); // envoie le token dans la bdd
                 }
                 return $sendsuccess;

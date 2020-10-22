@@ -95,7 +95,6 @@ if (isset($_SESSION["user"])) {
                             if (!empty("$token")) {
                                 $getTokendate = $db->query("SELECT date FROM PSSWD_RECOVER where token=\"$token\" ")->fetch();
                                 $nowNCooldown = date("Y-m-d H:i:s", strtotime("-1 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
-                                echo "SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0 AND date >= '$nowNCooldown'";
                                 $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0 AND date >= '$nowNCooldown'")->fetch();
                                 $existUser = $existUser["id_user"];
                             }
@@ -126,7 +125,7 @@ if (isset($_SESSION["user"])) {
 
 
                         } else {
-                            # header("location:../index.php"); // redirection si token invalide
+                            header("location:../index.php"); // redirection si token invalide
                         }
                     } else {
                         ?>
