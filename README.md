@@ -29,7 +29,7 @@ Les classes php sont importées dans le mysql.php car la plus part du temps elle
 ## Back
 
 
-   ### Modification de mot de passe
+   ### Modification du mot de passe
 
 Token
 
