@@ -62,7 +62,6 @@ class User
             $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date >= '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
             if (($actualToken == 0)) {
                 $token = generateRandomString(40);
-                User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user, 0)"); // def le token pour l'utilisateur
                 $to = $mail;
                 $from = 'no-reply@immersailles.me';
                 $fromName = 'no-reply';
@@ -108,7 +107,11 @@ class User
                 // Additional headers 
                 $headers .= 'From: ' . $fromName . '<' . $from . '>' . "\r\n";
                 // Send email 
-                return mail($to, $subject, $htmlContent, $headers);
+                $sendsuccess = mail($to, $subject, $htmlContent, $headers);
+                if ($sendsuccess) {
+                    User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user, 0)"); // envoie le token dans la bdd
+                }
+                return $sendsuccess;
             } else {
                 return -1;
             }
