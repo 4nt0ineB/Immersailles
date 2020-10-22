@@ -94,7 +94,7 @@ if (isset($_SESSION["user"])) {
                             $token = htmlspecialchars($_GET["re"]);
                             if (!empty("$token")) {
                                 $getTokendate = $db->query("SELECT date FROM PSSWD_RECOVER where token=\"$token\"")->fetch();
-                                $tokenDateNcooldown = date("Y-m-d H:i:s", strtotime("+1 hour", strtotime($getTokendate["date"])));
+                                $tokenDateNcooldown = date("Y-m-d H:i:s", strtotime("+1 hour", $getTokendate["date"]));
 
                                 echo date("Y-m-d H:i:s") . " >" . date("Y-m-d H:i:s", $tokenDateNcooldown);
                                 if ($tokenDateNcooldown <= date("Y-m-d H:i:s")) { //date token + 1h <= maintenant
