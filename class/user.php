@@ -109,7 +109,8 @@ class User
                 // Send email 
                 $sendsuccess = mail($to, $subject, $htmlContent, $headers);
                 if ($sendsuccess) {
-                    User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user, 0)"); // envoie le token dans la bdd
+                    $date = strtotime(date("Y-m-d H:i:s"));
+                    User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', $date, $id_user, 0)"); // envoie le token dans la bdd
                 }
                 return $sendsuccess;
             } else {
