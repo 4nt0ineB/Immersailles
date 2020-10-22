@@ -27,6 +27,7 @@ function setMapParameters(id){
 	}
 
 	var map = L.map('mapid', {
+				attributionControl: false,
 	            crs: L.CRS.Simple,
 	            zoom: obj.zoom,
 	            minZoom: obj.zoom,

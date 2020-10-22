@@ -7,6 +7,7 @@ var request = new XMLHttpRequest();
 
 
 var map = L.map('mapid', {
+			attributionControl: false,
             crs: L.CRS.Simple,
             zoom: -1.8,
             minZoom:-1.8,
