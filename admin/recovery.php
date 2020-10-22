@@ -93,14 +93,11 @@ if (isset($_SESSION["user"])) {
                         if (isset($_GET["re"])) {
                             $token = htmlspecialchars($_GET["re"]);
                             if (!empty("$token")) {
-                                $getTokendate = $db->query("SELECT date FROM PSSWD_RECOVER where token=\"$token\"")->fetch();
+                                $getTokendate = $db->query("SELECT date FROM PSSWD_RECOVER where token=\"$token\" ")->fetch();
                                 $nowNCooldown = date("Y-m-d H:i:s", strtotime("-1 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
-                                $getTokendate = date("Y-m-d H:i:s", strtotime($getTokendate["date"]));
-                                echo $nowNCooldown . '<' . $getTokendate;
-                                if ($nowNCooldown < $getTokendate) { //date token + 1h <= maintenant
-                                    $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0")->fetch();
-                                    $existUser = $existUser["id_user"];
-                                }
+                                echo "SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0 AND date >= '$nowNCooldown'";
+                                $existUser = $db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state=0 AND date >= '$nowNCooldown'")->fetch();
+                                $existUser = $existUser["id_user"];
                             }
                         } elseif (isset($_GET["cr"])) {
                             $token = htmlspecialchars($_GET["cr"]);
