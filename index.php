@@ -100,10 +100,10 @@
                 <br>
                 <br>
 
-                <li><a href="#home" style="text-decoration: none;">Troisième étage</a></li>
-                <li><a href="#news" style="text-decoration: none;">Deuxième étage</a></li>
-                <li><a href="#contact" style="text-decoration: none;">Premier étage</a></li>
-                <li><a href="#about" style="text-decoration: none;">Rez de chaussé</a></li>
+                <li><a href="#e3" style="text-decoration: none;">Troisième étage</a></li>
+                <li><a href="#e2" style="text-decoration: none;">Deuxième étage</a></li>
+                <li><a href="#e1" style="text-decoration: none;">Premier étage</a></li>
+                <li><a href="#rc" style="text-decoration: none;">Rez de chaussé</a></li>
             </ul>
         </div>
 
