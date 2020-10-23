@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Immersailles</title>
 
-	<!-- Leaflet -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"/>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
@@ -22,8 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/timeline.css" />
-    
-    
+
+
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -54,39 +54,39 @@
     </div>
 
     <!--MAP-->
-    <div id="mapid" style="width: 100%; height: 628px;">
+    <div id="mapid" style="width: 100%; height: 575px;">
 
-<div id="noscroll">
-        <div class="float-right info-bubble" id="overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="container container-img">
-                        <img src="img/fauteuil.jpg">
-                        <!--div class="top-left">[Ici, la photo de l'objet]</!-->
-                        <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
+        <div id="noscroll">
+            <div class="float-right info-bubble" id="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="container container-img">
+                            <img src="img/fauteuil.jpg">
+                            <!--div class="top-left">[Ici, la photo de l'objet]</!-->
+                            <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
-                        <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
+                            <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
+                            <p> <span class="label-info">Date d'arrivée et de départ :</span> 1682</p>
+                            <p> <span class="label-info">Localisation :</span> appartement de Louis XIV</p>
+                            <p> <span class="label-info">Description :</span><br>Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                fugiat nulla pariatur.
+                            </p>
+                            <p><span class="label-info">Liens utiles :</span><br> Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="container">
-                        <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
-                        <p> <span class="label-info">Date d'arrivée et de départ :</span> 1682</p>
-                        <p> <span class="label-info">Localisation :</span> appartement de Louis XIV</p>
-                        <p> <span class="label-info">Description :</span><br>Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                            fugiat nulla pariatur.
-                        </p>
-                        <p><span class="label-info">Liens utiles :</span><br> Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                </div>
+
             </div>
-
         </div>
-    </div>
 
 
     </div><br>
@@ -95,7 +95,7 @@
     <!--MAP-->
 
     <!--Timeline navigation-->
-    <div class="container change-section timeline-nav">
+    <div class="container change-section timeline-nav" style="margin-top: -12px;">
 
         <div class="cd-horizontal-timeline" style="width: 100%;">
             <div class="timeline">

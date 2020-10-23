@@ -4,9 +4,9 @@
         <table style="width: 100%;text-align: center;padding-top:10px;">
             <tbody>
                 <tr>
-                    <td><span class="label-info">Lorem</span><br>ifhuiosfhio</td>
-                    <td><span class="label-info">Lorem</span><br>ifhuiosfhio</td>
-                    <td><span class="label-info">Lorem</span><br>ifhuiosfhio</td>
+                    <td><span class="label-info">Lorem</span><br>Laurem ipsum</td>
+                    <td><span class="label-info">Lorem</span><br>Laurem ipsum</td>
+                    <td><span class="label-info">Lorem</span><br>Laurem ipsum</td>
                     <?php
                     if (!isset($_SESSION["user"])) {
                     ?>
