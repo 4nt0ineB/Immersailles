@@ -7,6 +7,10 @@ body {
     overflow-x: hidden;
 }
 
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
 .dot {
     margin: 6px 6px 0px 0px;
     height: 25px;
@@ -315,6 +319,7 @@ footer {
 
 .change-section {
     margin-top: 5px;
+
 }
 
 #box {

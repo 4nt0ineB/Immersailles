@@ -22,7 +22,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/timeline.css" />
+    <style>
+        @media (min-width:992px) {
+            .vertical-nav {
+                position: fixed;
+                top: 56px;
+                left: 0;
+                width: 200px;
+                height: auto;
+                background-color: #ffffff;
+                float: right;
+                padding-top: 30px
+            }
+        }
 
+        .rnav {
+            background-color: #e8e8e8 !important;
+        }
+
+        .rightnav ul {
+            background-color: #ffffff;
+        }
+
+        .rightnav li a {
+            display: block;
+            color: #000;
+            padding: 12px 10px;
+        }
+
+        /* Change the link color on hover */
+        .rightnav li a:hover {
+            background-color: #555;
+            color: white;
+        }
+    </style>
 
 </head>
 
@@ -49,49 +82,78 @@
 
                 <h2 id="title-current-place">Aile Ouest du château - RDC</h2>
             </div>
-            <div class="col-lg"></div>
+            <div class="col-lg">
+
+            </div>
         </div>
     </div>
+    <div class="row" style="width: auto;">
+        <div class="col- d-flex p-2 rnav">
 
-    <!--MAP-->
-    <div id="mapid" style="width: 100%; height: 575px;">
+            <ul class="rightnav" style="list-style-type: none !important;margin-left: -30px; font-size: 15px; ">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
 
-        <div id="noscroll">
-            <div class="float-right info-bubble" id="overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="container container-img">
-                            <img src="img/fauteuil.jpg">
-                            <!--div class="top-left">[Ici, la photo de l'objet]</!-->
-                            <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
+                <li><a href="#home" style="text-decoration: none;">Troisième étage</a></li>
+                <li><a href="#news" style="text-decoration: none;">Deuxième étage</a></li>
+                <li><a href="#contact" style="text-decoration: none;">Premier étage</a></li>
+                <li><a href="#about" style="text-decoration: none;">Rez de chaussé</a></li>
+            </ul>
+        </div>
 
-                            <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
-                        </div>
-                    </div>
-                    <div class="row">
+        <div class="col d-flex p-2">
+            <!--MAP-->
+            <div id="mapid" style="width: 100%; height: 575px;">
+
+                <div id="noscroll">
+                    <div class="float-right info-bubble" id="overlay">
                         <div class="container">
-                            <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
-                            <p> <span class="label-info">Date d'arrivée et de départ :</span> 1682</p>
-                            <p> <span class="label-info">Localisation :</span> appartement de Louis XIV</p>
-                            <p> <span class="label-info">Description :</span><br>Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                fugiat nulla pariatur.
-                            </p>
-                            <p><span class="label-info">Liens utiles :</span><br> Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <div class="row">
+                                <div class="container container-img">
+                                    <img src="img/fauteuil.jpg">
+                                    <!--div class="top-left">[Ici, la photo de l'objet]</!-->
+                                    <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
+
+                                    <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="container">
+                                    <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
+                                    <p> <span class="label-info">Date d'arrivée et de départ :</span> 1682</p>
+                                    <p> <span class="label-info">Localisation :</span> appartement de Louis XIV</p>
+                                    <p> <span class="label-info">Description :</span><br>Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                        fugiat nulla pariatur.
+                                    </p>
+                                    <p><span class="label-info">Liens utiles :</span><br> Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
+
                 </div>
 
             </div>
         </div>
 
 
+
+
     </div><br>
 
     </div>
+
     <!--MAP-->
 
     <!--Timeline navigation-->
