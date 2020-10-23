@@ -53,7 +53,6 @@ class User
         return User::$db->query("SELECT id_user FROM USERS WHERE id_user = $id")->rowCount();
     }
 
-
     public static function createUser($nom, $prenom, $email, $role)
     {
         /* renvoie true si l'utilisateur a eté créé */
@@ -64,6 +63,15 @@ class User
             User::sendAccountCreation($email); // envoie du mail pour définir son mot de passe
         }
         return $success;
+    }
+
+    public static function deleteUser($id)
+    {
+        if (User::userExist($id)) {
+            return 1;
+            echo "à construire";
+        }
+        return 0;
     }
 
     public static function modifyUser($datas, $id)

@@ -1,12 +1,13 @@
 <?php require_once("../includes/mysql.php"); ?>
 <?php require_once("includes/checkperms.php"); ?>
 <?php
-    if (isset($_GET["id"])){
-        $id = $_GET["id"];
-        if (empty($id) || !is_numeric($id) || is_null($id)){
-            echo "Merci de saisir un ID de marqueur correct";die;
-        }
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+    if (empty($id) || !is_numeric($id) || is_null($id)) {
+        echo "Merci de saisir un ID de marqueur correct";
+        die;
     }
+}
 
 ?>
 <!DOCTYPE html>
@@ -17,13 +18,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestion des utilisateurs</title>
     <!-- Leaflet -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
     <?php require_once("includes/head.html"); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    
+
 
 </head>
 
@@ -50,29 +51,29 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-row">
-                                <input type="hidden" name="id" id="id" value="<?php echo $id;?>">
-                            <div class="form-group col-md-12">
-                                <label for="latitude">Latitude</label>
-                                <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude du marqueur" disabled required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="latitude">Longitude</label>
-                                <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude du marqueur" disabled required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="objet">Objet</label>
-                                <select class="form-control select2" name="objet" id="objet">
-                                  <option value="AL">Alabama</option>
-                                  <option value="WY">Wyoming</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <button type="submit" class="form-control btn-success mb-2" name="deleteMarker">Enregistrer le marqueur</button>
-                                <button type="submit" class="form-control btn-danger" name="deleteMarker">Supprimer le marqueur</button>
+                                <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                                <div class="form-group col-md-12">
+                                    <label for="latitude">Latitude</label>
+                                    <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude du marqueur" disabled required>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="latitude">Longitude</label>
+                                    <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude du marqueur" disabled required>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="objet">Objet</label>
+                                    <select class="form-control select2" name="objet" id="objet">
+                                        <option value="AL">Alabama</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="form-control btn-success mb-2" name="deleteMarker">Enregistrer le marqueur</button>
+                                    <button type="submit" class="form-control btn-danger" name="deleteMarker">Supprimer le marqueur</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                     <br><br>
                     <a href="index.php" class="btn btn-dark">Retour à l'accueil</a>
                 </div>
