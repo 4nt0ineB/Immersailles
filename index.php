@@ -143,7 +143,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row pt-3">
         <div class="col-md-12">
             <!--MAP-->
             <div id="mapid" style="width: 100%; height: 575px;">
