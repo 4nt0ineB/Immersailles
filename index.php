@@ -69,9 +69,10 @@
         }
 
         .core span {
-            vertical-align: middle;
-            display: table-cell;
-        }
+    vertical-align: middle;
+    display: table-cell;
+    padding-top: 5px;
+}
 
         .core {
             width: inherit;
@@ -91,26 +92,27 @@
     background: #646464;
     left: -25.7%;
 }
-        .core:before {
-            content: '';
-            display: block;
-            position: absolute;
-            border: 6px solid #C8AD7F;
-            background: #C8AD7F;
-            top: 45%;
-            left: -30.5%;
-            border-radius: 12px;
-        }
-
-       .box_timeline {
+.core:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border: 6px solid #C8AD7F;
+    background: #C8AD7F;
+    top: 45%;
+    left: -31.9%;
+    border-radius: 12px;
+}
+.box_timeline {
     position: relative;
     z-index: 888;
     padding-right: 5px;
     border-top-right-radius: 8px;
     top: 80px;
-    background-color: #ffffffa3;
+    background-color: rgb(255 255 255 / 64%);
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 68%);
     border-bottom-right-radius: 8px;
 }
+
     </style>
 
 </head>
@@ -189,13 +191,13 @@
                 <br /><br />
                 <div class="entry">
                     <div class="core">
-                        <span>Information 2</span>
+                        <span><a href="#" id="rdc">RDC</a></span>
                     </div>
                 </div>
                 <br /><br />
                 <div class="entry">
                     <div class="core">
-                       <span>Information 3</span>
+                       <span><a href="#" id="etage1">Étage 1</a></span>
                     </div>
                 </div>
 
@@ -253,6 +255,7 @@
     <!-- Footer -->
     <script src="scripts/js/map.js"></script>
     <script src="scripts/js/timeline.js"></script>
+    <script src="scripts/js/timelineleft.js"></script>
 </body>
 
 </html>
