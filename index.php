@@ -55,6 +55,53 @@
             background-color: #555;
             color: white;
         }
+
+
+
+        .timeline {
+            margin-left: 100px;
+            overflow: visible;
+        }
+
+
+        .entry {
+            margin-left: -10px;
+            position: relative;
+            border-radius: 5px;
+            height: 100px;
+            overflow: visible;
+
+        }
+
+        .core {
+            width: inherit;
+            height: inherit;
+            text-align: end;
+        }
+
+        .entry:before {
+
+            content: "";
+            position: absolute;
+            width: 3px;
+            height: 150%;
+            display: block;
+            border-radius: 0px;
+            border: 2px solid #bfc1c3;
+            background: #bfc1c3;
+            left: -24%;
+        }
+
+        .core:before {
+            content: '';
+            display: block;
+            position: absolute;
+            border: 8px solid black;
+            background: black;
+            top: 52%;
+            left: -32%;
+            border-radius: 12px;
+        }
     </style>
 
 </head>
@@ -90,21 +137,27 @@
     <div class="row" style="width: auto;">
         <div class="col- d-flex p-2 rnav">
 
-            <ul class="rightnav" style="list-style-type: none !important;margin-left: -30px; font-size: 15px; ">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
 
-                <li><a href="#e3" style="text-decoration: none;">Troisième étage</a></li>
-                <li><a href="#e2" style="text-decoration: none;">Deuxième étage</a></li>
-                <li><a href="#e1" style="text-decoration: none;">Premier étage</a></li>
-                <li><a href="#rc" style="text-decoration: none;">Rez de chaussé</a></li>
-            </ul>
+            <div class="timeline">
+                <div class="entry" style="margin-top: 60px;">
+                    <div class="core">
+                        Information 3
+                    </div>
+                </div>
+                <br /><br />
+                <div class="entry">
+                    <div class="core">
+                        Information 2
+                    </div>
+                </div>
+                <br /><br />
+                <div class="entry">
+                    <div class="core">
+                        Information 3
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <div class="col d-flex p-2">
