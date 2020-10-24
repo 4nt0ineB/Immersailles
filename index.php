@@ -36,10 +36,6 @@
             }
         }
 
-        .rnav {
-            background-color: #e8e8e8 !important;
-        }
-
         .rightnav ul {
             background-color: #ffffff;
         }
@@ -57,12 +53,11 @@
         }
 
 
-
-        .timeline {
-            margin-left: 100px;
-            overflow: visible;
-        }
-
+.timeline {
+    padding-left: 50px;
+    overflow: visible;
+    padding-bottom: 50px;
+}
 
         .entry {
             margin-left: -10px;
@@ -73,35 +68,49 @@
 
         }
 
+        .core span {
+            vertical-align: middle;
+            display: table-cell;
+        }
+
         .core {
             width: inherit;
             height: inherit;
+            display: table;
             text-align: end;
         }
 
-        .entry:before {
-
-            content: "";
-            position: absolute;
-            width: 3px;
-            height: 150%;
-            display: block;
-            border-radius: 0px;
-            border: 2px solid #bfc1c3;
-            background: #bfc1c3;
-            left: -24%;
-        }
-
+       .entry:before {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 150%;
+    display: block;
+    border-radius: 0px;
+    border: 1px solid #646464;
+    background: #646464;
+    left: -25.7%;
+}
         .core:before {
             content: '';
             display: block;
             position: absolute;
-            border: 8px solid black;
-            background: black;
-            top: 52%;
-            left: -32%;
+            border: 6px solid #C8AD7F;
+            background: #C8AD7F;
+            top: 45%;
+            left: -30.5%;
             border-radius: 12px;
         }
+
+       .box_timeline {
+    position: relative;
+    z-index: 888;
+    padding-right: 5px;
+    border-top-right-radius: 8px;
+    top: 80px;
+    background-color: #ffffffa3;
+    border-bottom-right-radius: 8px;
+}
     </style>
 
 </head>
@@ -134,33 +143,8 @@
             </div>
         </div>
     </div>
-    <div class="row" style="width: auto;">
-        <div class="col- d-flex p-2 rnav">
-
-
-            <div class="timeline">
-                <div class="entry" style="margin-top: 60px;">
-                    <div class="core">
-                        Information 3
-                    </div>
-                </div>
-                <br /><br />
-                <div class="entry">
-                    <div class="core">
-                        Information 2
-                    </div>
-                </div>
-                <br /><br />
-                <div class="entry">
-                    <div class="core">
-                        Information 3
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col d-flex p-2">
+    <div class="row">
+        <div class="col-md-12">
             <!--MAP-->
             <div id="mapid" style="width: 100%; height: 575px;">
 
@@ -195,6 +179,29 @@
 
                     </div>
 
+   
+                    <div class="float-left box_timeline timeline">
+                <div class="entry">
+                    <div class="core">
+                        <span>Information 3</span>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="entry">
+                    <div class="core">
+                        <span>Information 2</span>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="entry">
+                    <div class="core">
+                       <span>Information 3</span>
+                    </div>
+                </div>
+
+            </div>
+
+    
                 </div>
 
             </div>
