@@ -53,7 +53,7 @@
         }
 
 
-.timeline {
+.timelineleft {
     padding-left: 50px;
     overflow: visible;
     padding-bottom: 50px;
@@ -180,7 +180,7 @@
                     </div>
 
    
-                    <div class="float-left box_timeline timeline">
+                    <div class="float-left box_timeline timelineleft">
                 <div class="entry">
                     <div class="core">
                         <span>Information 3</span>
