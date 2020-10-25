@@ -53,11 +53,11 @@
         }
 
 
-.timelineleft {
-    padding-left: 50px;
-    overflow: visible;
-    padding-bottom: 50px;
-}
+        .timelineleft {
+            padding-left: 50px;
+            overflow: visible;
+            padding-bottom: 50px;
+        }
 
         .entry {
             margin-left: -10px;
@@ -69,10 +69,10 @@
         }
 
         .core span {
-    vertical-align: middle;
-    display: table-cell;
-    padding-top: 5px;
-}
+            vertical-align: middle;
+            display: table-cell;
+            padding-top: 5px;
+        }
 
         .core {
             width: inherit;
@@ -81,38 +81,45 @@
             text-align: end;
         }
 
-       .entry:before {
-    content: "";
-    position: absolute;
-    width: 3px;
-    height: 150%;
-    display: block;
-    border-radius: 0px;
-    border: 1px solid #646464;
-    background: #646464;
-    left: -25.7%;
-}
-.core:before {
-    content: '';
-    display: block;
-    position: absolute;
-    border: 6px solid #C8AD7F;
-    background: #C8AD7F;
-    top: 45%;
-    left: -31.9%;
-    border-radius: 12px;
-}
-.box_timeline {
-    position: relative;
-    z-index: 888;
-    padding-right: 5px;
-    border-top-right-radius: 8px;
-    top: 80px;
-    background-color: rgb(255 255 255 / 64%);
-    box-shadow: 1px 1px 5px rgb(0 0 0 / 68%);
-    border-bottom-right-radius: 8px;
-}
+        .entry:before {
+            content: "";
+            position: absolute;
+            width: 3px;
+            height: 150%;
+            display: block;
+            border-radius: 0px;
+            border: 0.2px solid #dddcdc;
+            background: #dddcdc;
+            left: -25.7%;
+        }
 
+        .core:before {
+            content: '';
+            display: block;
+            position: absolute;
+            border: 2px solid #C8AD7F;
+            background-color: #ffffff;
+            top: 45%;
+            left: -31.9%;
+            border-radius: 13px;
+            box-shadow: 0 0 2px #888;
+            height: 13px;
+            width: 13px;
+        }
+
+
+
+
+        .box_timeline {
+            position: relative;
+            z-index: 888;
+            padding-right: 5px;
+            border-top-right-radius: 8px;
+            top: 80px;
+            background-color: rgb(255 255 255 / 64%);
+            box-shadow: 1px 1px 5px rgb(0 0 0 / 68%);
+            border-bottom-right-radius: 8px;
+        }
     </style>
 
 </head>
@@ -181,29 +188,29 @@
 
                     </div>
 
-   
+
                     <div class="float-left box_timeline timelineleft">
-                <div class="entry">
-                    <div class="core">
-                        <span>Information 3</span>
-                    </div>
-                </div>
-                <br /><br />
-                <div class="entry">
-                    <div class="core">
-                        <span><a href="#" id="rdc">RDC</a></span>
-                    </div>
-                </div>
-                <br /><br />
-                <div class="entry">
-                    <div class="core">
-                       <span><a href="#" id="etage1">Étage 1</a></span>
-                    </div>
-                </div>
+                        <div class="entry">
+                            <div class="core">
+                                <span>Information 3</span>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="entry">
+                            <div class="core">
+                                <span><a href="#" id="rdc">RDC</a></span>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="entry">
+                            <div class="core">
+                                <span><a href="#" id="etage1">Étage 1</a></span>
+                            </div>
+                        </div>
 
-            </div>
+                    </div>
 
-    
+
                 </div>
 
             </div>
