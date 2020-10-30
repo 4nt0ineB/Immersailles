@@ -10,6 +10,14 @@ function getRole($number)
     }
 }
 
+function getStatus($status){
+    if ($status == 1){
+        return "<b><FONT color='green'>Actif</FONT></b>";
+    } else {
+        return "<b><FONT color='red'>Inctif</FONT></b>";
+    }
+}
+
 function generateRandomString($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

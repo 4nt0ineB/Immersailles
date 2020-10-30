@@ -74,7 +74,7 @@
               <div class="col-lg-12">
                 <a href="manage_users.php" class="btn btn-dark">Gestion des utilisateurs</a>
                 <a href="manage_markers.php" class="btn btn-dark">Gestion des marqueurs</a>
-                <a href="#" class="btn btn-dark">Gestion des plans</a>
+                <a href="manage_maps.php" class="btn btn-dark">Gestion des plans</a>
               </div>
             </div>
             <div class="row content-justify-center" style="margin-top: 10px;">
