@@ -1,12 +1,12 @@
-		var request = new XMLHttpRequest();
-		request.open("GET", "../././api.php", false);
-		request.send(null);
-	 	var jsonInterprete = JSON.parse(request.responseText);
-	  	var jsonMarkers = jsonInterprete.Markers;
-	  	var jsonMaps = jsonInterprete.Maps;
-		var idMarker = document.getElementById("id").value;
-		var objMarker;
-		var markerEdit = [];
+var request = new XMLHttpRequest();
+request.open("GET", "../././api.php", false);
+request.send(null);
+var jsonInterprete = JSON.parse(request.responseText);
+var jsonMarkers = jsonInterprete.Markers;
+var jsonMaps = jsonInterprete.Maps;
+var idMarker = document.getElementById("id").value;
+var objMarker;
+var markerEdit = [];
 
 for(let i = 0; i < jsonMarkers.length; i++) { // pour chaque marqueur
 		objMarker = jsonMarkers[i]; // on crée une variable temp.
