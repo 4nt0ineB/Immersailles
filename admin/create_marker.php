@@ -31,15 +31,55 @@
             <div class="col-md-12 text-center">
 
                 <h2 id="title-current-place" style="padding: 10px;">Panel de gestion</h2>
-
+                <?php
+                    if (isset($_POST["createMarker"])){
+                        $latitude = $_POST["latitude"];
+                        $longitude = $_POST["longitude"];
+                        $planID = $_POST["planid"]; 
+                        $user_id = $row["id_user"];
+                        if (strlen($latitude) == 0){
+                            $errorMsg[] = "Vous devez placer le nouveau marqueur sur la carte sélectionnée.";
+                        } else {
+                            $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_user`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), NULL, $planID, $user_id, NULL)");
+                            $successMsg = "Votre marqueur a été créé avec succès !";
+                        }
+                    }
+                ?>
 
                 <div id="box">
                     <h3>Création d'un nouveau marqueur</h3>
                     <br>
                     <p id="instructions">Cliquez quelque part sur la map pour placer votre marqueur</p>
                     <br>
+                    <?php
+                    if (isset($errorMsg)) // si le tableau errorMsg est initialisé
+                    {
+                        foreach ($errorMsg as $error) // pour chaque ligne du tableau on initalise une variable
+                        {
+                    ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Oups !</strong> <?php echo $error // on affiche la variable ; 
+                                                        ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php
+                        }
+                    }
+                    if (isset($successMsg)) // si un message de succès est initialisé
+                    {
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $successMsg; // on affiche ce message 
+                            ?>
+                        </div>
+                    <?php
+                    }
+                    ?>
                     <div class="row">
                         <div class="col-md-3 mb-1">
+                            <form method="post">
                             <select class="form-control select2" onchange="changeMap();" name="maplayer" id="maplayer">
                                 <?php
                                 $maps = $db->query("SELECT * FROM MAPS");
@@ -57,11 +97,16 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="latitude">Latitude</label>
-                                    <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude du marqueur" disabled required>
+                                    <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude du marqueur" readonly required>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="latitude">Longitude</label>
-                                    <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude du marqueur" disabled required>
+                                    <label for="longitude">Longitude</label>
+                                    <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude du marqueur" readonly required>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="plan">Plan</label>
+                                    <input type="hidden" class="form-control" name="planid" id="planid" readonly required>
+                                    <input type="text" class="form-control" name="plan" id="plan" placeholder="Plan choisi" readonly required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="objet">Objet</label>
@@ -70,8 +115,12 @@
                                         <option value="WY">Wyoming</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="form-control btn-success mb-2" name="createMarker">Création du marqueur</button>
+                                </div>
                             </div>
                         </div>
+                    </form>
                     </div>
                     <br><br>
                     <a href="index.php" class="btn btn-dark">Retour à l'accueil</a>
@@ -98,6 +147,10 @@
         $(document).ready(function() {
             $('.select2').select2();
         });
+
+        document.getElementById("plan").value = document.getElementById("maplayer").options[document.getElementById("maplayer").selectedIndex].text; // pré remplissage de la case plan a droite
+
+        document.getElementById("planid").value = document.getElementById("maplayer").options[document.getElementById("maplayer").selectedIndex].value; // pré remplissage de la case plan ID cachée a droite
 
         function changeMap() {
             var selectBox = document.getElementById("maplayer");

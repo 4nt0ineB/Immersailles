@@ -55,6 +55,11 @@ if (isset($_GET["id"])) {
                     }
                 }
 
+                if (isset($_POST["deleteMarker"])){
+                    $db->query("DELETE FROM MARKERS WHERE id_marker=$id;");
+                    echo '<meta http-equiv="refresh" content="0;URL=manage_markers.php">';
+                }
+
                 ?>
 
                 <div id="box">
