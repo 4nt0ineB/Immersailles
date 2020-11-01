@@ -19,6 +19,7 @@ class User
 
     /**
      *  Définit après l'instanciation de l'utilisateur avant la connexion. 
+     * ///
      */
     public function setSession($id)
     {
