@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Carte interactive du Château de Versailles. Découvrez les personnages historiques et les trésors du château de Versailles en parcourant ses étages et le temps.">
     <title>Immersailles</title>
 
     <!-- Leaflet -->

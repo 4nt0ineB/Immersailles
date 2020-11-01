@@ -15,3 +15,5 @@ if (!isset($_SESSION["user"])) // si l'user est pas log
 {
   header("location:login.php"); // redirection
 }
+
+// TO DO: vérifier l'accès des utilisateurs selon les pages 

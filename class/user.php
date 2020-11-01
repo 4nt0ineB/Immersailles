@@ -16,26 +16,41 @@ class User
     {
         return $this->idUser;
     }
+
+    /**
+     *  Définit après l'instanciation de l'utilisateur avant la connexion. 
+     */
     public function setSession($id)
     {
         $this->sessionId = $id;
     }
+
+    /** 
+     * Associe le session_id de l'instance user, à son user correspondant dans la bdd 
+     */
     public function connect()
     {
-        /* associe le session_id de l'instance user, à son user correspondant dans la bdd */
-        User::$db->query("UPDATE USERS SET session_id = '$this->sessionId' WHERE id_user = '$this->idUser'");
+        DB::$db->query("UPDATE USERS SET session_id = '$this->sessionId' WHERE id_user = '$this->idUser'");
         return 1;
     }
+
+    /** 
+     * remet à NULL session_id de l'utilisateur 
+     */
     public function disconnect()
     {
-        /* remet à NULL session_id de l'utilisateur */
-        User::$db->query("UPDATE USERS SET session_id = default WHERE id_user = '$this->idUser'");
+
+        DB::$db->query("UPDATE USERS SET session_id = default WHERE id_user = '$this->idUser'");
     }
+
+    /** 
+     * Si l'id de la session dans la db est différent du session_id de l'user (bdd) on détruit la session. 
+     * retourne 0 si déconnecté, 1 si non 
+     */
     public function refreshSession()
     {
-        /* si l'id de la session dans la db est différent du session_id de l'user (bdd) on détruit la session. 
-        retourne 0 si déconnecté, 1 si non */
-        $result = User::$db->query("SELECT session_id, pwd_hash FROM USERS WHERE id_user = $this->idUser")->fetch();
+
+        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS WHERE id_user = $this->idUser")->fetch();
         if ($result["pwd_hash"] != $this->psswd_hash) {
             header("refresh:0; logout.php");
             return 0;
@@ -47,16 +62,20 @@ class User
         return 1;
     }
 
+    /** 
+     * Renvoie true si l'id de l'utilisateur existe 
+     */
     public static function userExist($id)
     {
-        /* Renvoie true si l'id de l'utilisateur existe */
-        return User::$db->query("SELECT id_user FROM USERS WHERE id_user = $id")->rowCount();
+        return DB::$db->query("SELECT id_user FROM USERS WHERE id_user = $id")->rowCount();
     }
 
+    /** 
+     * renvoie true si l'utilisateur a eté créé 
+     */
     public static function createUser($nom, $prenom, $email, $role)
     {
-        /* renvoie true si l'utilisateur a eté créé */
-        $insert_user = User::$db->prepare("INSERT INTO USERS VALUES (NULL, :mdp, :nom, :prenom, :email, :roleU, NULL);");   // on insert le parcours
+        $insert_user = DB::$db->prepare("INSERT INTO USERS VALUES (NULL, :mdp, :nom, :prenom, :email, :roleU, NULL);");   // on insert le parcours
         $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
         $success = $insert_user->execute(array(':mdp' => $mdp, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':roleU' => $role));
         if ($success) {
@@ -68,72 +87,93 @@ class User
     public static function deleteUser($id)
     {
         if (User::userExist($id)) {
-            return 1;
-            echo "à construire";
+            try {
+                DB::$db->beginTransaction();
+                DB::$db->query("DELETE FROM PSSWD_RECOVER WHERE id_user = $id");
+                DB::$db->query("DELETE FROM USERS WHERE id_user = $id");
+                DB::$db->commit();
+                return 1;
+            } catch (Exception $e) {
+                DB::$db->rollBack();
+                echo "Failed deleteUser:"; //. $e->getMessage();
+                return 0;
+            }
         }
         return 0;
     }
 
+    /** 
+     * Requete la bdd pour modifier l'utilisateur
+     */
     public static function modifyUser($datas, $id)
     {
-        /* requete la bdd pour modifier l'utilisateur*/
         try {
-            User::$db->beginTransaction();
-            $result = User::$db->prepare("UPDATE USERS SET name= :name, surname=:surname, email=:email, role=:role WHERE id_user=$id");
+            DB::$db->beginTransaction();
+            $result = DB::$db->prepare("UPDATE USERS SET name= :name, surname=:surname, email=:email, role=:role WHERE id_user=$id");
             $result = $result->execute($datas);
-            $result = User::$db->commit();
+            $result = DB::$db->commit();
             return $result;
         } catch (Exception $e) {
-            User::$db->rollBack();
-            echo "Failed: "; //. $e->getMessage();
+            DB::$db->rollBack();
+            echo "Failed modifyUser: "; //. $e->getMessage();
             return 0;
         }
     }
 
+    /** 
+     * Renvoie les données d'un utilisateur s'il existe 
+     */
     public static function getUserInfo($id)
     {
-        /* Renvoie les données d'un utilisateur s'il existe */
         if (User::userExist($id)) {
-            return USer::$db->query("SELECT * FROM USERS WHERE id_user = $id")->fetch();
+            return DB::$db->query("SELECT * FROM USERS WHERE id_user = $id")->fetch();
         }
         return 0;
     }
 
+    /** 
+     * Renvoie true si l'email est attribué à un utilisateur 
+     */
     public static function existEmail($email, $id = '')
     {
-        /* Renvoie true si l'email est attribué à un utilisateur */
         $requete = "SELECT id_user FROM USERS WHERE email=\"$email\"";
         if (!empty($id)) {
             $requete .= " AND id_user != $id";
         }
-        $x = User::$db->query($requete)->rowCount();
+        $x = DB::$db->query($requete)->rowCount();
         return $x;
     }
 
+    /** 
+     * Retourne le nombre d'utilisateurs ayant un session_id différent de NULL 
+     */
     public static function numberConnectedUsers()
     {
-        /* Retourne le nombre d'utilisateurs ayant un session_id différent de NULL */
-        $r = User::$db->query("SELECT count(*) AS nb FROM USERS WHERE session_id != ''")->fetch();
+        $r = DB::$db->query("SELECT count(*) AS nb FROM USERS WHERE session_id != ''")->fetch();
         return $r["nb"];
     }
 
+    /** 
+     * Retourne l'utilisateur associé  à un token valide (existe plus cooldown non dépassé) 
+     */
     public static function isValidToken($token, $cooldown = "-1")
     {
-        /* Retourne l'utilisateur associé  à un token valide (existe plus cooldown non dépassé) */
         $nowNCooldown = date("Y-m-d H:i:s", strtotime($cooldown . " hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
-        $existUser = User::$db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state = 0 AND date >= '$nowNCooldown'")->fetch();
+        $existUser = DB::$db->query("SELECT id_user FROM PSSWD_RECOVER WHERE token=\"$token\" AND state = 0 AND date >= '$nowNCooldown'")->fetch();
         $existUser = $existUser["id_user"];
         return $existUser;
     }
 
+    /** 
+     * Envoie un mail de recup mdp avec un lien avec un token dans le GET 
+     */
     public static function sendTokenRecovery($mail)
     {
-        /* Envoie un mail de recup mdp avec un lien avec un token dans le GET */
-        $r = User::$db->query("SELECT id_user FROM USERS WHERE email = \"$mail\"")->fetch(); // id de l'user pour le mail donnée
+        $r = DB::$db->query("SELECT id_user FROM USERS WHERE email = \"$mail\"")->fetch(); // id de l'user pour le mail donnée
         $id_user = $r["id_user"];
         if (!empty($id_user)) {
             $nowNCooldown = date("Y-m-d H:i:s", strtotime("-1 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
-            $actualToken = User::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date >= '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
+            $actualToken = DB::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date >= '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
             if (($actualToken == 0)) {
                 $token = generateRandomString(40);
                 $to = $mail;
@@ -184,7 +224,7 @@ class User
                 $sendsuccess = mail($to, $subject, $htmlContent, $headers);
                 if ($sendsuccess) {
                     $date = date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s")));
-                    User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', '$date', $id_user, 0)"); // envoie le token dans la bdd
+                    DB::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', '$date', $id_user, 0)"); // envoie le token dans la bdd
                 }
                 return $sendsuccess;
             } else {
@@ -193,14 +233,16 @@ class User
         }
     }
 
+    /** 
+     * Envoie un mail de recup mdp avec un lien avec un token dans le GET 
+     */
     public static function sendAccountCreation($mail)
     {
-        /* Envoie un mail de recup mdp avec un lien avec un token dans le GET */
-        $r = User::$db->query("SELECT id_user FROM USERS WHERE email = \"$mail\"")->fetch(); // id de l'user pour le mail donnée
+        $r = DB::$db->query("SELECT id_user FROM USERS WHERE email = \"$mail\"")->fetch(); // id de l'user pour le mail donnée
         $id_user = $r["id_user"];
         if (!empty($id_user)) {
             $token = generateRandomString(40);
-            User::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user, 0)"); // def le token pour l'utilisateur
+            DB::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user, 0)"); // def le token pour l'utilisateur
             $to = $mail;
             $from = 'no-reply@immersailles.me';
             $fromName = 'no-reply';
