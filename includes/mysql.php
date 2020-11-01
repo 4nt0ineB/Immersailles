@@ -5,4 +5,5 @@ require_once("../class/USER.php");
 require_once("../class/DB.php");
 
 $DB = DB::getInstance();
+//
 $db = DB::$db;
