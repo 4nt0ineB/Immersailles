@@ -57,7 +57,6 @@ createMarkers(1);
 				map.removeLayer(currentMapLayer);
 				var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
 				var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
-				map.fitBounds(newBounds);
 				map.setMaxBounds(new L.LatLngBounds([layer.hauteur,0], [0,layer.largeur])); 
 				currentMapLayer = newMap;
 				for (var j = 0; j < markersDisplayed.length; j++) {

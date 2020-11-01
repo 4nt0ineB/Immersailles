@@ -54,7 +54,9 @@ function changeMapLayer(value){
 		var layer = jsonMaps[i];
 		if (layer.id == value){
 			map.removeLayer(currentMapLayer);
-            document.getElementById("plan").value = layer.libelle;
+			if (document.getElementById('plan') !== null){ // Si il y a un input plan, on met le nom du plan séléctionné à l'intérieur
+				document.getElementById("plan").value = layer.libelle;
+			}
 			var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
 			var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
 			map.fitBounds(newBounds);
