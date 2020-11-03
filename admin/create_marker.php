@@ -40,7 +40,7 @@
                         if (strlen($latitude) == 0){
                             $errorMsg[] = "Vous devez placer le nouveau marqueur sur la carte sélectionnée.";
                         } else {
-                            $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_user`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), NULL, $planID, $user_id, NULL)");
+                            $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), NULL, $planID, NULL)");
                             $successMsg = "Votre marqueur a été créé avec succès !";
                         }
                     }
@@ -80,12 +80,22 @@
                     <div class="row">
                         <div class="col-md-3 mb-1">
                             <form method="post">
+                            Carte :
                             <select class="form-control select2" onchange="changeMap();" name="maplayer" id="maplayer">
                                 <?php
                                 $maps = $db->query("SELECT * FROM MAPS");
                                 while ($map_item = $maps->fetch()) :  ?>
                                     <option value="<?php echo $map_item["id_map"]; ?>"><?php echo htmlspecialchars($map_item["libelle"]); ?></option>
                                 <?php endwhile; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 mb-1">
+                        Niveau :
+                            <select class="form-control select2" name="levelSelector" id="levelSelector">
+                                <option>-1</option>
+                                <option selected>0</option>
+                                <option>1</option>
                             </select>
                         </div>
                     </div>
@@ -107,6 +117,10 @@
                                     <label for="plan">Plan</label>
                                     <input type="hidden" class="form-control" name="planid" id="planid" readonly required>
                                     <input type="text" class="form-control" name="plan" id="plan" placeholder="Plan choisi" readonly required>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="niveau">Niveau</label>
+                                    <input type="text" class="form-control" name="niveau" id="niveau" placeholder="Niveau du plan" readonly required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="objet">Objet</label>
