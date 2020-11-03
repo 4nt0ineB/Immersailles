@@ -149,7 +149,7 @@
                             </select>
                         </div>
                         <button type="submit" name="createUser" class="btn btn-dark"><?php if ($isModify) echo "Modifier ";
-                                                                                        else echo "Ajouter" ?>l'utilisateur</button>
+                                                                                        else echo "Ajouter " ?>l'utilisateur</button>
                     </form>
                     <br>
                     <hr><br>
