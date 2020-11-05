@@ -66,23 +66,23 @@
                             <div class="form-group col-md-6">
                                 <label for="fichier">Fichier <b style="color:red;">*</b></label>
                                 <input type="file" class="form-control-file" name="fichier" id="fichier" required>
-                                <small id="fileHelp" class="form-text text-muted">Merci de joindre l'image de la carte en PNG (20Mo max.).</small>
+                                <small id="fileHelp" class="form-text text-muted">Merci de joindre l'image du plan en PNG (20Mo max.).</small>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="statut">Statut <b style="color:red;">*</b></label><br>
                                 <div class="form-row text-center">
-	                                <div class="col-md-6">
-	                                	Actif<br>
-	                                	<input type="radio" name="statut" id="statut" value="actif">
-	                            	</div>
-	                                <div class="col-md-6">
-	                                	Inactif<br>
-	                                	<input type="radio" name="statut" id="statut" value="inactif">
-	                            	</div>
-                            	</div>
+                                    <div class="col-md-6">
+                                        Actif<br>
+                                        <input type="radio" name="statut" id="statut" value="actif">
+                                    </div>
+                                    <div class="col-md-6">
+                                        Inactif<br>
+                                        <input type="radio" name="statut" id="statut" value="inactif">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <button type="submit" name="createMap" class="btn btn-dark">Créer la carte</button>
+                        <button type="submit" name="createMap" class="btn btn-dark">Créer le plan</button>
                     </form>
                     <br>
                     <hr><br>
@@ -92,9 +92,6 @@
             </div>
 
         </div>
-
-    </div>
-
 
     </div>
 

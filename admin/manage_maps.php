@@ -53,7 +53,17 @@
                 <div id="box">
                     <h3>Gestion des plans</h3>
                     <br>
-                    
+                    <?php
+
+                    if (isset($_POST["subdelete"])) {
+                    }
+                    ?>
+                    <div class="alert alert-warning" role="alert">
+                        Fonctionnalité non implémentée. Créer un classe Map et ses fonctions d'abord.
+                    </div>
+                    <?php
+
+                    ?>
                     <div class="row float-right" style="margin: 10px auto;"><a href="create_map.php" class="btn btn-dark">Créer un nouveau plan</a></div>
                     <br>
                     <table id="datatable" class="table table-striped table-bordered" width="100%">
@@ -101,7 +111,37 @@
         </div>
 
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="addBookDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Supprimer le plan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Attention le plan sera complètement supprimée, ainsi que ses markeurs.</p>
+                    <br>
+                    <p>Souhaitez-vous continuer ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <form method="post" action="">
+                        <input type="hidden" name="user_id" id="user_id" value="">
+                        <button type="submit" name="subdelete" class="btn btn-primary">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on("click", ".open-AddBookDialog", function() {
+            var myBookId = $(this).data('id');
+            $(".modal-footer #user_id").val(myBookId);
+        });
+    </script>
 
 
 
