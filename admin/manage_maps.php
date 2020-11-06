@@ -56,14 +56,15 @@
                     <?php
 
                     if (isset($_POST["subdelete"])) {
-                    }
-                    ?>
+                        ?>
                     <div class="alert alert-warning" role="alert">
                         Fonctionnalité non implémentée. Créer un classe Map et ses fonctions d'abord.
                     </div>
                     <?php
 
                     ?>
+                    }
+                    
                     <div class="row float-right" style="margin: 10px auto;"><a href="create_map.php" class="btn btn-dark">Créer un nouveau plan</a></div>
                     <br>
                     <table id="datatable" class="table table-striped table-bordered" width="100%">
