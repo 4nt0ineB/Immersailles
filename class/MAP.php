@@ -9,7 +9,7 @@ class MAP
     private $libelle;
     private $zoom;
 
-    public function __construct($name, $id_map, $hauteur, $largeur)
+    public function __construct($name, $hauteur, $largeur, $lien, $libelle, $zoom)
     {
         $this->id_map;
         $this->name;
