@@ -125,8 +125,11 @@
                                 <div class="form-group col-md-12">
                                     <label for="objet">Objet</label>
                                     <select class="form-control select2" name="objet" id="objet">
-                                        <option value="AL">Alabama</option>
-                                        <option value="WY">Wyoming</option>
+                                        <?php
+                                        $objects = $db->query("SELECT * FROM OBJECTS");
+                                        while ($o = $objects->fetch()) :  ?>
+                                            <option value="<?php echo $o["id_object"]; ?>"><?php echo htmlspecialchars($o["name"]); ?></option>
+                                        <?php endwhile; ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
