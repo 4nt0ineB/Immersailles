@@ -54,7 +54,12 @@
                         </div>
                     <?php
                     }
+
+                    if (isset($_POST["createMap"])) {
+                    }
                     ?>
+
+
                     <form method="POST" style=" text-align: left;">
                         <div class="form-row">
                             <div class="form-group col-md-12">
@@ -66,19 +71,19 @@
                             <div class="form-group col-md-6">
                                 <label for="fichier">Fichier <b style="color:red;">*</b></label>
                                 <select multiple class="form-control" id="exampleFormControlSelect2">
-                                <?php
+                                    <?php
                                     $path    = './upload';
                                     $files = scandir($path);
                                     $files = array_diff(scandir($path), array('.', '..'));
                                     echo var_dump($files);
 
-                                    foreach ($files as $map){
-                                        echo '<option value="'.$map.'">'.$map.'</option>';
+                                    foreach ($files as $map) {
+                                        echo '<option value="' . $map . '">' . $map . '</option>';
                                     }
-                                ?>
+                                    ?>
                                 </select>
                                 <small class="form-text text-muted">Si votre plan n'apparaît pas dans la liste, merci de le téléverser dans le dossier /upload depuis un client FTP.</small>
-                                </div>
+                            </div>
                             <div class="form-group col-md-6">
                                 <label for="statut">Statut <b style="color:red;">*</b></label><br>
                                 <div class="form-row text-center">
@@ -105,9 +110,6 @@
         </div>
 
     </div>
-
-
-
 
 
     <!-- Footer -->
