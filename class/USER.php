@@ -50,7 +50,7 @@ class User
     public function refreshSession()
     {
 
-        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS WHERE id_user = $this->idUser")->fetch();
+        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = $this->idUser")->fetch();
         if ($result["pwd_hash"] != $this->psswd_hash) {
             header("refresh:0; logout.php");
             return 0;
