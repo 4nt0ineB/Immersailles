@@ -210,15 +210,19 @@
                         </div>
                         <br /><br />
                         <div class="entry">
+                        <a href="#" id="rdc" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
                             <div class="core">
-                                <span><a href="#" id="rdc">RDC</a></span>
+                                <span>RDC</span>
                             </div>
+                        </a>
                         </div>
                         <br /><br />
                         <div class="entry">
+                        <a href="#" id="etage1" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
                             <div class="core">
-                                <span><a href="#" id="etage1">Étage 1</a></span>
+                                <span>Étage 1</span>
                             </div>
+                        </a>
                         </div>
 
                     </div>
