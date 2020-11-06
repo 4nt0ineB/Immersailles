@@ -65,9 +65,20 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="fichier">Fichier <b style="color:red;">*</b></label>
-                                <input type="file" class="form-control-file" name="fichier" id="fichier" required>
-                                <small id="fileHelp" class="form-text text-muted">Merci de joindre l'image du plan en PNG (20Mo max.).</small>
-                            </div>
+                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                <?php
+                                    $path    = './upload';
+                                    $files = scandir($path);
+                                    $files = array_diff(scandir($path), array('.', '..'));
+                                    echo var_dump($files);
+
+                                    foreach ($files as $map){
+                                        echo '<option value="'.$map.'">'.$map.'</option>';
+                                    }
+                                ?>
+                                </select>
+                                <small class="form-text text-muted">Si votre plan n'apparaît pas dans la liste, merci de le téléverser dans le dossier /upload depuis un client FTP.</small>
+                                </div>
                             <div class="form-group col-md-6">
                                 <label for="statut">Statut <b style="color:red;">*</b></label><br>
                                 <div class="form-row text-center">
