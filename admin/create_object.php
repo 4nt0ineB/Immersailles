@@ -6,9 +6,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Création d'un nouvel utilisateur</title>
+    <title>Création d'un nouvel objet</title>
     <?php require_once("includes/head.html") ?>
-
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../scripts/js/inactivity.js"></script>
 </head>
@@ -128,12 +130,12 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="dateArrivee">Date d'arrivée <b style="color:red;">*</b></label>
-                                <input type="date" class="form-control" name="dateArrivee" id="dateArrivee" placeholder="Date d'arrivée de l'objet" required value="<?php if ($isModify) echo $infos["date_start"] ?>">
+                                <label for="dateArrivee">Année d'arrivée <b style="color:red;">*</b></label>
+                                <input type="text" maxlength="4" class="form-control" name="dateArrivee" id="dateArrivee" placeholder="Date d'arrivée de l'objet" required value="<?php if ($isModify) echo $infos["date_start"] ?>">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="dateDepart">Date de départ</label>
-                                <input type="date" class="form-control" name="dateDepart" id="dateDepart" placeholder="Date de départ de l'objet" required value="<?php if ($isModify) echo $infos["date_end"] ?>">
+                                <label for="dateDepart">Année de départ</label>
+                                <input type="text" maxlength="4" class="form-control" name="dateDepart" id="dateDepart" placeholder="Date de départ de l'objet" required value="<?php if ($isModify) echo $infos["date_end"] ?>">
                             </div>
                         </div>
                         <div class="form-row">
@@ -167,7 +169,55 @@
 
         </div>
 
+        <div id="box">
+        <center><h2>Prévisualisation en direct</h2></center>
+            <hr>
+        <div class="row">
+                        <div class="col-md-12 text-left">
+            <!--MAP-->
+            <div id="mapid" style="width: 100%; height: 575px;">
+
+                <div id="noscroll">
+                    <div class="float-right info-bubble" id="overlay" style="opacity:1;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="container container-img">
+                                    <img src="../img/fauteuil.jpg">
+                                    <!--div class="top-left">[Ici, la photo de l'objet]</!-->
+                                    <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
+
+                                    <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="container">
+                                    <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
+                                    <p> <span class="label-info">Date d'arrivée et de départ :</span> <span id="date_a_objet">1682</span><span id="date_d_objet"></span></p>
+                                    <p> <span class="label-info">Localisation : </span><span id="lieu_objet">appartement de Louis XIV</span></p>
+                                    <p> <span class="label-info">Description :</span><br><span id="desc_objet">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                                        fugiat nulla pariatur.</span>
+                                    </p>
+                                    <p><span class="label-info">Liens utiles :</span><br> <a href="#">Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+
     </div>
+    <br>
 
 
     </div>
@@ -179,6 +229,46 @@
     <!-- Footer -->
     <?php include("../includes/footer.php"); ?>
     <!-- Footer -->
+
+    <script>
+        var map = L.map('mapid', {
+			attributionControl: false,
+            crs: L.CRS.Simple,
+            zoom: -1.8,
+            minZoom:-1.8,
+            maxZoom:1
+        });
+
+    map.setMaxBounds(new L.LatLngBounds([2319,0], [0,6507]));
+
+    var div = L.DomUtil.get('noscroll');
+    L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+    L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+
+    var bounds = [[0,0], [2319,6507]];
+	var image = L.imageOverlay('./upload/plan_1735.png', bounds).addTo(map);
+	map.fitBounds(bounds);
+
+    $('#libelle').on('input',function(e){
+    $("#nom_objet").html($(this).val());
+    });
+
+    $('#location').on('input',function(e){
+    $("#lieu_objet").html($(this).val());
+    });
+
+    $('#description').on('input',function(e){
+    $("#desc_objet").html($(this).val());
+    });
+
+    $('#dateArrivee').on('input',function(e){
+    $("#date_a_objet").html($(this).val());
+    });
+
+    $('#dateDepart').on('input',function(e){
+    $("#date_d_objet").html(' - '+$(this).val());
+    });
+    </script>
 </body>
 
 </html>

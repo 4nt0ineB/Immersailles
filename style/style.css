@@ -111,6 +111,7 @@ dl, ol, ul {
     position: relative;
     text-align: center;
     color: white;
+    padding:0;
 }
 
 .container-img a {
