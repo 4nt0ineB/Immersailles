@@ -30,6 +30,12 @@ class User
      */
     public function connect()
     {
+        $result = DB::$db->query("SELECT id_s, session_info FROM SESSIONS WHERE USERS.id_user = $this->idUser ORDER BY session_date DESC
+        LIMIT 1")->fetch(); // précédente session quitté sans déconnexion
+        if ($result["session_info"] != "disconnected") {
+            DB::$db->query("UPDATE SESSIONS SET session_info = \"disconnected\" WHERE");
+        }
+
         DB::$db->query("INSERT INTO SESSIONS VALUES (NULL, \"$this->sessionId\", $this->idUser, DEFAULT, \"connected\")");
         return 1;
     }
@@ -39,7 +45,6 @@ class User
      */
     public function disconnect()
     {
-
         DB::$db->query("UPDATE SESSIONS SET session_info = \"disconnected\" WHERE id_user = '$this->idUser' AND session_id = \"$this->sessionId\"");
     }
 
