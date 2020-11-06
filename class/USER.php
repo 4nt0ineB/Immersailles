@@ -30,7 +30,7 @@ class User
      */
     public function connect()
     {
-        DB::$db->query("UPDATE SESSION SET session_id = '$this->sessionId' WHERE id_user = '$this->idUser'");
+        DB::$db->query("UPDATE SESSIONS SET session_id = '$this->sessionId' WHERE id_user = '$this->idUser'");
         return 1;
     }
 
@@ -40,7 +40,7 @@ class User
     public function disconnect()
     {
 
-        DB::$db->query("UPDATE SESSION SET session_id = default WHERE id_user = '$this->idUser'");
+        DB::$db->query("UPDATE SESSIONS SET session_id = default WHERE id_user = '$this->idUser'");
     }
 
     /** 
