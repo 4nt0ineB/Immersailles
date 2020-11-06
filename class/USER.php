@@ -52,11 +52,11 @@ class User
 
         $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = $this->idUser")->fetch();
         if ($result["pwd_hash"] != $this->psswd_hash) {
-            header("refresh:0; logout.php");
+            header("refresh:3; logout.php");
             return 0;
         }
         if ($result["session_id"] != $this->sessionId) {
-            header("refresh:0; logout.php");
+            header("refresh:3; logout.php");
             return 0;
         }
         return 1;
