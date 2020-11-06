@@ -30,7 +30,7 @@ class User
      */
     public function connect()
     {
-        DB::$db->query("INSERT INTO SESSIONS (NULL, \"$this->sessionId\", $this->idUser, DEFAULT, \"connection\")");
+        DB::$db->query("INSERT INTO SESSIONS VALUES (NULL, \"$this->sessionId\", $this->idUser, DEFAULT, \"connected\")");
         return 1;
     }
 
@@ -40,7 +40,7 @@ class User
     public function disconnect()
     {
 
-        DB::$db->query("UPDATE SESSIONS SET session_info = \"Deconnexion\" WHERE id_user = '$this->idUser' AND session_id = \"$this->sessionId\"");
+        DB::$db->query("UPDATE SESSIONS SET session_info = \"disconnected\" WHERE id_user = '$this->idUser' AND session_id = \"$this->sessionId\"");
     }
 
     /** 
@@ -50,7 +50,7 @@ class User
     public function refreshSession()
     {
 
-        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = = $this->idUser ORDER BY session_date DESC
+        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = $this->idUser ORDER BY session_date DESC
         LIMIT 1")->fetch();
         if ($result["pwd_hash"] != $this->psswd_hash) {
             header("refresh:3; logout.php");
@@ -150,7 +150,7 @@ class User
      */
     public static function numberConnectedUsers()
     {
-        $r = DB::$db->query("SELECT count(*) AS nb FROM USERS WHERE session_id != ''")->fetch();
+        $r = DB::$db->query("SELECT count(*) AS nb FROM SESSIONS WHERE session_info = \"connected\"")->fetch();
         return $r["nb"];
     }
 
