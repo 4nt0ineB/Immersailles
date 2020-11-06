@@ -30,7 +30,7 @@ class User
      */
     public function connect()
     {
-        DB::$db->query("UPDATE SESSIONS SET session_id = '$this->sessionId' WHERE id_user = '$this->idUser'");
+        DB::$db->query("INSERT INTO SESSIONS (NULL, \"$this->sessionId\", $this->idUser, DEFAULT, \"connection\")");
         return 1;
     }
 
@@ -40,7 +40,7 @@ class User
     public function disconnect()
     {
 
-        DB::$db->query("UPDATE SESSIONS SET session_id = default WHERE id_user = '$this->idUser'");
+        DB::$db->query("UPDATE SESSIONS SET session_info = \"Deconnexion\" WHERE id_user = '$this->idUser' AND session_id = \"$this->sessionId\"");
     }
 
     /** 
@@ -50,7 +50,8 @@ class User
     public function refreshSession()
     {
 
-        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = $this->idUser")->fetch();
+        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = = $this->idUser ORDER BY session_date DESC
+        LIMIT 1")->fetch();
         if ($result["pwd_hash"] != $this->psswd_hash) {
             header("refresh:3; logout.php");
             return 0;
