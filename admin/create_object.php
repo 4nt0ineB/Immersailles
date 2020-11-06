@@ -162,7 +162,7 @@
                     </form>
                     <br>
                     <hr><br>
-                    <a href="manage_users.php" class="btn btn-dark">Retour</a>
+                    <a href="manage_objects.php" class="btn btn-dark">Retour</a>
                 </div>
                 <br>
             </div>
@@ -170,7 +170,7 @@
         </div>
 
         <div id="box">
-        <center><h2>Prévisualisation en direct</h2></center>
+        <center><h3>Prévisualisation en direct</h3></center>
             <hr>
         <div class="row">
                         <div class="col-md-12 text-left">
@@ -191,14 +191,10 @@
                             </div>
                             <div class="row">
                                 <div class="container">
-                                    <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
-                                    <p> <span class="label-info">Date d'arrivée et de départ :</span> <span id="date_a_objet">1682</span><span id="date_d_objet"></span></p>
-                                    <p> <span class="label-info">Localisation : </span><span id="lieu_objet">appartement de Louis XIV</span></p>
-                                    <p> <span class="label-info">Description :</span><br><span id="desc_objet">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur.</span>
+                                    <p><span class="label-info">Type d'objet :</span> </p>
+                                    <p> <span class="label-info">Date d'arrivée et de départ :</span> <span id="date_a_objet"></span><span id="date_d_objet"></span></p>
+                                    <p> <span class="label-info">Localisation : </span><span id="lieu_objet"></span></p>
+                                    <p> <span class="label-info">Description :</span><br><span id="desc_objet"></span>
                                     </p>
                                     <p><span class="label-info">Liens utiles :</span><br> <a href="#">Lorem ipsum dolor sit amet, consectetur
                                         adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></p>

@@ -439,3 +439,7 @@ footer {
 .cd-horizontal-timeline .timeline {
     max-width: none !important;
 }
+
+.leaflet-container a {
+    color: rgb(160, 160, 160) !important;
+}
