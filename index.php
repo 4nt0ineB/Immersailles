@@ -84,7 +84,9 @@
         .core span {
             vertical-align: middle;
             display: table-cell;
+            text-shadow: 0px 1px 2px #ababab;
             padding-top: 5px;
+            font-size: 13px;
         }
 
         .core {
@@ -211,7 +213,7 @@
                         <br /><br />
                         <div class="entry">
                         <a href="#" id="rdc" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
-                            <div class="core">
+                            <div id="core_rdc" class="core">
                                 <span>RDC</span>
                             </div>
                         </a>
@@ -219,7 +221,7 @@
                         <br /><br />
                         <div class="entry">
                         <a href="#" id="etage1" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
-                            <div class="core">
+                            <div id="core_etage1"  class="core">
                                 <span>Étage 1</span>
                             </div>
                         </a>
