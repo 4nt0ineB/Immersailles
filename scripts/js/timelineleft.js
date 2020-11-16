@@ -5,13 +5,13 @@ function unClickLink(){
 	if (typeof linkClicked != "undefined"){
     linkClicked.style.fontWeight = "normal";
     var styleElem = document.head.appendChild(document.createElement("style"));
-    styleElem.innerHTML = "#core_"+lastHovered+":before {background-color: white;border:2px solid #C8AD7F;}";
+    styleElem.innerHTML = "#core_"+lastHovered+":before {background-color: white;border:2px solid #C8AD7F;transition: background-color 0.5s ease;}";
 	}
 }
 
 function hoverLeftButton(){
   var styleElem = document.head.appendChild(document.createElement("style"));
-  styleElem.innerHTML = "#core_"+lastHovered+":before {background-color: #C8AD7F;border:2px solid white;}";
+  styleElem.innerHTML = "#core_"+lastHovered+":before {background-color: #C8AD7F;border:2px solid white;transition: background-color 0.5s ease;}";
 }
 
 document.getElementById('rdc').onclick = function() {
