@@ -8,11 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Création d'un nouvel objet</title>
     <?php require_once("includes/head.html") ?>
-    <!-- Leaflet -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../scripts/js/inactivity.js"></script>
+    <script src="../scripts/js/md5.min.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -29,7 +27,6 @@
                 <h2 id="title-current-place" style="padding: 10px;">Panel de gestion</h2>
 
                 <?php
-
 
                 $isModify = isset($_GET["mod"]);
                 if ($isModify) {
@@ -121,79 +118,42 @@
                     <?php
                     }
                     ?>
+
+                    <!-- Erreur de lien -->
+                    <div class="alert alert-warning alert-dismissible fade show" id="urlError" role="alert" style="display:none;">
+                                <strong>Oups !</strong> Le lien saisi n'est pas correct. Le lien doit être sous la forme <b>https://www.wikidata.org/wiki/Special:EntityData/QXXXX.json</b>
+                    </div>
+                    <!-- Fin erreur -->
+
+
+
                     <form method="POST" action="<?php if ($isModify) echo '"create_object.php?=' . $infos["id_object"]; ?>" style=" text-align: left;">
                         <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="libelle">Libellé de l'objet <b style="color:red;">*</b></label>
-                                <input type="text" class="form-control" name="libelle" id="libelle" placeholder="Libellé" required value="<?php if ($isModify) echo $infos["name"] ?>">
+                            <div class="form-group col-md-8">
+                                <label for="urlwikidata">URL Wikidata <b style="color:red;">*</b></label>
+                                <input type="url" pattern="https://www.wikidata.org/wiki/Special:EntityData/*" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/Special:EntityData/QXXXX.json" required value="<?php if ($isModify) echo $infos["name"] ?>">
+                                <center>
+                                <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><?php if ($isModify) echo "Modifier ";
+                                                                                        else echo "Charger " ?>l'URL WikiDATA</button>
+                                </center>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="dateArrivee">Année d'arrivée <b style="color:red;">*</b></label>
-                                <input type="text" maxlength="4" class="form-control" name="dateArrivee" id="dateArrivee" placeholder="Date d'arrivée de l'objet" required value="<?php if ($isModify) echo $infos["date_start"] ?>">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="dateDepart">Année de départ</label>
-                                <input type="text" maxlength="4" class="form-control" name="dateDepart" id="dateDepart" placeholder="Date de départ de l'objet" required value="<?php if ($isModify) echo $infos["date_end"] ?>">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="location">Lieu <b style="color:red;">*</b></label>
-                            <input type="text" class="form-control" name="location" id="location" placeholder="Lieu où se trouve l'objet">
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="description">Description <b style="color:red;">*</b></label>
-                            <textarea class="form-control" name="description" id="description" placeholder="Brève description assez complète de l'objet"></textarea>
-                        </div>
-
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="image">Image de l'objet <b style="color:red;">*</b></label>
-                                <input type="file" class="form-control-file" name="image" id="image" required>
-                            </div>
-                        </div>
-                        <button type="submit" name="createUser" class="btn btn-dark"><?php if ($isModify) echo "Modifier ";
-                                                                                        else echo "Ajouter " ?>l'objet</button>
-                    </form>
-                    <br>
-                    <hr><br>
-                    <a href="manage_objects.php" class="btn btn-dark">Retour</a>
-                </div>
-                <br>
-            </div>
-
-        </div>
-
-        <div id="box">
-        <center><h3>Prévisualisation en direct</h3></center>
-            <hr>
-        <div class="row">
-                        <div class="col-md-12 text-left">
-            <!--MAP-->
-            <div id="mapid" style="width: 100%; height: 575px;">
-
-                <div id="noscroll">
-                    <div class="float-right info-bubble" id="overlay" style="opacity:1;">
+                            <div class="form-group col-md-4">
+                            <label for="previ">Prévisualisation du pop-up sur la carte</label>
+                            <div class="float-right info-bubble" id="overlay" style="opacity:1;">
                         <div class="container">
                             <div class="row">
                                 <div class="container container-img">
-                                    <img src="../img/fauteuil.jpg">
+                                    <img src="../img/fauteuil.jpg" id="image">
                                     <!--div class="top-left">[Ici, la photo de l'objet]</!-->
                                     <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
-                                    <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
+                                    <div class="bottom-right" id="nom_objet">Libellé</div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="container">
                                     <p><span class="label-info">Type d'objet :</span> </p>
                                     <p> <span class="label-info">Date d'arrivée et de départ :</span> <span id="date_a_objet"></span><span id="date_d_objet"></span></p>
-                                    <p> <span class="label-info">Localisation : </span><span id="lieu_objet"></span></p>
                                     <p> <span class="label-info">Description :</span><br><span id="desc_objet"></span>
                                     </p>
                                     <p><span class="label-info">Liens utiles :</span><br> <a href="#">Lorem ipsum dolor sit amet, consectetur
@@ -203,67 +163,103 @@
                         </div>
 
                     </div>
-
-
-
+                            </div>
+                        </div>
+                    </form>
+                    <hr><br>
+                    <a href="manage_objects.php" class="btn btn-dark">Retour</a>
                 </div>
-
+                <br>
             </div>
-        </div>
-        </div>
 
-    </div>
+        </div>
     <br>
 
-
     </div>
-
-
-
-
 
     <!-- Footer -->
     <?php include("../includes/footer.php"); ?>
     <!-- Footer -->
 
     <script>
-        var map = L.map('mapid', {
-			attributionControl: false,
-            crs: L.CRS.Simple,
-            zoom: -1.8,
-            minZoom:-1.8,
-            maxZoom:1
-        });
 
-    map.setMaxBounds(new L.LatLngBounds([2319,0], [0,6507]));
+   function loadPreview(urlWikidata){
 
-    var div = L.DomUtil.get('noscroll');
-    L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
-    L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+        if (urlWikidata.includes("https://www.wikidata.org/wiki/Special:EntityData/")){
 
-    var bounds = [[0,0], [2319,6507]];
-	var image = L.imageOverlay('./upload/plan_1735.png', bounds).addTo(map);
-	map.fitBounds(bounds);
+            document.getElementById("urlError").style.display = "none"; // On vire l'erreur si on l'a affichée précedemment
+            var endOfUrl = urlWikidata.split("https://www.wikidata.org/wiki/Special:EntityData/");
+            var identifier = endOfUrl[1].split(".")[0];
+           
+            var xhr = null;
 
-    $('#libelle').on('input',function(e){
-    $("#nom_objet").html($(this).val());
-    });
+            getXmlHttpRequestObject = function() {
+                if (!xhr) {
+                    xhr = new XMLHttpRequest();
+                }
+                return xhr;
+            };
 
-    $('#location').on('input',function(e){
-    $("#lieu_objet").html($(this).val());
-    });
+            updateLiveData = function() {
+                var url = urlWikidata; 
+                xhr = getXmlHttpRequestObject();
+                xhr.onreadystatechange = evenHandler;
+                xhr.open("GET", url, true);
+                xhr.send(null);
 
-    $('#description').on('input',function(e){
-    $("#desc_objet").html($(this).val());
-    });
+            };
 
-    $('#dateArrivee').on('input',function(e){
-    $("#date_a_objet").html($(this).val());
-    });
+            updateLiveData();
 
-    $('#dateDepart').on('input',function(e){
-    $("#date_d_objet").html(' - '+$(this).val());
-    });
+
+            function evenHandler() {
+                // Check response is ready or not
+                if (xhr.readyState == 4 && xhr.status == 200) {
+
+                    var json1 = JSON.parse(xhr.responseText);
+
+                    var infos = json1.entities[identifier];
+                    console.log(infos);
+
+                    console.log(json1.entities[identifier].labels.fr.value);
+
+                    $("#nom_objet").html(infos.labels.fr.value);
+
+                    // partie image
+                    console.log(json1.entities[identifier].claims.P18);
+                    var img = json1.entities[identifier].claims.P18[0].mainsnak.datavalue.value;
+                    img = img.split(' ').join('_');
+                    var hash = md5(img).substring(0, 2);
+
+                    document.getElementById("image").src="https://upload.wikimedia.org/wikipedia/commons/"+hash[0]+"/"+hash[0]+hash[1]+"/"+img+"";
+                    // fin partie image
+
+
+                    $('#description').on('input',function(e){
+                    $("#desc_objet").html($(this).val());
+                    });
+
+                    $('#dateArrivee').on('input',function(e){
+                    $("#date_a_objet").html($(this).val());
+                    });
+
+                    $('#dateDepart').on('input',function(e){
+                    $("#date_d_objet").html(' - '+$(this).val());
+                    });
+                }
+            }
+
+        } else {
+            console.log("URL non valide");
+            document.getElementById("urlError").style.display = "block";
+        }
+
+           
+
+   }
+   
+   
+    
     </script>
 </body>
 
