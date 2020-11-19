@@ -83,11 +83,14 @@ class User
      */
     public static function createUser($nom, $prenom, $email, $role)
     {
-        $insert_user = DB::$db->prepare("INSERT INTO USERS VALUES (NULL, :mdp, :nom, :prenom, :email, :roleU, NULL);");   // on insert le parcours
+        $insert_user = DB::$db->prepare("INSERT INTO USERS VALUES (DEFAULT, :mdp, :nom, :prenom, :email, :roleU);");   // on insert le parcours
         $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
         $success = $insert_user->execute(array(':mdp' => $mdp, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':roleU' => $role));
         if ($success) {
-            User::sendAccountCreation($email); // envoie du mail pour définir son mot de passe
+            if (User::sendAccountCreation($email)) { // envoie du mail pour définir son mot de passe
+                return $success;
+            }
+            return 0;
         }
         return $success;
     }
