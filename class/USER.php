@@ -211,7 +211,7 @@ class User
                                         <p>Vous avez perdu votre mot de passe ? Cela arrive même aux meilleurs !<br>
                                         <br>Cliquez sur le bouton pour le réinitialiser :</p>
                                         <br>
-                                        <p><a href="https://immersailles.me/admin/recovery.php?re=' . $token . '" style="text-decoration: none;background-color: #C8AD7F;
+                                        <p><a href="https://immersailles.me/recovery.php?re=' . $token . '" style="text-decoration: none;background-color: #C8AD7F;
                                         color: white;
                                         padding: 7px;
                                         border-radius: 5px;
@@ -280,7 +280,7 @@ class User
                                     <p>Bienvenue !<br>
                                     <br>Cliquez sur le bouton pour définir le mot de passe de votre compte :</p>
                                     <br>
-                                    <p><a href="https://immersailles.me/admin/recovery.php?cr=' . $token . '" style="text-decoration: none;background-color: #C8AD7F;
+                                    <p><a href="https://immersailles.me/recovery.php?cr=' . $token . '" style="text-decoration: none;background-color: #C8AD7F;
                                     color: white;
                                     padding: 7px;
                                     border-radius: 5px;
