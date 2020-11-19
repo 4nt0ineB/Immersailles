@@ -34,9 +34,7 @@ class User
         LIMIT 1")->fetch(); // précédente session quitté sans déconnexion
 
         if ($result["session_info"] != "disconnected") {
-
             $id = $result['id_s'];
-            echo "UPDATE SESSIONS SET session_info = \"disconnected\" WHERE id_s = $id";
             DB::$db->query("UPDATE SESSIONS SET session_info = \"disconnected\" WHERE id_s = $id");
         }
 

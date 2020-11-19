@@ -128,7 +128,7 @@ if (isset($_SESSION['user'])) {
                         <button type="submit" name="send" class="btn btn-primary">Se connecter</button><br>
                     </form>
                     <br>
-                    <a href="recovery.php" style="font-size: 11px; float: right; top: 10px;color: black;">Mot de passe oublié</a>
+                    <a href="../recovery.php" style="font-size: 11px; float: right; top: 10px;color: black;">Mot de passe oublié</a>
                     <br>
                 </div>
             </div>

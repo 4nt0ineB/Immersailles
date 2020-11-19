@@ -1,11 +1,15 @@
 <?php
 
 
-require_once("../includes/mysql.php");
+require_once("./class/USER.php");
+require_once("./class/DB.php");
+
+$DB = DB::getInstance();
+$db = DB::$db;
 
 if (isset($_SESSION["user"])) {
     if (!empty($_SESSION["user"])) { // l'utilisateur est déjà connecté
-        header("location:index.php"); // redirection
+        header("location: ./admin/index.php"); // redirection
     }
 }
 ?>
@@ -17,7 +21,16 @@ if (isset($_SESSION["user"])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mot de passe perdu</title>
-    <?php require_once("includes/head.html") ?>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="./style/style.css" />
 
 </head>
 
@@ -41,7 +54,6 @@ if (isset($_SESSION["user"])) {
                     <li class="nav-item">
                         <a href=""><span class="dot"></span></a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -77,7 +89,7 @@ if (isset($_SESSION["user"])) {
                             </div>
 
                         <?php
-                            header("refresh:1; login.php");   // redirection vers la page de connexion
+                            header("refresh:1; ./admin/login.php");   // redirection vers la page de connexion
                         } else {
                         ?>
                             <div class="alert alert-danger" role="alert">
@@ -121,7 +133,7 @@ if (isset($_SESSION["user"])) {
 
 
                         } else {
-                            header("location:../index.php"); // redirection si token invalide
+                            header("location: index.php"); // redirection si token invalide
                         }
                     } else {
                         ?>
@@ -172,7 +184,7 @@ if (isset($_SESSION["user"])) {
     </div>
 
     <!-- Footer -->
-    <?php include("../includes/footer.php"); ?>
+    <?php require_once("./includes/footer.php"); ?>
     <!-- Footer -->
 </body>
 
