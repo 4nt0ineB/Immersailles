@@ -31,18 +31,22 @@
 
                 $isModify = isset($_GET["mod"]);
                 if ($isModify) {
-                    if (empty($_GET["mod"])){
-                        echo "Merci de saisir un numéro d'utilisateur"; die;
+                    if (empty($_GET["mod"])) {
+                        echo "Merci de saisir un numéro d'utilisateur";
+                        die;
                     }
-                    if (!is_numeric($_GET["mod"])){
-                        echo "Merci de saisir un numéro d'utilisateur correct"; die;
+                    if (!is_numeric($_GET["mod"])) {
+                        echo "Merci de saisir un numéro d'utilisateur correct";
+                        die;
                     }
                     $infos = User::getUserInfo($_GET["mod"]);
-                    if ($infos == 0){
-                        echo "L'utilisateur n'a pas été trouvé"; die;
+                    if ($infos == 0) {
+                        echo "L'utilisateur n'a pas été trouvé";
+                        die;
                     }
-                    if ($infos["role"] == 1){
-                        echo "Vous ne pouvez pas éditer le profil d'un administrateur"; die;
+                    if ($infos["role"] == 1) {
+                        echo "Vous ne pouvez pas éditer le profil d'un administrateur";
+                        die;
                     }
                 }
 

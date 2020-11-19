@@ -175,6 +175,16 @@ class User
         return $existUser;
     }
 
+    public static function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
     /** 
      * Envoie un mail de recup mdp avec un lien avec un token dans le GET 
      */
@@ -186,7 +196,7 @@ class User
             $nowNCooldown = date("Y-m-d H:i:s", strtotime("-1 hour", strtotime(date("Y-m-d H:i:s")))); //heure actuelle - cooldown de 1h pour chaque nouveau token
             $actualToken = DB::$db->query("SELECT * FROM PSSWD_RECOVER WHERE date >= '$nowNCooldown' AND id_user = $id_user ")->rowCount(); //on cherche les token dont le cooldown de 2h n'est pas expiré
             if (($actualToken == 0)) {
-                $token = generateRandomString(40);
+                $token = User::generateRandomString(40);
                 $to = $mail;
                 $from = 'no-reply@immersailles.me';
                 $fromName = 'no-reply';
@@ -254,7 +264,7 @@ class User
         $id_user = $r["id_user"];
 
         if (!empty($id_user)) {
-            $token = generateRandomString(40);
+            $token =  User::generateRandomString(40);
             DB::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), 0, $id_user)"); // def le token pour l'utilisateur
             $to = $mail;
             $from = 'no-reply@immersailles.me';
