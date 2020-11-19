@@ -83,7 +83,7 @@ class User
      */
     public static function createUser($nom, $prenom, $email, $role)
     {
-        $insert_user = DB::$db->prepare("INSERT INTO USERS VALUES (DEFAULT, :mdp, :nom, :prenom, :email, :roleU);");   // on insert le parcours
+        $insert_user = DB::$db->prepare("INSERT INTO USERS VALUES (DEFAULT, :mdp, :nom, :prenom, :email, :roleU);");
         $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
         $success = $insert_user->execute(array(':mdp' => $mdp, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':roleU' => $role));
         if ($success) {
@@ -250,10 +250,12 @@ class User
     public static function sendAccountCreation($mail)
     {
         $r = DB::$db->query("SELECT id_user FROM USERS WHERE email = \"$mail\"")->fetch(); // id de l'user pour le mail donnée
+
         $id_user = $r["id_user"];
+
         if (!empty($id_user)) {
             $token = generateRandomString(40);
-            DB::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), $id_user, 0)"); // def le token pour l'utilisateur
+            DB::$db->query("INSERT INTO PSSWD_RECOVER VALUES(NULL, '$token', NOW(), 0, $id_user)"); // def le token pour l'utilisateur
             $to = $mail;
             $from = 'no-reply@immersailles.me';
             $fromName = 'no-reply';
