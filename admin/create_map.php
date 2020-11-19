@@ -108,7 +108,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="libelle">Libellé <b style="color:red;">*</b></label>
-                                <input type="text" class="form-control" name="libelle" id="libelle" pattern="[a-zA-Z0-9]{4,}" placeholder="Libellé du plan" required title="Minimum 4 caractères de chiffres et de lettres" <?php if($modifyMap) echo 'value="'.$mapData['libelle'].'"';?>>
+                                <input type="text" class="form-control" name="libelle" id="libelle" pattern="[a-zA-Z0-9]{4,}" placeholder="Libellé du plan" required title="Minimum 4 caractères de chiffres et de lettres" <?php if ($modifyMap) echo 'value="' . $mapData['libelle'] . '"'; ?>>
                             </div>
                         </div>
                         <div class="form-row">
@@ -122,11 +122,11 @@
                                     echo var_dump($files);
 
                                     foreach ($files as $map) {
-                                        
-                                        if(!$modifyMap){
+
+                                        if (!$modifyMap) {
                                             echo '<option value="' . $map . '">' . $map . '</option>';
-                                        }else{
-                                            echo '<option'. ($mapData['libelle'] == $map) ? echo 'selected' : ''.'value="' . $map . '">' . $map . '</option>';
+                                        } else {
+                                            echo '<option' . ($mapData['libelle'] == $map) ? 'selected' : '' . 'value="' . $map . '">' . $map . '</option>';
                                         }
                                     }
                                     ?>
@@ -138,11 +138,11 @@
                                 <div class="form-row text-center">
                                     <div class="col-md-6">
                                         Actif<br>
-                                        <input type="radio" name="statut" <?php if($modifyMap && (echo $mapData['libelle'] == 'true') echo 'selected';?> id="statut" value="true">
+                                        <input type="radio" name="statut" <?php if ($modifyMap && ($mapData['libelle'] == 'true'))  'selected'; ?> id="statut" value="true">
                                     </div>
                                     <div class="col-md-6">
                                         Inactif<br>
-                                        <input type="radio" name="statut" <?php if($modifyMap && (echo $mapData['libelle'] == 'false') echo 'selected';?> id="statut" value="false">
+                                        <input type="radio" name="statut" <?php if ($modifyMap && ($mapData['libelle'] == 'false')) 'selected'; ?> id="statut" value="false">
                                     </div>
                                 </div>
                             </div>
