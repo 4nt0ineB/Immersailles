@@ -131,7 +131,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="urlwikidata">URL Wikidata <b style="color:red;">*</b></label>
-                                <input type="url" pattern="https://www.wikidata.org/wiki/Special:EntityData/*" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo $infos["name"] ?>">
+                                <input type="url" pattern="https://www.wikidata.org/wiki/*" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo $infos["name"] ?>">
                                 <center>
                                 <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><?php if ($isModify) echo "Modifier ";
                                                                                         else echo "Charger " ?>l'URL WikiDATA</button>
