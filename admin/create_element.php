@@ -121,7 +121,7 @@
 
                     <!-- Erreur de lien -->
                     <div class="alert alert-warning alert-dismissible fade show" id="urlError" role="alert" style="display:none;">
-                                <strong>Oups !</strong> Le lien saisi n'est pas correct. Le lien doit être sous la forme <b>https://www.wikidata.org/wiki/Special:EntityData/QXXXX.json</b>
+                                <strong>Oups !</strong> Le lien saisi n'est pas correct. Le lien doit être sous la forme <b>https://www.wikidata.org/wiki/XXXX</b>
                     </div>
                     <!-- Fin erreur -->
 
@@ -131,7 +131,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="urlwikidata">URL Wikidata <b style="color:red;">*</b></label>
-                                <input type="url" pattern="https://www.wikidata.org/wiki/Special:EntityData/*" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/Special:EntityData/QXXXX.json" required value="<?php if ($isModify) echo $infos["name"] ?>">
+                                <input type="url" pattern="https://www.wikidata.org/wiki/Special:EntityData/*" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo $infos["name"] ?>">
                                 <center>
                                 <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><?php if ($isModify) echo "Modifier ";
                                                                                         else echo "Charger " ?>l'URL WikiDATA</button>
@@ -185,11 +185,11 @@
 
    function loadPreview(urlWikidata){
 
-        if (urlWikidata.includes("https://www.wikidata.org/wiki/Special:EntityData/")){
+        if (urlWikidata.includes("https://www.wikidata.org/wiki/")){
 
             document.getElementById("urlError").style.display = "none"; // On vire l'erreur si on l'a affichée précedemment
-            var endOfUrl = urlWikidata.split("https://www.wikidata.org/wiki/Special:EntityData/");
-            var identifier = endOfUrl[1].split(".")[0];
+            var endOfUrl = urlWikidata.split("https://www.wikidata.org/wiki/");
+            var identifier = endOfUrl[1];
            
             var xhr = null;
 
@@ -201,7 +201,7 @@
             };
 
             updateLiveData = function() {
-                var url = urlWikidata; 
+                var url = "https://www.wikidata.org/wiki/Special:EntityData/"+identifier+".json"; 
                 xhr = getXmlHttpRequestObject();
                 xhr.onreadystatechange = evenHandler;
                 xhr.open("GET", url, true);
@@ -219,14 +219,9 @@
                     var json1 = JSON.parse(xhr.responseText);
 
                     var infos = json1.entities[identifier];
-                    console.log(infos);
-
-                    console.log(json1.entities[identifier].labels.fr.value);
-
                     $("#nom_objet").html(infos.labels.fr.value);
 
                     // partie image
-                    console.log(json1.entities[identifier].claims.P18);
                     var img = json1.entities[identifier].claims.P18[0].mainsnak.datavalue.value;
                     img = img.split(' ').join('_');
                     var hash = md5(img).substring(0, 2);
@@ -250,7 +245,6 @@
             }
 
         } else {
-            console.log("URL non valide");
             document.getElementById("urlError").style.display = "block";
         }
 
