@@ -30,7 +30,7 @@
                     <h3>Création d'un nouveau plan</h3>
                     <br>
                     <?php
-                    $modifyMap = (isset($_POST["mod"]) ? true : false); // booleen pour condition si modification de la map
+                    $modifyMap = (isset($_GET["mod"]) ? true : false); // booleen pour condition si modification de la map
 
 
                     if (isset($errorMsg)) // si le tableau errorMsg est initialisé
@@ -96,9 +96,9 @@
 
                     <form method="POST" style=" text-align: left;">
                         <?php
-
                         if ($modifyMap) {
-                            $mapId = $_POST['mod'];
+
+                            $mapId = $_GET['mod'];
                             echo '<input type="hidden" name="idMap" value="' . $mapId . '">';
 
                             $mapData = DB::$db->query("SELECT * FROM MAPS WHERE id_map = $mapId")->fetch();
@@ -116,17 +116,18 @@
                                 <label for="fichier">Fichier <b style="color:red;">*</b></label>
                                 <select multiple class="form-control" id="exampleFormControlSelect2" name="imgName">
                                     <?php
+
                                     $path    = './upload';
                                     $files = scandir($path);
                                     $files = array_diff(scandir($path), array('.', '..'));
-                                    echo var_dump($files);
-
                                     foreach ($files as $map) {
 
-                                        if (!$modifyMap) {
-                                            echo '<option value="' . $map . '">' . $map . '</option>';
+                                        if ($modifyMap) {
+                                            echo '<option ';
+                                            echo (basename($mapData['lien']) == $map) ? "selected" : " ";
+                                            echo  ' value="' . $map . '">' . $map . '</option>';
                                         } else {
-                                            echo '<option' . ($mapData['libelle'] == $map) ? 'selected' : '' . 'value="' . $map . '">' . $map . '</option>';
+                                            echo '<option value="' . $map . '">' . $map . '</option>';
                                         }
                                     }
                                     ?>
@@ -138,11 +139,23 @@
                                 <div class="form-row text-center">
                                     <div class="col-md-6">
                                         Actif<br>
-                                        <input type="radio" name="statut" <?php if ($modifyMap && ($mapData['libelle'] == 'true'))  'selected'; ?> id="statut" value="true">
+                                        <input type="radio" name="statut" <?php
+                                                                            if ($modifyMap) {
+                                                                                if ($mapData['status']) {
+                                                                                    echo 'checked';
+                                                                                }
+                                                                            }
+                                                                            ?> id="statut" value="true">
                                     </div>
                                     <div class="col-md-6">
                                         Inactif<br>
-                                        <input type="radio" name="statut" <?php if ($modifyMap && ($mapData['libelle'] == 'false')) 'selected'; ?> id="statut" value="false">
+                                        <input type="radio" name="statut" <?php
+                                                                            if ($modifyMap) {
+                                                                                if (!$mapData['status']) {
+                                                                                    echo 'checked';
+                                                                                }
+                                                                            }
+                                                                            ?> id="statut" value="false">
                                     </div>
                                 </div>
                             </div>
