@@ -86,8 +86,13 @@ class User
         $insert_user = DB::$db->prepare("INSERT INTO USERS VALUES (DEFAULT, :mdp, :nom, :prenom, :email, :roleU);");
         $mdp = password_hash(generateRandomString(), PASSWORD_DEFAULT);
         $success = $insert_user->execute(array(':mdp' => $mdp, ':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':roleU' => $role));
+
         if ($success) {
+            $id = DB::$db->query("SELECT id_user FROM USERS ORDER BY id_user DESC LIMIT 1;")->fetch();
+            $id = $id['id_user'];
+            DB::$db->query("INSERT INTO SESSIONS VALUES (NULL, \"undifined\", $id, DEFAULT, \"connected\")");
             if (User::sendAccountCreation($email)) { // envoie du mail pour définir son mot de passe
+
                 return $success;
             }
             return 0;
