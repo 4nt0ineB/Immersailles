@@ -94,8 +94,8 @@
                             while ($u = $users->fetch()) {
                                 echo '<tr>
                                     <td>' . $u['id_user'] . '</td>
-                                    <td>' . $u['surname'] . '</td>
                                     <td>' . $u['name'] . '</td>
+                                    <td>' . $u['surname'] . '</td>
                                     <td>' . $u['email'] . '</td>
                                     <td>' . getRole($u['role']) . '</td>';
                                 if ($u['role'] != '1') {

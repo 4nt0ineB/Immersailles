@@ -30,6 +30,9 @@
                     <h3>Création d'un nouveau plan</h3>
                     <br>
                     <?php
+                    $modifyMap = (isset($_POST["mod"]) ? true : false); // booleen pour condition si modification de la map
+
+
                     if (isset($errorMsg)) // si le tableau errorMsg est initialisé
                     {
                         foreach ($errorMsg as $error) // pour chaque ligne du tableau on initalise une variable
@@ -52,25 +55,66 @@
                             <?php echo $successMsg; // on affiche ce message 
                             ?>
                         </div>
-                    <?php
+                        <?php
                     }
 
                     if (isset($_POST["createMap"])) {
+                        $success = 0;
+                        if (isset($_POST["createMap"]) && !$modifyMap) {
+                            if (MAP::createMap($_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1)) {
+                                $success = 1;
+                            }
+                        } else if ($modifyMap) {
+                            if (MAP::modifyMap($_POST['idMap'], $_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1)) {
+                                $success = 1;
+                            }
+                        }
+
+                        if ($success) {
+                        ?>
+                            <div class="alert alert-success" role="alert">
+                                <?php echo 'Le plan a été' . (($modifyMap) ? 'modifié' : 'créé') . '. Redirection...';
+                                ?>
+                            </div>
+                        <?php
+                            header("refresh:2, login.php"); // redirection
+                        } else {
+                        ?>
+                            <div class="alert alert-success" role="alert">
+                                <?php echo 'Le plan a été' . (($modifyMap) ? 'modifié' : 'créé');
+                                ?>
+                            </div>
+                    <?php
+                            header("refresh:2, login.php"); // refresh
+                        }
                     }
+
+
+
                     ?>
 
 
                     <form method="POST" style=" text-align: left;">
+                        <?php
+
+                        if ($modifyMap) {
+                            $mapId = $_POST['mod'];
+                            echo '<input type="hidden" name="idMap" value="' . $mapId . '">';
+
+                            $mapData = DB::$db->query("SELECT * FROM MAPS WHERE id_map = $mapId")->fetch();
+                        }
+
+                        ?>
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="libelle">Libellé <b style="color:red;">*</b></label>
-                                <input type="text" class="form-control" name="libelle" id="libelle" placeholder="Libellé du plan" required>
+                                <input type="text" class="form-control" name="libelle" id="libelle" pattern="[a-zA-Z0-9]{4,}" placeholder="Libellé du plan" required title="Minimum 4 caractères de chiffres et de lettres" <?php if($modifyMap) echo 'value="'.$mapData['libelle'].'"';?>>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="fichier">Fichier <b style="color:red;">*</b></label>
-                                <select multiple class="form-control" id="exampleFormControlSelect2">
+                                <select multiple class="form-control" id="exampleFormControlSelect2" name="imgName">
                                     <?php
                                     $path    = './upload';
                                     $files = scandir($path);
@@ -78,7 +122,12 @@
                                     echo var_dump($files);
 
                                     foreach ($files as $map) {
-                                        echo '<option value="' . $map . '">' . $map . '</option>';
+                                        
+                                        if(!$modifyMap){
+                                            echo '<option value="' . $map . '">' . $map . '</option>';
+                                        }else{
+                                            echo '<option'. ($mapData['libelle'] == $map) ? echo 'selected' : ''.'value="' . $map . '">' . $map . '</option>';
+                                        }
                                     }
                                     ?>
                                 </select>
@@ -89,11 +138,11 @@
                                 <div class="form-row text-center">
                                     <div class="col-md-6">
                                         Actif<br>
-                                        <input type="radio" name="statut" id="statut" value="actif">
+                                        <input type="radio" name="statut" <?php if($modifyMap && (echo $mapData['libelle'] == 'true') echo 'selected';?> id="statut" value="true">
                                     </div>
                                     <div class="col-md-6">
                                         Inactif<br>
-                                        <input type="radio" name="statut" id="statut" value="inactif">
+                                        <input type="radio" name="statut" <?php if($modifyMap && (echo $mapData['libelle'] == 'false') echo 'selected';?> id="statut" value="false">
                                     </div>
                                 </div>
                             </div>
