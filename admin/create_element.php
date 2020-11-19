@@ -136,14 +136,29 @@
                                 <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><?php if ($isModify) echo "Modifier ";
                                                                                         else echo "Charger " ?>l'URL WikiDATA</button>
                                 </center>
+
+                                <br>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="verticalAlign">Alignement vertical de la photo <b style="color:red;">*</b></label>
+                                        <input id="verticalAlign" class="form-control w-100" name="verticalAlign" type="range" min="-100" max="100" value="0" class="slider" id="myRange" oninput="updateSlider(this.value)">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                    cc
+                                    </div>
+                                </div>   
+                                
                             </div>
+
+
                             <div class="form-group col-md-4">
                             <label for="previ">Prévisualisation du pop-up sur la carte</label>
                             <div class="float-right info-bubble" id="overlay" style="opacity:1;">
                         <div class="container">
                             <div class="row">
-                                <div class="container container-img">
-                                    <img src="../img/fauteuil.jpg" id="image">
+                                <div class="container container-img" id="imagePreview">
                                     <!--div class="top-left">[Ici, la photo de l'objet]</!-->
                                     <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
@@ -182,6 +197,10 @@
     <!-- Footer -->
 
     <script>
+
+    function updateSlider(value){
+        document.getElementById("imagePreview").style.backgroundPosition="50% calc(50% + "+value+"px)";
+    }
 
    function loadPreview(urlWikidata){
 
@@ -226,7 +245,13 @@
                     img = img.split(' ').join('_');
                     var hash = md5(img).substring(0, 2);
 
-                    document.getElementById("image").src="https://upload.wikimedia.org/wikipedia/commons/"+hash[0]+"/"+hash[0]+hash[1]+"/"+img+"";
+                    //background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Louis_XIV_of_France.jpg/800px-Louis_XIV_of_France.jpg);
+
+                    document.getElementById("imagePreview").style.background="url(https://upload.wikimedia.org/wikipedia/commons/"+hash[0]+"/"+hash[0]+hash[1]+"/"+img+")";
+                    document.getElementById("imagePreview").style.backgroundSize="cover";
+                    document.getElementById("imagePreview").style.backgroundPosition="50% calc(50% + 50px)";
+                    document.getElementById("imagePreview").style.backgroundRepeat="no-repeat";
+
                     // fin partie image
 
 
