@@ -96,6 +96,10 @@ dl, ol, ul {
     z-index: 999;
 }
 
+.info-bubble a {
+    color: white !important;
+}
+
 .info-bubble img {
     width: 100%;
 
@@ -131,6 +135,7 @@ dl, ol, ul {
 
 .bottom-right {
     color: #e7e7e7;
+    text-shadow: 2px 2px black;
     font-size: x-large;
     position: absolute;
     bottom: 0px;
