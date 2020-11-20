@@ -252,12 +252,12 @@
                 <div class="events-wrapper">
                     <div class="events">
                         <ol style="list-style-type: none;">
-                            <li><a href="#0" data-date="00/00/1635" class="selected">1635</a></li>
+                        
+                            <li><a href="#0" onclick="changeMapByYear(1631)" data-date="00/00/1635" class="selected">1635</a></li>
                             <li><a href="#0" data-date="00/00/1789" class="selected">1789</a></li>
                             <li><a href="#0" data-date="00/00/1820" class="selected">1820</a></li>
                             <li><a href="#0" data-date="00/00/1950" class="selected">1950</a></li>
 
-                            <li><a href="#0" data-date="23/00/2020">2020</a></li>
                         </ol>
 
                         <span class="filling-line" aria-hidden="true"></span>
