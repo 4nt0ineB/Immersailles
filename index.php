@@ -146,19 +146,20 @@
 
     <!--Div before Map container-->
 
-        <div class="row">
-            <div class="col-lg">
-                <div class="row"><!--<span style="color: #aabbd4">Objets (330)</span>-->
-                    <span style="font-size:20px;" class="pl-4">Trier par&nbsp;
-                <ul class="nav2">
-                    <li><a href="">Tout(330)</a></li>
-                    <li><a href="">Oeuvres d'art (120)</a></li>
-                    <li><a href=""> Mobilier (100)</a></li>
-                    <li><a href="">Décoration (110)</a></li>
-                </ul>
-                </div>
+    <div class="row">
+        <div class="col-lg">
+            <div class="row">
+                <!--<span style="color: #aabbd4">Objets (330)</span>-->
+                <span style="font-size:20px;" class="pl-4">Trier par&nbsp;
+                    <ul class="nav2">
+                        <li><a href="">Tout(330)</a></li>
+                        <li><a href="">Oeuvres d'art (120)</a></li>
+                        <li><a href=""> Mobilier (100)</a></li>
+                        <li><a href="">Décoration (110)</a></li>
+                    </ul>
             </div>
         </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">

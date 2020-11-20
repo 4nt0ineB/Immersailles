@@ -74,15 +74,15 @@
                         if ($success) {
                         ?>
                             <div class="alert alert-success" role="alert">
-                                <?php echo 'Le plan a été' . (($modifyMap) ? 'modifié' : 'créé') . '. Redirection...';
+                                <?php echo 'Le plan a été' . (($modifyMap) ? ' modifié' : ' créé') . '. Redirection...';
                                 ?>
                             </div>
                         <?php
-                            header("refresh:2, login.php"); // redirection
+                            header("refresh:2, manage_maps.php"); // redirection
                         } else {
                         ?>
                             <div class="alert alert-success" role="alert">
-                                <?php echo 'Le plan n\'a pas été' . (($modifyMap) ? 'modifié' : 'créé');
+                                <?php echo 'Le plan n\'a pas été' . (($modifyMap) ? ' modifié' : ' créé');
                                 ?>
                             </div>
                     <?php
@@ -109,13 +109,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="libelle">Libellé <b style="color:red;">*</b></label>
-                                <input type="text" class="form-control" name="libelle" id="libelle" pattern="[a-zA-Z0-9]{4,}" placeholder="Libellé du plan" required title="Minimum 4 caractères de chiffres et de lettres" <?php if ($modifyMap) echo 'value="' . $mapData['libelle'] . '"'; ?>>
+                                <input type="text" class="form-control" name="libelle" id="libelle" pattern="([a-z]{,}+[A-Z]{,}+[0-9]{,}){4,}" placeholder="Libellé du plan" required title="Minimum 4 caractères de chiffres et de lettres" <?php if ($modifyMap) echo 'value="' . $mapData['libelle'] . '"'; ?>>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="fichier">Fichier <b style="color:red;">*</b></label>
-                                <select multiple class="form-control" id="exampleFormControlSelect2" name="imgName">
+                                <select multiple class="form-control" id="exampleFormControlSelect2" name="imgName" required>
                                     <?php
 
                                     $path    = './upload';
@@ -145,6 +145,8 @@
                                                                                 if ($mapData['status']) {
                                                                                     echo 'checked';
                                                                                 }
+                                                                            } else {
+                                                                                echo 'checked';
                                                                             }
                                                                             ?> id="statut" value="1">
                                     </div>
