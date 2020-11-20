@@ -23,7 +23,6 @@ if (isset($_SESSION['user'])) {
 <body class="d-flex flex-column min-vh-100">
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
             <a class="navbar-brand" href="../"><img src="../img/logo_mini.png" /> <i>IMMERSAILLES</i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,7 +42,6 @@ if (isset($_SESSION['user'])) {
 
                 </ul>
             </div>
-        </div>
     </nav>
     <!--Fin navbar -->
     <!--Connexion container-->
