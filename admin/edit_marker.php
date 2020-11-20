@@ -42,20 +42,21 @@ if (isset($_GET["id"])) {
                 <h2 id="title-current-place" style="padding: 10px;">Panel de gestion</h2>
 
                 <?php
-                if (isset($_POST["editMarker"])){
-                    if (substr($_POST["latitude"], 0, 2) === "En"){ // Le marqueur a été modifié mais pas re-placé sur la map
+                if (isset($_POST["editMarker"])) {
+                    if (substr($_POST["latitude"], 0, 2) === "En") { // Le marqueur a été modifié mais pas re-placé sur la map
                         $errorMsg[] = "Le marqueur après avoir été enlevé de la carte, doit être placé à un autre endroit.";
                     }
-                    if (!isset($errorMsg)){
+                    if (!isset($errorMsg)) {
                         $id = $_POST["id"];
                         $latitude = $_POST["latitude"];
                         $longitude = $_POST["longitude"];
-                        $db->query("UPDATE MARKERS SET latitude=\"$latitude\", longitude=\"$longitude\" WHERE id_marker=$id;");
+                        $obj = $_POST["objet"];
+                        $db->query("UPDATE MARKERS SET latitude=\"$latitude\", longitude=\"$longitude\", id_object = $obj WHERE id_marker=$id;");
                         $successMsg = "Les modifications apportées ont bien été enregistrées.";
                     }
                 }
 
-                if (isset($_POST["deleteMarker"])){
+                if (isset($_POST["deleteMarker"])) {
                     $db->query("DELETE FROM MARKERS WHERE id_marker=$id;");
                     echo '<meta http-equiv="refresh" content="0;URL=manage_markers.php">';
                 }
@@ -98,32 +99,32 @@ if (isset($_GET["id"])) {
                         <div class="col-md-3">
                             <div class="form-row">
                                 <form method="post">
-                                <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                                <div class="form-group col-md-12">
-                                    <label for="latitude">Latitude</label>
-                                    <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude du marqueur" readonly required>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="latitude">Longitude</label>
-                                    <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude du marqueur" readonly required>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="objet">Objet</label>
-                                    <select class="form-control select2" name="objet" id="objet">
-                                        <?php
-                                        $objects = $db->query("SELECT * FROM OBJECTS");
-                                        while ($o = $objects->fetch()) :  ?>
-                                            <option value="<?php echo $o["id_object"]; ?>"><?php echo htmlspecialchars($o["name"]); ?></option>
-                                        <?php endwhile; ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <button type="submit" class="form-control btn-success mb-2" name="editMarker">Enregistrer le marqueur</button>
-                                    <button type="submit" class="form-control btn-danger" name="deleteMarker">Supprimer le marqueur</button>
-                                </div>
+                                    <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                                    <div class="form-group col-md-12">
+                                        <label for="latitude">Latitude</label>
+                                        <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude du marqueur" readonly required>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="latitude">Longitude</label>
+                                        <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude du marqueur" readonly required>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="objet">Objet</label>
+                                        <select class="form-control select2" name="objet" id="objet" required>
+                                            <?php
+                                            $objects = $db->query("SELECT * FROM OBJECTS");
+                                            while ($o = $objects->fetch()) :  ?>
+                                                <option value="<?php echo $o["id_object"]; ?>"><?php echo htmlspecialchars($o["name"]); ?></option>
+                                            <?php endwhile; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <button type="submit" class="form-control btn-success mb-2" name="editMarker">Enregistrer le marqueur</button>
+                                        <button type="submit" class="form-control btn-danger" name="deleteMarker">Supprimer le marqueur</button>
+                                    </div>
                             </div>
                         </div>
-                    </form>
+                        </form>
                     </div>
                     <br><br>
                     <a href="index.php" class="btn btn-dark">Retour à l'accueil</a>

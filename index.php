@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Carte interactive du Château de Versailles. Découvrez les personnages historiques et les trésors du château de Versailles en parcourant ses étages et le temps.">
     <title>Immersailles</title>
-
+    <link rel="icon" href="../img/logo_mini.png">
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>

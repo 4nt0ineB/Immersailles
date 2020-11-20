@@ -5,6 +5,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Se connecter</title>
@@ -63,8 +64,8 @@
               <div class="col card_recap mr-3" style="background-image: radial-gradient(circle 248px at center, #5f5f5f 0%, #505050 47%, #3e3e3e 100%) !important;">
                 <div class="text_recap">Marqueurs<br><span>Nombre total de marqueurs</span></div>
                 <div class="text_right"><?php
-                echo $db->query("SELECT * FROM MARKERS")->rowCount();
-                ?></div>
+                                        echo $db->query("SELECT * FROM MARKERS")->rowCount();
+                                        ?></div>
               </div>
               <div class="col card_recap" style="background-image: linear-gradient(to bottom, #C8AD7F 0%, #af8132 100%) !important">
                 <div class="text_recap">Plans<br><span>Nombre total de plans disponibles</span></div>

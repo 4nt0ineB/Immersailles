@@ -30,11 +30,13 @@
 
                 $isModify = isset($_GET["mod"]);
                 if ($isModify) {
-                    if (empty($_GET["mod"])){
-                        echo "Merci de saisir un numéro d'objet"; die;
+                    if (empty($_GET["mod"])) {
+                        echo "Merci de saisir un numéro d'objet";
+                        die;
                     }
-                    if (!is_numeric($_GET["mod"])){
-                        echo "Merci de saisir un numéro d'objet correct"; die;
+                    if (!is_numeric($_GET["mod"])) {
+                        echo "Merci de saisir un numéro d'objet correct";
+                        die;
                     }
                     /*$infos = User::getUserInfo($_GET["mod"]);
                     if ($infos == 0){
@@ -44,47 +46,6 @@
 
                 if (isset($_REQUEST['createObject'])) // si le btn submitCourse est cliqué
                 {
-                    $nom = strip_tags($_REQUEST["nom"]); // on stock toutes les valeurs
-                    $prenom = strip_tags($_REQUEST["prenom"]);
-                    $email = strip_tags($_REQUEST["email"]);
-                    if (isset($_REQUEST["role"])) {
-                        $role = strip_tags($_REQUEST["role"]);
-                    }
-                    try {
-
-                        if (strlen($prenom) < 3) { // si le nom est vide ou inférieur a 3 caractères
-                            $errorMsg[] = "Merci de saisir un prénom valide";
-                        }
-
-                        if (!isset($role)) {
-                            $errorMsg[] = "Merci de saisir un rôle valide";
-                        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // si l'email n'est pas valide
-                            $errorMsg[] = "Merci de saisir une adresse électronique valide"; // on inscrit un message d'erreur dans un tableau (si il y en a plusieurs)
-                        }
-
-                        $idUTestmail = '';
-                        if ($isModify) {
-                            $idUTestmail = $infos["id_user"];
-                        }
-                        if (User::existEmail($email, $idUTestmail) > '0') {
-                            $errorMsg[] = "Cette adresse email est déjà utilisée";
-                        } else if (!isset($errorMsg)) { // si aucun msg d'erreur
-
-                            if (!$isModify) {
-                                if (User::createUser($nom, $prenom, $email, $role)) {
-                                    $successMsg = "L'utilisateur a été créé avec succès. Redirection..."; // msg de succès
-                                    header("refresh:2; manage_users.php?id=$id");
-                                }
-                            } else if ($isModify) {
-                                if ((User::modifyUser(array(':name' => $nom, ':surname' => $prenom, ':email' => $email, ':role' => $role), $infos["id_user"]))) {
-                                    $successMsg = "L'utilisateur a été modifié avec succès. Redirection..."; // msg de succès
-                                    header("refresh:2; manage_users.php?");
-                                }
-                            }
-                        }
-                    } catch (PDOException $e) {
-                        echo $e->getMessage();
-                    }
                 }
                 ?>
 
@@ -121,7 +82,7 @@
 
                     <!-- Erreur de lien -->
                     <div class="alert alert-warning alert-dismissible fade show" id="urlError" role="alert" style="display:none;">
-                                <strong>Oups !</strong> Le lien saisi n'est pas correct. Le lien doit être sous la forme <b>https://www.wikidata.org/wiki/XXXX</b>
+                        <strong>Oups !</strong> Le lien saisi n'est pas correct. Le lien doit être sous la forme <b>https://www.wikidata.org/wiki/XXXX</b>
                     </div>
                     <!-- Fin erreur -->
 
@@ -133,8 +94,8 @@
                                 <label for="urlwikidata">URL Wikidata <b style="color:red;">*</b></label>
                                 <input type="url" pattern="https://www.wikidata.org/wiki/*" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo $infos["name"] ?>">
                                 <center>
-                                <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><?php if ($isModify) echo "Modifier ";
-                                                                                        else echo "Charger " ?>l'URL WikiDATA</button>
+                                    <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><?php if ($isModify) echo "Modifier ";
+                                                                                                                                                                        else echo "Charger " ?>l'URL WikiDATA</button>
                                 </center>
 
                                 <br>
@@ -146,38 +107,38 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                    cc
+                                        cc
                                     </div>
-                                </div>   
-                                
+                                </div>
+
                             </div>
 
 
                             <div class="form-group col-md-4">
-                            <label for="previ">Prévisualisation du pop-up sur la carte</label>
-                            <div class="float-right info-bubble" id="overlay" style="opacity:1;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="container container-img" id="imagePreview">
-                                    <!--div class="top-left">[Ici, la photo de l'objet]</!-->
-                                    <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
+                                <label for="previ">Prévisualisation du pop-up sur la carte</label>
+                                <div class="float-right info-bubble" id="overlay" style="opacity:1;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="container container-img" id="imagePreview">
+                                                <!--div class="top-left">[Ici, la photo de l'objet]</!-->
+                                                <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
-                                    <div class="bottom-right" id="nom_objet">Libellé</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="container">
-                                    <p><span class="label-info">Type d'objet :</span> </p>
-                                    <p> <span class="label-info">Date d'arrivée et de départ :</span> <span id="date_a_objet"></span><span id="date_d_objet"></span></p>
-                                    <p> <span class="label-info">Description :</span><br><span id="desc_objet"></span>
-                                    </p>
-                                    <p><span class="label-info">Liens utiles :</span><br> <a href="#">Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></p>
-                                </div>
-                            </div>
-                        </div>
+                                                <div class="bottom-right" id="nom_objet">Libellé</div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="container">
+                                                <p><span class="label-info">Type d'objet :</span> </p>
+                                                <p> <span class="label-info">Date d'arrivée et de départ :</span> <span id="date_a_objet"></span><span id="date_d_objet"></span></p>
+                                                <p> <span class="label-info">Description :</span><br><span id="desc_objet"></span>
+                                                </p>
+                                                <p><span class="label-info">Liens utiles :</span><br> <a href="#">Lorem ipsum dolor sit amet, consectetur
+                                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -188,7 +149,7 @@
             </div>
 
         </div>
-    <br>
+        <br>
 
     </div>
 
@@ -197,88 +158,84 @@
     <!-- Footer -->
 
     <script>
-
-    function updateSlider(value){
-        document.getElementById("imagePreview").style.backgroundPosition="50% calc(50% + "+value+"px)";
-    }
-
-   function loadPreview(urlWikidata){
-
-        if (urlWikidata.includes("https://www.wikidata.org/wiki/")){
-
-            document.getElementById("urlError").style.display = "none"; // On vire l'erreur si on l'a affichée précedemment
-            var endOfUrl = urlWikidata.split("https://www.wikidata.org/wiki/");
-            var identifier = endOfUrl[1];
-           
-            var xhr = null;
-
-            getXmlHttpRequestObject = function() {
-                if (!xhr) {
-                    xhr = new XMLHttpRequest();
-                }
-                return xhr;
-            };
-
-            updateLiveData = function() {
-                var url = "https://www.wikidata.org/wiki/Special:EntityData/"+identifier+".json"; 
-                xhr = getXmlHttpRequestObject();
-                xhr.onreadystatechange = evenHandler;
-                xhr.open("GET", url, true);
-                xhr.send(null);
-
-            };
-
-            updateLiveData();
-
-
-            function evenHandler() {
-                // Check response is ready or not
-                if (xhr.readyState == 4 && xhr.status == 200) {
-
-                    var json1 = JSON.parse(xhr.responseText);
-
-                    var infos = json1.entities[identifier];
-                    $("#nom_objet").html(infos.labels.fr.value);
-
-                    // partie image
-                    var img = json1.entities[identifier].claims.P18[0].mainsnak.datavalue.value;
-                    img = img.split(' ').join('_');
-                    var hash = md5(img).substring(0, 2);
-
-                    //background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Louis_XIV_of_France.jpg/800px-Louis_XIV_of_France.jpg);
-
-                    document.getElementById("imagePreview").style.background="url(https://upload.wikimedia.org/wikipedia/commons/"+hash[0]+"/"+hash[0]+hash[1]+"/"+img+")";
-                    document.getElementById("imagePreview").style.backgroundSize="cover";
-                    document.getElementById("imagePreview").style.backgroundPosition="50% calc(50% + 50px)";
-                    document.getElementById("imagePreview").style.backgroundRepeat="no-repeat";
-
-                    // fin partie image
-
-
-                    $('#description').on('input',function(e){
-                    $("#desc_objet").html($(this).val());
-                    });
-
-                    $('#dateArrivee').on('input',function(e){
-                    $("#date_a_objet").html($(this).val());
-                    });
-
-                    $('#dateDepart').on('input',function(e){
-                    $("#date_d_objet").html(' - '+$(this).val());
-                    });
-                }
-            }
-
-        } else {
-            document.getElementById("urlError").style.display = "block";
+        function updateSlider(value) {
+            document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + " + value + "px)";
         }
 
-           
+        function loadPreview(urlWikidata) {
 
-   }
-   
-   
-    
+            if (urlWikidata.includes("https://www.wikidata.org/wiki/")) {
+
+                document.getElementById("urlError").style.display = "none"; // On vire l'erreur si on l'a affichée précedemment
+                var endOfUrl = urlWikidata.split("https://www.wikidata.org/wiki/");
+                var identifier = endOfUrl[1];
+
+                var xhr = null;
+
+                getXmlHttpRequestObject = function() {
+                    if (!xhr) {
+                        xhr = new XMLHttpRequest();
+                    }
+                    return xhr;
+                };
+
+                updateLiveData = function() {
+                    var url = "https://www.wikidata.org/wiki/Special:EntityData/" + identifier + ".json";
+                    xhr = getXmlHttpRequestObject();
+                    xhr.onreadystatechange = evenHandler;
+                    xhr.open("GET", url, true);
+                    xhr.send(null);
+
+                };
+
+                updateLiveData();
+
+
+                function evenHandler() {
+                    // Check response is ready or not
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var json1 = JSON.parse(xhr.responseText);
+
+                        var infos = json1.entities[identifier];
+                        $("#nom_objet").html(infos.labels.fr.value);
+
+                        // partie image
+                        var img = json1.entities[identifier].claims.P18[0].mainsnak.datavalue.value;
+                        img = img.split(' ').join('_');
+                        var hash = md5(img).substring(0, 2);
+
+                        //background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Louis_XIV_of_France.jpg/800px-Louis_XIV_of_France.jpg);
+
+                        document.getElementById("imagePreview").style.background = "url(https://upload.wikimedia.org/wikipedia/commons/" + hash[0] + "/" + hash[0] + hash[1] + "/" + img + ")";
+                        document.getElementById("imagePreview").style.backgroundSize = "cover";
+                        document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + 50px)";
+                        document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+
+                        // fin partie image
+
+
+                        $('#description').on('input', function(e) {
+                            $("#desc_objet").html($(this).val());
+                        });
+
+                        $('#dateArrivee').on('input', function(e) {
+                            $("#date_a_objet").html($(this).val());
+                        });
+
+                        $('#dateDepart').on('input', function(e) {
+                            $("#date_d_objet").html(' - ' + $(this).val());
+                        });
+                    }
+                }
+
+            } else {
+                document.getElementById("urlError").style.display = "block";
+            }
+
+
+
+        }
     </script>
 </body>
 
