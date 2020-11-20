@@ -54,7 +54,7 @@
                     <h3>Gestion des objets</h3>
                     <br>
                     
-                    <div class="row float-right" style="margin: 10px auto;"><a href="create_object.php" class="btn btn-dark">Créer un nouvel objet</a></div>
+                    <div class="row float-right" style="margin: 10px auto;"><a href="create_element.php" class="btn btn-dark">Créer un nouvel objet</a></div>
                     <br>
                     <table id="datatable" class="table table-striped table-bordered" width="100%">
                         <thead>
