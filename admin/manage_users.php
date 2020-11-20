@@ -112,6 +112,8 @@
                                             </svg>
                                         </a>
                                     </td>';
+                                } else {
+                                    echo '<td></td>';
                                 }
 
 
