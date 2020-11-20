@@ -10,6 +10,8 @@
     <?php require_once("includes/head.html") ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script src="../scripts/js/inactivity.js"></script>
 </head>
 
@@ -112,6 +114,32 @@
                                 <input type="text" class="form-control" name="libelle" id="libelle" pattern="([a-z]{,}+[A-Z]{,}+[0-9]{,}){4,}" placeholder="Libellé du plan" required title="Minimum 4 caractères de chiffres et de lettres" <?php if ($modifyMap) echo 'value="' . $mapData['libelle'] . '"'; ?>>
                             </div>
                         </div>
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="etage">Étage du château <b style="color:red;">*</b></label>
+                                <select class="form-control select2" name="etage" id="etage">
+                                    <?php
+                                    $floors = $db->query("SELECT * FROM FLOORS");
+                                    while ($floor_item = $floors->fetch()) :  ?>
+                                        <option value="<?php echo $floor_item["id_floor"]; ?>"><?php echo htmlspecialchars($floor_item["label"]); ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                <label for="annee">Année du plan <b style="color:red;">*</b></label>
+                                <select class="form-control select2" name="annee" id="annee">
+                                    <?php
+                                    $years = $db->query("SELECT * FROM YEARS");
+                                    while ($year_item = $years->fetch()) :  ?>
+                                        <option value="<?php echo $year_item["id_year"]; ?>"><?php echo htmlspecialchars($year_item["year"]); ?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="fichier">Fichier <b style="color:red;">*</b></label>
@@ -180,6 +208,12 @@
     <!-- Footer -->
     <?php include("../includes/footer.php"); ?>
     <!-- Footer -->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 </body>
 
 </html>
