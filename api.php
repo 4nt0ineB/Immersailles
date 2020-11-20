@@ -25,6 +25,8 @@ foreach ($mapList as $map) {
     $data["Maps"][$i]["lien"] = $map["lien"];
     $data["Maps"][$i]["libelle"] = $map["libelle"];
     $data["Maps"][$i]["zoom"] = $map["zoom"];
+    $data["Maps"][$i]["etage"] = $map["id_floor"];
+    $data["Maps"][$i]["annee"] = $map["id_year"];
 }
 
 

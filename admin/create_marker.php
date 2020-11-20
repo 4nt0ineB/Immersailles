@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestion des utilisateurs</title>
+    <title>Gestion des marqueurs</title>
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
@@ -80,22 +80,24 @@
                     <div class="row">
                         <div class="col-md-3 mb-1">
                             <form method="post">
-                            Carte :
-                            <select class="form-control select2" onchange="changeMap();" name="maplayer" id="maplayer">
+                            Étage correspondant :
+                            <select class="form-control select2" onchange="changeMap();" name="etage" id="etage">
                                 <?php
-                                $maps = $db->query("SELECT * FROM MAPS");
-                                while ($map_item = $maps->fetch()) :  ?>
-                                    <option value="<?php echo $map_item["id_map"]; ?>"><?php echo htmlspecialchars($map_item["libelle"]); ?></option>
+                                $floors = $db->query("SELECT * FROM FLOORS");
+                                while ($floor_item = $floors->fetch()) :  ?>
+                                    <option value="<?php echo $floor_item["id_floor"]; ?>"><?php echo htmlspecialchars($floor_item["label"]); ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
 
                         <div class="col-md-3 mb-1">
-                        Niveau :
-                            <select class="form-control select2" name="levelSelector" id="levelSelector">
-                                <option>-1</option>
-                                <option selected>0</option>
-                                <option>1</option>
+                        Date correspondante :
+                            <select class="form-control select2" onchange="changeMap();" name="date" id="date">
+                                <?php
+                                $years = $db->query("SELECT * FROM YEARS");
+                                while ($year_item = $years->fetch()) :  ?>
+                                    <option value="<?php echo $year_item["id_year"]; ?>"><?php echo htmlspecialchars($year_item["year"]); ?></option>
+                                <?php endwhile; ?>
                             </select>
                         </div>
                     </div>
@@ -165,14 +167,19 @@
             $('.select2').select2();
         });
 
-        document.getElementById("plan").value = document.getElementById("maplayer").options[document.getElementById("maplayer").selectedIndex].text; // pré remplissage de la case plan a droite
+        document.getElementById("plan").value = document.getElementById("etage").options[document.getElementById("etage").selectedIndex].text; // pré remplissage de la case plan a droite
 
-        document.getElementById("planid").value = document.getElementById("maplayer").options[document.getElementById("maplayer").selectedIndex].value; // pré remplissage de la case plan ID cachée a droite
+        document.getElementById("planid").value = document.getElementById("etage").options[document.getElementById("etage").selectedIndex].value; // pré remplissage de la case plan ID cachée a droite
+
 
         function changeMap() {
-            var selectBox = document.getElementById("maplayer");
-            var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-            changeMapLayer(selectedValue);
+            var etage = document.getElementById("etage");
+            var etageSelected = etage.options[etage.selectedIndex].value;
+
+            var annee = document.getElementById("date");
+            var anneeSelected = annee.options[annee.selectedIndex].value;
+
+            changeMapLayer2(etageSelected, anneeSelected);
         }
 
         var LastMarkerPut = null;
