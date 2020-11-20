@@ -1,1 +1,257 @@
-var _0x563e = ['apply', 'leave-right\x20leave-left', '-moz-transform', '.events-wrapper', 'which', 'prev', 'enter-left\x20enter-right', 'leave-right', '-ms-transform', 'preventDefault', 'getPropertyValue', 'selected\x20enter-left', '.next', 'indexOf', '.selected', 'timelineDates', 'children', 'get', 'offsetParent', 'style', 'eventsMinLapse', 'eventsContent', 'scaleX', 'parent', 'left', 'replace', 'innerWidth', 'older-event', '.cd-timeline-navigation', 'split', 'addClass', 'leave-left', 'swiperight', '.cd-horizontal-timeline', 'timelineWrapper', 'width', 'translateX', 'round', '-webkit-transform', 'length', '.events', 'offsetWidth', 'offsetLeft', 'nextAll', 'attr', '.prev', 'each', 'content', 'offsetHeight', 'timelineNavigation', 'next', 'mobile', 'date', 'class', 'querySelector', 'fillingLine', '-o-transform', 'data', 'end', '[data-date=\x22', 'index', 'webkitAnimationEnd\x20oanimationend\x20msAnimationEnd\x20animationend', 'inactive', 'removeClass', 'pageXOffset', 'selected\x20enter-right', 'getComputedStyle', 'selected', 'css', 'eventsWrapper', 'click', 'innerHeight', 'loaded', 'transform', 'find', 'swipeleft', 'timelineEvents', 'pageYOffset', 'offsetTop', 'push', 'ready', 'height', '::before']; (function (_0x11a72e, _0x13def6) { var _0x563e6f = function (_0x1c1f84) { while (--_0x1c1f84) { _0x11a72e['push'](_0x11a72e['shift']()); } }; _0x563e6f(++_0x13def6); }(_0x563e, 0x138)); var _0x1c1f = function (_0x11a72e, _0x13def6) { _0x11a72e = _0x11a72e - 0x155; var _0x563e6f = _0x563e[_0x11a72e]; return _0x563e6f; }; var _0x3964dd = _0x1c1f; jQuery(document)[_0x3964dd(0x166)](function (_0x5a63cd) { var _0x49d002 = _0x3964dd, _0x114b87 = _0x5a63cd(_0x49d002(0x18a)), _0x4ad0c6 = 0x46; _0x114b87[_0x49d002(0x190)] > 0x0 && _0x3029c1(_0x114b87); function _0x3029c1(_0x5030e9) { var _0x3b09fd = _0x49d002; _0x5030e9[_0x3b09fd(0x197)](function () { var _0x5ba2ed = _0x3b09fd, _0x2eee83 = _0x5a63cd(this), _0x4ab2a7 = {}; _0x4ab2a7[_0x5ba2ed(0x18b)] = _0x2eee83[_0x5ba2ed(0x160)](_0x5ba2ed(0x16c)), _0x4ab2a7[_0x5ba2ed(0x15b)] = _0x4ab2a7[_0x5ba2ed(0x18b)]['children'](_0x5ba2ed(0x191)), _0x4ab2a7[_0x5ba2ed(0x1a0)] = _0x4ab2a7['eventsWrapper'][_0x5ba2ed(0x179)]('.filling-line'), _0x4ab2a7['timelineEvents'] = _0x4ab2a7[_0x5ba2ed(0x15b)][_0x5ba2ed(0x160)]('a'), _0x4ab2a7['timelineDates'] = _0x489955(_0x4ab2a7[_0x5ba2ed(0x162)]), _0x4ab2a7[_0x5ba2ed(0x17d)] = _0x33a503(_0x4ab2a7[_0x5ba2ed(0x178)]), _0x4ab2a7[_0x5ba2ed(0x19a)] = _0x2eee83[_0x5ba2ed(0x160)](_0x5ba2ed(0x185)), _0x4ab2a7[_0x5ba2ed(0x17e)] = _0x2eee83['children']('.events-content'), _0x372ed9(_0x4ab2a7, _0x4ad0c6); var _0x272642 = _0x48a366(_0x4ab2a7, _0x4ad0c6); _0x2eee83[_0x5ba2ed(0x187)](_0x5ba2ed(0x15e)), _0x4ab2a7[_0x5ba2ed(0x19a)]['on']('click', _0x5ba2ed(0x175), function (_0x15638c) { var _0x15a9f6 = _0x5ba2ed; _0x15638c[_0x15a9f6(0x172)](), _0x5eb312(_0x4ab2a7, _0x272642, _0x15a9f6(0x19b)); }), _0x4ab2a7['timelineNavigation']['on'](_0x5ba2ed(0x15c), _0x5ba2ed(0x196), function (_0x34ff53) { var _0x3f4e78 = _0x5ba2ed; _0x34ff53[_0x3f4e78(0x172)](), _0x5eb312(_0x4ab2a7, _0x272642, _0x3f4e78(0x16e)); }), _0x4ab2a7['eventsWrapper']['on'](_0x5ba2ed(0x15c), 'a', function (_0x54b81e) { var _0x1d5c9f = _0x5ba2ed; _0x54b81e[_0x1d5c9f(0x172)](), _0x4ab2a7[_0x1d5c9f(0x162)]['removeClass']('selected'), _0x5a63cd(this)[_0x1d5c9f(0x187)](_0x1d5c9f(0x159)), _0x4b3450(_0x5a63cd(this)), _0x18cbf3(_0x5a63cd(this), _0x4ab2a7[_0x1d5c9f(0x1a0)], _0x272642), _0x4dc847(_0x5a63cd(this), _0x4ab2a7[_0x1d5c9f(0x17e)]); }), _0x4ab2a7['eventsContent']['on'](_0x5ba2ed(0x161), function () { var _0x370e4a = _0x5ba2ed, _0x3234ab = _0x2c2888(); _0x3234ab == _0x370e4a(0x19c) && _0x5a02fc(_0x4ab2a7, _0x272642, _0x370e4a(0x19b)); }), _0x4ab2a7[_0x5ba2ed(0x17e)]['on'](_0x5ba2ed(0x189), function () { var _0x39579e = _0x5ba2ed, _0x3c709b = _0x2c2888(); _0x3c709b == 'mobile' && _0x5a02fc(_0x4ab2a7, _0x272642, _0x39579e(0x16e)); }), _0x5a63cd(document)['keyup'](function (_0x3d7f07) { var _0x337990 = _0x5ba2ed; if (_0x3d7f07[_0x337990(0x16d)] == '37' && _0x3bddf5(_0x2eee83['get'](0x0))) _0x5a02fc(_0x4ab2a7, _0x272642, _0x337990(0x16e)); else _0x3d7f07['which'] == '39' && _0x3bddf5(_0x2eee83[_0x337990(0x17a)](0x0)) && _0x5a02fc(_0x4ab2a7, _0x272642, _0x337990(0x19b)); }); }); } function _0x5eb312(_0x1ab933, _0x56fdf4, _0x1821e3) { var _0x22d09b = _0x49d002, _0x2cce3c = _0x59da00(_0x1ab933[_0x22d09b(0x15b)]), _0x48c2c0 = Number(_0x1ab933['timelineWrapper'][_0x22d09b(0x15a)](_0x22d09b(0x18c))['replace']('px', '')); _0x1821e3 == _0x22d09b(0x19b) ? _0x4ad673(_0x1ab933, _0x2cce3c - _0x48c2c0 + _0x4ad0c6, _0x48c2c0 - _0x56fdf4) : _0x4ad673(_0x1ab933, _0x2cce3c + _0x48c2c0 - _0x4ad0c6); } function _0x5a02fc(_0x4c5e3e, _0x2f68e1, _0x377d09) { var _0x2675d1 = _0x49d002, _0x15f6cb = _0x4c5e3e[_0x2675d1(0x17e)]['find'](_0x2675d1(0x177)), _0xb5594f = _0x377d09 == 'next' ? _0x15f6cb[_0x2675d1(0x19b)]() : _0x15f6cb[_0x2675d1(0x16e)](); if (_0xb5594f[_0x2675d1(0x190)] > 0x0) { var _0x1fe270 = _0x4c5e3e[_0x2675d1(0x15b)][_0x2675d1(0x160)](_0x2675d1(0x177)), _0xe7b45c = _0x377d09 == _0x2675d1(0x19b) ? _0x1fe270[_0x2675d1(0x180)]('li')['next']('li')[_0x2675d1(0x179)]('a') : _0x1fe270[_0x2675d1(0x180)]('li')[_0x2675d1(0x16e)]('li')[_0x2675d1(0x179)]('a'); _0x18cbf3(_0xe7b45c, _0x4c5e3e[_0x2675d1(0x1a0)], _0x2f68e1), _0x4dc847(_0xe7b45c, _0x4c5e3e['eventsContent']), _0xe7b45c[_0x2675d1(0x187)]('selected'), _0x1fe270[_0x2675d1(0x155)](_0x2675d1(0x159)), _0x4b3450(_0xe7b45c), _0x3f68f7(_0x377d09, _0xe7b45c, _0x4c5e3e, _0x2f68e1); } } function _0x3f68f7(_0x5f3b1a, _0x1d7463, _0x57c494, _0x4282df) { var _0x32e5e9 = _0x49d002, _0x47fcec = window[_0x32e5e9(0x158)](_0x1d7463[_0x32e5e9(0x17a)](0x0), null), _0x1036d3 = Number(_0x47fcec[_0x32e5e9(0x173)](_0x32e5e9(0x181))[_0x32e5e9(0x182)]('px', '')), _0x1e03ad = Number(_0x57c494[_0x32e5e9(0x18b)][_0x32e5e9(0x15a)](_0x32e5e9(0x18c))[_0x32e5e9(0x182)]('px', '')), _0x4282df = Number(_0x57c494[_0x32e5e9(0x15b)][_0x32e5e9(0x15a)](_0x32e5e9(0x18c))[_0x32e5e9(0x182)]('px', '')), _0x2636b7 = _0x59da00(_0x57c494[_0x32e5e9(0x15b)]); (_0x5f3b1a == _0x32e5e9(0x19b) && _0x1036d3 > _0x1e03ad - _0x2636b7 || _0x5f3b1a == _0x32e5e9(0x16e) && _0x1036d3 < -_0x2636b7) && _0x4ad673(_0x57c494, -_0x1036d3 + _0x1e03ad / 0x2, _0x1e03ad - _0x4282df); } function _0x4ad673(_0x437c36, _0x189f9a, _0x32ad9f) { var _0x14fbe8 = _0x49d002, _0x484f96 = _0x437c36[_0x14fbe8(0x15b)]['get'](0x0); _0x189f9a = _0x189f9a > 0x0 ? 0x0 : _0x189f9a, _0x189f9a = !(typeof _0x32ad9f === 'undefined') && _0x189f9a < _0x32ad9f ? _0x32ad9f : _0x189f9a, _0x5374f5(_0x484f96, _0x14fbe8(0x18d), _0x189f9a + 'px'), _0x189f9a == 0x0 ? _0x437c36['timelineNavigation'][_0x14fbe8(0x160)](_0x14fbe8(0x196))['addClass'](_0x14fbe8(0x1a7)) : _0x437c36['timelineNavigation'][_0x14fbe8(0x160)](_0x14fbe8(0x196))[_0x14fbe8(0x155)](_0x14fbe8(0x1a7)), _0x189f9a == _0x32ad9f ? _0x437c36[_0x14fbe8(0x19a)][_0x14fbe8(0x160)](_0x14fbe8(0x175))['addClass'](_0x14fbe8(0x1a7)) : _0x437c36[_0x14fbe8(0x19a)][_0x14fbe8(0x160)](_0x14fbe8(0x175))[_0x14fbe8(0x155)]('inactive'); } function _0x18cbf3(_0x445d3a, _0x591346, _0x311cb3) { var _0x2d21ee = _0x49d002, _0x549d66 = window[_0x2d21ee(0x158)](_0x445d3a[_0x2d21ee(0x17a)](0x0), null), _0x4d935d = _0x549d66['getPropertyValue']('left'), _0x4145bc = _0x549d66['getPropertyValue']('width'); _0x4d935d = Number(_0x4d935d['replace']('px', '')) + Number(_0x4145bc['replace']('px', '')) / 0x2; var _0x65a0e4 = _0x4d935d / _0x311cb3; _0x5374f5(_0x591346['get'](0x0), _0x2d21ee(0x17f), _0x65a0e4); } function _0x372ed9(_0x3efa7f, _0x35a0ca) { var _0x4d60f6 = _0x49d002; for (i = 0x0; i < _0x3efa7f[_0x4d60f6(0x178)][_0x4d60f6(0x190)]; i++) { var _0x52c1ef = _0x587463(_0x3efa7f[_0x4d60f6(0x178)][0x0], _0x3efa7f[_0x4d60f6(0x178)][i]), _0x143de6 = Math[_0x4d60f6(0x18e)](_0x52c1ef / _0x3efa7f[_0x4d60f6(0x17d)]) + 0x2; _0x3efa7f[_0x4d60f6(0x162)]['eq'](i)[_0x4d60f6(0x15a)](_0x4d60f6(0x181), _0x143de6 * _0x35a0ca + 'px'); } } function _0x48a366(_0x39682c, _0x4382ff) { var _0x5504ec = _0x49d002, _0x2103d9 = _0x587463(_0x39682c['timelineDates'][0x0], _0x39682c['timelineDates'][_0x39682c[_0x5504ec(0x178)]['length'] - 0x1]), _0x272775 = _0x2103d9 / _0x39682c[_0x5504ec(0x17d)], _0x272775 = Math[_0x5504ec(0x18e)](_0x272775) + 0x4, _0x289d5a = _0x272775 * _0x4382ff; return _0x39682c[_0x5504ec(0x15b)]['css'](_0x5504ec(0x18c), _0x289d5a + 'px'), _0x18cbf3(_0x39682c[_0x5504ec(0x162)]['eq'](0x0), _0x39682c[_0x5504ec(0x1a0)], _0x289d5a), _0x289d5a; } function _0x4dc847(_0x41bb00, _0x31f8c1) { var _0x267ff6 = _0x49d002, _0x2399e8 = _0x41bb00[_0x267ff6(0x1a2)](_0x267ff6(0x19d)), _0x34367f = _0x31f8c1['find']('.selected'), _0x5508ba = _0x31f8c1[_0x267ff6(0x160)](_0x267ff6(0x1a4) + _0x2399e8 + '\x22]'), _0x5e67a6 = _0x5508ba[_0x267ff6(0x167)](); if (_0x5508ba[_0x267ff6(0x1a5)]() > _0x34367f[_0x267ff6(0x1a5)]()) var _0x280beb = _0x267ff6(0x157), _0x26e738 = _0x267ff6(0x188); else var _0x280beb = _0x267ff6(0x174), _0x26e738 = _0x267ff6(0x170); _0x5508ba[_0x267ff6(0x195)](_0x267ff6(0x19e), _0x280beb), _0x34367f[_0x267ff6(0x195)](_0x267ff6(0x19e), _0x26e738)['one'](_0x267ff6(0x1a6), function () { var _0x2cc9ee = _0x267ff6; _0x34367f[_0x2cc9ee(0x155)](_0x2cc9ee(0x16a)), _0x5508ba[_0x2cc9ee(0x155)](_0x2cc9ee(0x16f)); }), _0x31f8c1[_0x267ff6(0x15a)](_0x267ff6(0x167), _0x5e67a6 + 'px'); } function _0x4b3450(_0x1a760a) { var _0xddb51a = _0x49d002; _0x1a760a[_0xddb51a(0x180)]('li')['prevAll']('li')['children']('a')['addClass'](_0xddb51a(0x184))[_0xddb51a(0x1a3)]()[_0xddb51a(0x1a3)]()[_0xddb51a(0x194)]('li')[_0xddb51a(0x179)]('a')[_0xddb51a(0x155)](_0xddb51a(0x184)); } function _0x59da00(_0x33b9e5) { var _0x397104 = _0x49d002, _0x466379 = window[_0x397104(0x158)](_0x33b9e5[_0x397104(0x17a)](0x0), null), _0x5e33f7 = _0x466379[_0x397104(0x173)](_0x397104(0x18f)) || _0x466379['getPropertyValue'](_0x397104(0x16b)) || _0x466379[_0x397104(0x173)](_0x397104(0x171)) || _0x466379[_0x397104(0x173)](_0x397104(0x1a1)) || _0x466379['getPropertyValue'](_0x397104(0x15f)); if (_0x5e33f7[_0x397104(0x176)]('(') >= 0x0) { var _0x5e33f7 = _0x5e33f7[_0x397104(0x186)]('(')[0x1]; _0x5e33f7 = _0x5e33f7[_0x397104(0x186)](')')[0x0], _0x5e33f7 = _0x5e33f7[_0x397104(0x186)](','); var _0x4dd51b = _0x5e33f7[0x4]; } else var _0x4dd51b = 0x0; return Number(_0x4dd51b); } function _0x5374f5(_0x5af8a1, _0x1b5368, _0x41ee31) { var _0x4292ff = _0x49d002; _0x5af8a1[_0x4292ff(0x17c)][_0x4292ff(0x18f)] = _0x1b5368 + '(' + _0x41ee31 + ')', _0x5af8a1[_0x4292ff(0x17c)]['-moz-transform'] = _0x1b5368 + '(' + _0x41ee31 + ')', _0x5af8a1['style'][_0x4292ff(0x171)] = _0x1b5368 + '(' + _0x41ee31 + ')', _0x5af8a1['style'][_0x4292ff(0x1a1)] = _0x1b5368 + '(' + _0x41ee31 + ')', _0x5af8a1[_0x4292ff(0x17c)]['transform'] = _0x1b5368 + '(' + _0x41ee31 + ')'; } function _0x489955(_0x144071) { var _0x235da1 = _0x49d002, _0x348938 = []; return _0x144071[_0x235da1(0x197)](function () { var _0x568729 = _0x235da1, _0x1b7358 = _0x5a63cd(this)[_0x568729(0x1a2)](_0x568729(0x19d))['split']('/'), _0x2d325a = new Date(_0x1b7358[0x2], _0x1b7358[0x1] - 0x1, _0x1b7358[0x0]); _0x348938['push'](_0x2d325a); }), _0x348938; } function _0x587463(_0x20d6c6, _0x53d91d) { var _0x211341 = _0x49d002; return Math[_0x211341(0x18e)](_0x53d91d - _0x20d6c6); } function _0x33a503(_0x2d5062) { var _0x37e6de = _0x49d002, _0x351784 = []; for (i = 0x1; i < _0x2d5062[_0x37e6de(0x190)]; i++) { var _0x47eb22 = _0x587463(_0x2d5062[i - 0x1], _0x2d5062[i]); _0x351784[_0x37e6de(0x165)](_0x47eb22); } return Math['min'][_0x37e6de(0x169)](null, _0x351784); } function _0x3bddf5(_0x353dc3) { var _0x39b6f7 = _0x49d002, _0x21d8b4 = _0x353dc3[_0x39b6f7(0x164)], _0x2d4923 = _0x353dc3[_0x39b6f7(0x193)], _0x35ce47 = _0x353dc3[_0x39b6f7(0x192)], _0x4b650f = _0x353dc3[_0x39b6f7(0x199)]; while (_0x353dc3[_0x39b6f7(0x17b)]) { _0x353dc3 = _0x353dc3[_0x39b6f7(0x17b)], _0x21d8b4 += _0x353dc3[_0x39b6f7(0x164)], _0x2d4923 += _0x353dc3['offsetLeft']; } return _0x21d8b4 < window['pageYOffset'] + window[_0x39b6f7(0x15d)] && _0x2d4923 < window[_0x39b6f7(0x156)] + window[_0x39b6f7(0x183)] && _0x21d8b4 + _0x4b650f > window[_0x39b6f7(0x163)] && _0x2d4923 + _0x35ce47 > window['pageXOffset']; } function _0x2c2888() { var _0x317ed4 = _0x49d002; return window['getComputedStyle'](document[_0x317ed4(0x19f)](_0x317ed4(0x18a)), _0x317ed4(0x168))[_0x317ed4(0x173)](_0x317ed4(0x198))['replace'](/'/g, '')[_0x317ed4(0x182)](/"/g, ''); } });
+jQuery(document).ready(function ($) {
+  var timelines = $('.cd-horizontal-timeline'),
+    eventsMinDistance = 70;
+
+  (timelines.length > 0) && initTimeline(timelines);
+
+  function initTimeline(timelines) {
+    timelines.each(function () {
+      var timeline = $(this),
+        timelineComponents = {};
+      //cache timeline components 
+      timelineComponents['timelineWrapper'] = timeline.find('.events-wrapper');
+      timelineComponents['eventsWrapper'] = timelineComponents['timelineWrapper'].children('.events');
+      timelineComponents['fillingLine'] = timelineComponents['eventsWrapper'].children('.filling-line');
+      timelineComponents['timelineEvents'] = timelineComponents['eventsWrapper'].find('a');
+      timelineComponents['timelineDates'] = parseDate(timelineComponents['timelineEvents']);
+      timelineComponents['eventsMinLapse'] = minLapse(timelineComponents['timelineDates']);
+      timelineComponents['timelineNavigation'] = timeline.find('.cd-timeline-navigation');
+      timelineComponents['eventsContent'] = timeline.children('.events-content');
+
+      //assign a left postion to the single events along the timeline
+      setDatePosition(timelineComponents, eventsMinDistance);
+      //assign a width to the timeline
+      var timelineTotWidth = setTimelineWidth(timelineComponents, eventsMinDistance);
+      //the timeline has been initialize - show it
+      timeline.addClass('loaded');
+
+      //detect click on the next arrow
+      timelineComponents['timelineNavigation'].on('click', '.next', function (event) {
+        event.preventDefault();
+        updateSlide(timelineComponents, timelineTotWidth, 'next');
+      });
+      //detect click on the prev arrow
+      timelineComponents['timelineNavigation'].on('click', '.prev', function (event) {
+        event.preventDefault();
+        updateSlide(timelineComponents, timelineTotWidth, 'prev');
+      });
+      //detect click on the a single event - show new event content
+      timelineComponents['eventsWrapper'].on('click', 'a', function (event) {
+        event.preventDefault();
+        timelineComponents['timelineEvents'].removeClass('selected');
+        $(this).addClass('selected');
+        updateOlderEvents($(this));
+        updateFilling($(this), timelineComponents['fillingLine'], timelineTotWidth);
+        updateVisibleContent($(this), timelineComponents['eventsContent']);
+      });
+
+      //on swipe, show next/prev event content
+      timelineComponents['eventsContent'].on('swipeleft', function () {
+        var mq = checkMQ();
+        (mq == 'mobile') && showNewContent(timelineComponents, timelineTotWidth, 'next');
+      });
+      timelineComponents['eventsContent'].on('swiperight', function () {
+        var mq = checkMQ();
+        (mq == 'mobile') && showNewContent(timelineComponents, timelineTotWidth, 'prev');
+      });
+
+      //keyboard navigation
+      $(document).keyup(function (event) {
+        if (event.which == '37' && elementInViewport(timeline.get(0))) {
+          showNewContent(timelineComponents, timelineTotWidth, 'prev');
+        } else if (event.which == '39' && elementInViewport(timeline.get(0))) {
+          showNewContent(timelineComponents, timelineTotWidth, 'next');
+        }
+      });
+    });
+  }
+
+  function updateSlide(timelineComponents, timelineTotWidth, string) {
+    //retrieve translateX value of timelineComponents['eventsWrapper']
+    var translateValue = getTranslateValue(timelineComponents['eventsWrapper']),
+      wrapperWidth = Number(timelineComponents['timelineWrapper'].css('width').replace('px', ''));
+    //translate the timeline to the left('next')/right('prev') 
+    (string == 'next') ?
+      translateTimeline(timelineComponents, translateValue - wrapperWidth + eventsMinDistance, wrapperWidth - timelineTotWidth) : translateTimeline(timelineComponents, translateValue + wrapperWidth - eventsMinDistance);
+  }
+
+  function showNewContent(timelineComponents, timelineTotWidth, string) {
+    //go from one event to the next/previous one
+    var visibleContent = timelineComponents['eventsContent'].find('.selected'),
+      newContent = (string == 'next') ? visibleContent.next() : visibleContent.prev();
+
+    if (newContent.length > 0) { //if there's a next/prev event - show it
+      var selectedDate = timelineComponents['eventsWrapper'].find('.selected'),
+        newEvent = (string == 'next') ? selectedDate.parent('li').next('li').children('a') : selectedDate.parent('li').prev('li').children('a');
+
+      updateFilling(newEvent, timelineComponents['fillingLine'], timelineTotWidth);
+      updateVisibleContent(newEvent, timelineComponents['eventsContent']);
+      newEvent.addClass('selected');
+      selectedDate.removeClass('selected');
+      updateOlderEvents(newEvent);
+      updateTimelinePosition(string, newEvent, timelineComponents, timelineTotWidth);
+    }
+  }
+
+  function updateTimelinePosition(string, event, timelineComponents, timelineTotWidth) {
+    //translate timeline to the left/right according to the position of the selected event
+    var eventStyle = window.getComputedStyle(event.get(0), null),
+      eventLeft = Number(eventStyle.getPropertyValue("left").replace('px', '')),
+      timelineWidth = Number(timelineComponents['timelineWrapper'].css('width').replace('px', '')),
+      timelineTotWidth = Number(timelineComponents['eventsWrapper'].css('width').replace('px', ''));
+    var timelineTranslate = getTranslateValue(timelineComponents['eventsWrapper']);
+
+    if ((string == 'next' && eventLeft > timelineWidth - timelineTranslate) || (string == 'prev' && eventLeft < -timelineTranslate)) {
+      translateTimeline(timelineComponents, -eventLeft + timelineWidth / 2, timelineWidth - timelineTotWidth);
+    }
+  }
+
+  function translateTimeline(timelineComponents, value, totWidth) {
+    var eventsWrapper = timelineComponents['eventsWrapper'].get(0);
+    value = (value > 0) ? 0 : value; //only negative translate value
+    value = (!(typeof totWidth === 'undefined') && value < totWidth) ? totWidth : value; //do not translate more than timeline width
+    setTransformValue(eventsWrapper, 'translateX', value + 'px');
+    //update navigation arrows visibility
+    (value == 0) ? timelineComponents['timelineNavigation'].find('.prev').addClass('inactive') : timelineComponents['timelineNavigation'].find('.prev').removeClass('inactive');
+    (value == totWidth) ? timelineComponents['timelineNavigation'].find('.next').addClass('inactive') : timelineComponents['timelineNavigation'].find('.next').removeClass('inactive');
+  }
+
+  function updateFilling(selectedEvent, filling, totWidth) {
+    //change .filling-line length according to the selected event
+    var eventStyle = window.getComputedStyle(selectedEvent.get(0), null),
+      eventLeft = eventStyle.getPropertyValue("left"),
+      eventWidth = eventStyle.getPropertyValue("width");
+    eventLeft = Number(eventLeft.replace('px', '')) + Number(eventWidth.replace('px', '')) / 2;
+    var scaleValue = eventLeft / totWidth;
+    setTransformValue(filling.get(0), 'scaleX', scaleValue);
+  }
+
+  function setDatePosition(timelineComponents, min) {
+    for (i = 0; i < timelineComponents['timelineDates'].length; i++) {
+      var distance = daydiff(timelineComponents['timelineDates'][0], timelineComponents['timelineDates'][i]),
+        distanceNorm = Math.round(distance / timelineComponents['eventsMinLapse']) + 2;
+      timelineComponents['timelineEvents'].eq(i).css('left', distanceNorm * min + 'px');
+    }
+  }
+
+  function setTimelineWidth(timelineComponents, width) {
+    var timeSpan = daydiff(timelineComponents['timelineDates'][0], timelineComponents['timelineDates'][timelineComponents['timelineDates'].length - 1]),
+      timeSpanNorm = timeSpan / timelineComponents['eventsMinLapse'],
+      timeSpanNorm = Math.round(timeSpanNorm) + 4,
+      totalWidth = timeSpanNorm * width;
+    timelineComponents['eventsWrapper'].css('width', totalWidth + 'px');
+    updateFilling(timelineComponents['timelineEvents'].eq(0), timelineComponents['fillingLine'], totalWidth);
+
+    return totalWidth;
+  }
+
+  function updateVisibleContent(event, eventsContent) {
+    var eventDate = event.data('date'),
+      visibleContent = eventsContent.find('.selected'),
+      selectedContent = eventsContent.find('[data-date="' + eventDate + '"]'),
+      selectedContentHeight = selectedContent.height();
+
+    if (selectedContent.index() > visibleContent.index()) {
+      var classEnetering = 'selected enter-right',
+        classLeaving = 'leave-left';
+    } else {
+      var classEnetering = 'selected enter-left',
+        classLeaving = 'leave-right';
+    }
+
+    selectedContent.attr('class', classEnetering);
+    visibleContent.attr('class', classLeaving).one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function () {
+      visibleContent.removeClass('leave-right leave-left');
+      selectedContent.removeClass('enter-left enter-right');
+    });
+    eventsContent.css('height', selectedContentHeight + 'px');
+  }
+
+  function updateOlderEvents(event) {
+    event.parent('li').prevAll('li').children('a').addClass('older-event').end().end().nextAll('li').children('a').removeClass('older-event');
+  }
+
+  function getTranslateValue(timeline) {
+    var timelineStyle = window.getComputedStyle(timeline.get(0), null),
+      timelineTranslate = timelineStyle.getPropertyValue("-webkit-transform") ||
+        timelineStyle.getPropertyValue("-moz-transform") ||
+        timelineStyle.getPropertyValue("-ms-transform") ||
+        timelineStyle.getPropertyValue("-o-transform") ||
+        timelineStyle.getPropertyValue("transform");
+
+    if (timelineTranslate.indexOf('(') >= 0) {
+      var timelineTranslate = timelineTranslate.split('(')[1];
+      timelineTranslate = timelineTranslate.split(')')[0];
+      timelineTranslate = timelineTranslate.split(',');
+      var translateValue = timelineTranslate[4];
+    } else {
+      var translateValue = 0;
+    }
+
+    return Number(translateValue);
+  }
+
+  function setTransformValue(element, property, value) {
+    element.style["-webkit-transform"] = property + "(" + value + ")";
+    element.style["-moz-transform"] = property + "(" + value + ")";
+    element.style["-ms-transform"] = property + "(" + value + ")";
+    element.style["-o-transform"] = property + "(" + value + ")";
+    element.style["transform"] = property + "(" + value + ")";
+  }
+
+  //based on http://stackoverflow.com/questions/542938/how-do-i-get-the-number-of-days-between-two-dates-in-javascript
+  function parseDate(events) {
+    var dateArrays = [];
+    events.each(function () {
+      var dateComp = $(this).data('date').split('/'),
+        newDate = new Date(dateComp[2], dateComp[1] - 1, dateComp[0]);
+      dateArrays.push(newDate);
+    });
+    return dateArrays;
+  }
+
+  function daydiff(first, second) {
+    return Math.round((second - first));
+  }
+
+  function minLapse(dates) {
+    //determine the minimum distance among events
+    var dateDistances = [];
+    for (i = 1; i < dates.length; i++) {
+      var distance = daydiff(dates[i - 1], dates[i]);
+      dateDistances.push(distance);
+    }
+    return Math.min.apply(null, dateDistances);
+  }
+
+  /*
+    How to tell if a DOM element is visible in the current viewport?
+    http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+  */
+  function elementInViewport(el) {
+    var top = el.offsetTop;
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+
+    while (el.offsetParent) {
+      el = el.offsetParent;
+      top += el.offsetTop;
+      left += el.offsetLeft;
+    }
+
+    return (
+      top < (window.pageYOffset + window.innerHeight) &&
+      left < (window.pageXOffset + window.innerWidth) &&
+      (top + height) > window.pageYOffset &&
+      (left + width) > window.pageXOffset
+    );
+  }
+
+  function checkMQ() {
+    //check if mobile or desktop device
+    return window.getComputedStyle(document.querySelector('.cd-horizontal-timeline'), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
+  }
+});
+
+
