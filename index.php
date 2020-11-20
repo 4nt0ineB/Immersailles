@@ -122,9 +122,6 @@
             width: 13px;
         }
 
-
-
-
         .box_timeline {
             position: relative;
             z-index: 888;
@@ -201,22 +198,22 @@
                     <div class="float-left box_timeline timelineleft">
                         <div class="entry">
                             <div class="core">
-                                <span>Information 3</span>
+                                <span>Étage 2</span>
                             </div>
-                        </div>
-                        <br /><br />
-                        <div class="entry">
-                            <a href="#" id="rdc" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
-                                <div id="core_rdc" class="core">
-                                    <span>RDC</span>
-                                </div>
-                            </a>
                         </div>
                         <br /><br />
                         <div class="entry">
                             <a href="#" id="etage1" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
                                 <div id="core_etage1" class="core">
                                     <span>Étage 1</span>
+                                </div>
+                            </a>
+                        </div>
+                        <br /><br />
+                        <div class="entry">
+                            <a href="#" id="rdc" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
+                                <div id="core_rdc" class="core">
+                                    <span>RDC</span>
                                 </div>
                             </a>
                         </div>

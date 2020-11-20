@@ -56,11 +56,22 @@
                     <?php
 
                     if (isset($_POST["subdelete"])) {
+
+                        if (MAP::deleteMap($_POST['id_map'])) {
                     ?>
-                        <div class="alert alert-warning" role="alert">
-                            Fonctionnalité non implémentée. Créer un classe Map et ses fonctions d'abord.
-                        </div>
+                            <div class="alert alert-success" role="alert">
+                                Le plan ainsi que ses marqueurs on été supprimés.
+                            </div>
+                        <?php
+                            header("refresh:1, manage_maps.php");
+                        } else {
+                        ?>
+                            <div class="alert alert-warning" role="alert">
+                                Une erreur est survenue, le plan n'a pas pu être supprimé.
+                            </div>
                     <?php
+                            header("refresh:1, manage_maps.php");
+                        }
                     }
                     ?>
 
@@ -130,7 +141,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                     <form method="post" action="">
-                        <input type="hidden" name="user_id" id="user_id" value="">
+                        <input type="hidden" name="id_map" id="id_p" value="">
                         <button type="submit" name="subdelete" class="btn btn-primary">Supprimer</button>
                     </form>
                 </div>
@@ -140,11 +151,9 @@
     <script>
         $(document).on("click", ".open-AddBookDialog", function() {
             var myBookId = $(this).data('id');
-            $(".modal-footer #user_id").val(myBookId);
+            $(".modal-footer #id_p").val(myBookId);
         });
     </script>
-
-
 
 
     <!-- Footer -->

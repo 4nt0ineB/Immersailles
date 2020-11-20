@@ -64,11 +64,11 @@
                         $success = 0;
 
                         if (isset($_POST["createMap"]) && !$modifyMap) {
-                            if (MAP::createMap($_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1)) {
+                            if (MAP::createMap($_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1, $_POST['etage'], $_POST['annee'])) {
                                 $success = 1;
                             }
                         } else if ($modifyMap) {
-                            if (MAP::modifyMap($_POST['idMap'], $_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1)) {
+                            if (MAP::modifyMap($_POST['idMap'], $_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1,  $_POST['etage'], $_POST['annee'])) {
                                 $success = 1;
                             }
                         }
@@ -83,8 +83,8 @@
                             header("refresh:2, manage_maps.php"); // redirection
                         } else {
                         ?>
-                            <div class="alert alert-success" role="alert">
-                                <?php echo 'Le plan n\'a pas été' . (($modifyMap) ? ' modifié' : ' créé');
+                            <div class="alert alert-warning" role="alert">
+                                <?php echo 'Le plan n\'a pas été' . (($modifyMap) ? ' modifié' : ' créé <br> - <br>- Plusieurs mêmes étages pour la même année interdit <br> - Deux plans avec des libellés identiques interdit');
                                 ?>
                             </div>
                     <?php
@@ -119,11 +119,16 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="etage">Étage du château <b style="color:red;">*</b></label>
-                                <select class="form-control select2" name="etage" id="etage">
+                                <select class="form-control select2" name="etage" id="etage" required>
                                     <?php
                                     $floors = $db->query("SELECT * FROM FLOORS");
                                     while ($floor_item = $floors->fetch()) :  ?>
-                                        <option value="<?php echo $floor_item["id_floor"]; ?>"><?php echo htmlspecialchars($floor_item["label"]); ?></option>
+                                        <option <?php if ($modifyMap) {
+                                                    if ($mapData['id_floor'] == $floor_item["id_floor"]) {
+                                                        echo " selected ";
+                                                    }
+                                                }
+                                                ?> value="<?php echo $floor_item["id_floor"]; ?>"><?php echo htmlspecialchars($floor_item["label"]); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
@@ -131,11 +136,16 @@
 
                             <div class="form-group col-md-6">
                                 <label for="annee">Année du plan <b style="color:red;">*</b></label>
-                                <select class="form-control select2" name="annee" id="annee">
+                                <select class="form-control select2" name="annee" id="annee" required>
                                     <?php
                                     $years = $db->query("SELECT * FROM YEARS");
                                     while ($year_item = $years->fetch()) :  ?>
-                                        <option value="<?php echo $year_item["id_year"]; ?>"><?php echo htmlspecialchars($year_item["year"]); ?></option>
+                                        <option <?php if ($modifyMap) {
+                                                    if ($mapData['id_year'] == $year_item["id_year"]) {
+                                                        echo " selected ";
+                                                    }
+                                                }
+                                                ?> value="<?php echo $year_item["id_year"]; ?>"><?php echo htmlspecialchars($year_item["year"]); ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>
@@ -191,7 +201,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" name="createMap" class="btn btn-dark">Créer le plan</button>
+                        <button type="submit" name="createMap" class="btn btn-dark"><?php echo ($modifyMap) ? "Modifier le plan" : "Créer le plan"; ?> </button>
                     </form>
                     <br>
                     <hr><br>
