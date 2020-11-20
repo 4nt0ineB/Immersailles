@@ -49,55 +49,33 @@ function createMarkers(map_id){
 	}
 }
 
-function changeMapLayer(value){
-	for(let i = 0; i < jsonMaps.length; i++) {
-		var layer = jsonMaps[i];
-		if (layer.id == value){
-			map.removeLayer(currentMapLayer);
-			if (document.getElementById('plan') !== null){ // Si il y a un input plan, on met le nom du plan séléctionné à l'intérieur
-				document.getElementById("plan").value = layer.libelle;
-			}
-			var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
-			var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
-			map.fitBounds(newBounds);
-			map.setMaxBounds(new L.LatLngBounds([layer.hauteur+250,0], [0,layer.largeur])); // +250 au cas ou un marqueur est super en haut, pour pouvoir cliquer sur modif
-			currentMapLayer = newMap;
-			for (var j = 0; j < markersDisplayed.length; j++) {
-				map.removeLayer(markersDisplayed[j]);
-			}
-			markersDisplayed = [];
-			createMarkers(layer.id);
-		}
-	}
-  }
-
-
-
-  function changeMapLayer2(etage, annee){
-	  console.log(etage);
-	  console.log(annee);
+function changeMapLayer(etage, annee){
 	for(let i = 0; i < jsonMaps.length; i++) {
 		var layer = jsonMaps[i];
 		if (layer.etage == etage && layer.annee == annee){
-			console.log("oui");
-			console.log(layer.libelle);
 			if (map.hasLayer(currentMapLayer)){
 				map.removeLayer(currentMapLayer);
 			}
+
 			if (document.getElementById('plan') !== null){ // Si il y a un input plan, on met le nom du plan séléctionné à l'intérieur
 				document.getElementById("plan").value = layer.libelle;
 			}
+
 			var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
-			console.log(layer.lien);
 			var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
+
 			map.fitBounds(newBounds);
 			map.setMaxBounds(new L.LatLngBounds([layer.hauteur+250,0], [0,layer.largeur])); // +250 au cas ou un marqueur est super en haut, pour pouvoir cliquer sur modif
+
 			currentMapLayer = newMap;
+
 			for (var j = 0; j < markersDisplayed.length; j++) {
+				console.log(markersDisplayed);
 				map.removeLayer(markersDisplayed[j]);
 			}
 			markersDisplayed = [];
 			createMarkers(layer.id);
+			break;
 		} else {
 			map.removeLayer(currentMapLayer);
 			for (var j = 0; j < markersDisplayed.length; j++) {

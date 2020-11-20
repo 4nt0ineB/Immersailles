@@ -121,10 +121,6 @@
                                     <input type="text" class="form-control" name="plan" id="plan" placeholder="Plan choisi" readonly required>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="niveau">Niveau</label>
-                                    <input type="text" class="form-control" name="niveau" id="niveau" placeholder="Niveau du plan" readonly required>
-                                </div>
-                                <div class="form-group col-md-12">
                                     <label for="objet">Objet</label>
                                     <select class="form-control select2" name="objet" id="objet">
                                         <?php
@@ -179,7 +175,7 @@
             var annee = document.getElementById("date");
             var anneeSelected = annee.options[annee.selectedIndex].value;
 
-            changeMapLayer2(etageSelected, anneeSelected);
+            changeMapLayer(etageSelected, anneeSelected);
         }
 
         var LastMarkerPut = null;
