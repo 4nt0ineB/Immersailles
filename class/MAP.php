@@ -33,9 +33,9 @@ class MAP
         $lien = MAP::$pathToMapImg . $nomImage;
         try {
             echo "INSERT INTO MAPS VALUES(NULL, $status, $hauteur, $largeur, $lien, $libelle, $zoom";
-            $r = DB::$db->query("INSERT INTO MAPS VALUES(NULL, $status, $hauteur, $largeur, $lien, $libelle, $zoom)");
+            $r = DB::$db->query("INSERT INTO MAPS VALUES(DEFAULT, $status, $hauteur, $largeur, '$lien', '$libelle', $zoom)");
         } catch (Exception $e) {
-            //echo $e;
+            echo $e;
         }
         return false;
     }
