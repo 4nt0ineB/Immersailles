@@ -26,11 +26,18 @@ class MAP
      */
     public static function createMap($status, $nomImage, $libelle, $zoom)
     {
-        $infos_image = @getImageSize('../admin/upload' . $nomImage);
+        $infos_image = @getImageSize('../admin/upload/' . $nomImage);
+        var_dump($infos_image);
         $largeur = $infos_image[0]; // largeur de l'image
         $hauteur = $infos_image[1]; // hauteur de l'image
         $lien = MAP::$pathToMapImg . $nomImage;
-        return DB::$db->query("INSERT INTO MAPS VALUES(NULL, $status, $hauteur, $largeur, $lien, $libelle, $zoom)");
+        try {
+            echo "INSERT INTO MAPS VALUES(NULL, $status, $hauteur, $largeur, $lien, $libelle, $zoom";
+            $r = DB::$db->query("INSERT INTO MAPS VALUES(NULL, $status, $hauteur, $largeur, $lien, $libelle, $zoom)");
+        } catch (Exception $e) {
+            //echo $e;
+        }
+        return false;
     }
 
     /** 

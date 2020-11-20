@@ -60,6 +60,7 @@
 
                     if (isset($_POST["createMap"])) {
                         $success = 0;
+
                         if (isset($_POST["createMap"]) && !$modifyMap) {
                             if (MAP::createMap($_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1)) {
                                 $success = 1;
@@ -81,11 +82,11 @@
                         } else {
                         ?>
                             <div class="alert alert-success" role="alert">
-                                <?php echo 'Le plan a été' . (($modifyMap) ? 'modifié' : 'créé');
+                                <?php echo 'Le plan n\'a pas été' . (($modifyMap) ? 'modifié' : 'créé');
                                 ?>
                             </div>
                     <?php
-                            header("refresh:2, login.php"); // refresh
+                            //header("refresh:5, login.php"); // refresh
                         }
                     }
 
@@ -145,7 +146,7 @@
                                                                                     echo 'checked';
                                                                                 }
                                                                             }
-                                                                            ?> id="statut" value="true">
+                                                                            ?> id="statut" value="1">
                                     </div>
                                     <div class="col-md-6">
                                         Inactif<br>
@@ -155,7 +156,7 @@
                                                                                     echo 'checked';
                                                                                 }
                                                                             }
-                                                                            ?> id="statut" value="false">
+                                                                            ?> id="statut" value="0">
                                     </div>
                                 </div>
                             </div>
