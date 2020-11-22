@@ -87,6 +87,8 @@
             text-shadow: 0px 1px 2px #ababab;
             padding-top: 5px;
             font-size: 13px;
+            left: -15px;
+            position:relative;
         }
 
         .core {
@@ -105,7 +107,7 @@
             border-radius: 0px;
             border: 0.2px solid #dddcdc;
             background: #dddcdc;
-            left: -25.7%;
+            left: -60.7%;
         }
 
         .core:before {
@@ -115,7 +117,7 @@
             border: 2px solid #C8AD7F;
             background-color: #ffffff;
             top: 45%;
-            left: -31.9%;
+            left: -71.9%;
             border-radius: 13px;
             box-shadow: 0 0 2px #888;
             height: 13px;
