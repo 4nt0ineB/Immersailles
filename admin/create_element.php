@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../scripts/js/inactivity.js"></script>
     <script src="../scripts/js/md5.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" /> 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -91,23 +92,61 @@
                     <form method="POST" action="<?php if ($isModify) echo '"create_object.php?=' . $infos["id_object"]; ?>" style=" text-align: left;">
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <label for="urlwikidata">URL Wikidata <b style="color:red;">*</b></label>
+                                <label for="urlwikidata">Importer les informations (URL Wikidata)</label>
                                 <input type="url" pattern="https://www.wikidata.org/wiki/*" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo $infos["name"] ?>">
                                 <center>
-                                    <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><?php if ($isModify) echo "Modifier ";
+                                    <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><i class="fas fa-file-download"></i>&nbsp;<?php if ($isModify) echo "Modifier ";
                                                                                                                                                                         else echo "Charger " ?>l'URL WikiDATA</button>
                                 </center>
 
-                                <br>
+                                <hr>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="verticalAlign">Alignement vertical de la photo <b style="color:red;">*</b></label>
-                                        <input id="verticalAlign" class="form-control w-100" name="verticalAlign" type="range" min="-150" max="150" value="0" class="slider" id="myRange" oninput="updateSlider(this.value)">
+                                        <input id="verticalAlign" class="form-control w-100" name="verticalAlign" type="range" min="-150" max="150" value="0" class="slider" oninput="updateSliderAlign(this.value)">
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        cc
+                                        <label for="backgroundZoom">Zoom sur la photo <b style="color:red;">*</b></label>
+                                        <input id="backgroundZoom" class="form-control w-100" name="backgroundZoom" type="range" min="0" max="200" value="0" class="slider" oninput="updateSliderZoom(this.value)">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="libelle">Libellé <b style="color:red;">*</b></label>
+                                        <input type="text" class="form-control" name="libelle" id="libelle" placeholder="Libellé de l'objet/de la personne" required value="<?php if ($isModify) echo $infos["name"] ?>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="datenaissance">Année d'arrivée / Année de naissance <b style="color:red;">*</b></label>
+                                        <input type="number" class="form-control" name="datenaissance" id="datenaissance" placeholder="XXXX" required value="<?php if ($isModify) echo $infos["start_date"] ?>">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="datedeces">Année de départ / Année de décès <b style="color:red;">*</b></label>
+                                        <input type="number" class="form-control" name="datedeces" id="datedeces" placeholder="XXXX" required value="<?php if ($isModify) echo $infos["end_date"] ?>">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="description">Description <b style="color:red;">*</b></label>
+                                        <textarea class="form-control" id="description" name="description" placeholder="Description de l'objet/de la personne"><?php if ($isModify) echo $infos["description"] ?></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="description">Image (si celle de Wikidata ne vous convient pas) <b style="color:red;">*</b></label><br>
+                                        <input type="file" id="image" name="image" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <p><small style="color:grey;"><i>Les liens utiles sont générés automatiquements à partir de l'URL saisie, si elle est vide, il n'y en aura pas.</i></small></p>
                                     </div>
                                 </div>
 
@@ -157,9 +196,25 @@
     <!-- Footer -->
 
     <script>
-        function updateSlider(value) {
+        function updateSliderAlign(value) {
             document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + " + value + "px)";
         }
+
+        function updateSliderZoom(value) {
+            document.getElementById("imagePreview").style.backgroundSize = "calc(100% + " + value + "px)";
+        }
+
+        window.addEventListener('load', function() { // Afficher l'image uploadée direct
+            document.querySelector('input[type="file"]').addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                   // document.getElementById("imagePreview").style.background = URL.createObjectURL(this.files[0]); // set src to blob url
+                    document.getElementById("imagePreview").style.background = "url("+URL.createObjectURL(this.files[0])+")";
+                    document.getElementById("imagePreview").style.backgroundSize = "cover";
+                    document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + 50px)";
+                    document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+                }
+            });
+        });
 
         function loadPreview(urlWikidata) {
 
@@ -198,11 +253,12 @@
 
                         var infos = json1.entities[identifier];
                         $("#nom_objet").html(infos.labels.fr.value);
+                        $("#libelle").val(infos.labels.fr.value);
 
 
                         /* REMISE A ZERO DE TOUS LES CHAMPS SI JAMAIS ON CHANGE DE LIEN */
                         $("#date_a_objet").html("");
-                        $("#date_d_objet").html(""); // remise à zéro si il y avait une personne décédée avant
+                        $("#date_d_objet").html(""); 
                         $("#type_objet").html("");
                         $("#desc_objet").html("");
                         $("#liens_objet").html("");
@@ -241,6 +297,7 @@
                             date_naissance = date_naissance.split("-");
                             date_naissance = String(date_naissance).substring(1, 5);
                             $("#date_a_objet").html(date_naissance);
+                            $("#datenaissance").val(date_naissance);
 
                             if (typeof infos.claims.P570 !== 'undefined') {
                                 $("#label_dates").html("Année de naissance et de mort :");
@@ -248,6 +305,7 @@
                                 date_deces = date_deces.split("-");
                                 date_deces = String(date_deces).substring(1, 5);
                                 $("#date_d_objet").html(" - "+date_deces);
+                                $("#datedeces").val(date_deces);
                             }
                         } else {
                             $("#label_dates").html("Date d'arrivée et de départ :");
@@ -257,6 +315,7 @@
                         // Partie description 
                         if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5){ // s'il s'agit d'un humain
                             $("#desc_objet").html(infos.descriptions.fr.value.charAt(0).toUpperCase() + infos.descriptions.fr.value.slice(1)); // On met avec une majuscule la String retournée
+                            $("#description").val(infos.descriptions.fr.value.charAt(0).toUpperCase() + infos.descriptions.fr.value.slice(1));
                         }
 
                         // Partie liens utiles
@@ -284,9 +343,26 @@
                 document.getElementById("urlError").style.display = "block";
             }
 
-
-
         }
+
+
+        /* PARTIE MODIFICATION MANUELLE PAR UTILISATEUR EN DIRECT */
+
+        $('#libelle').on('input',function(e){
+            $("#nom_objet").html($(this).val());
+        });
+
+        $('#datenaissance').on('input',function(e){
+            $("#date_a_objet").html($(this).val());
+        });
+
+        $('#datedeces').on('input',function(e){
+            $("#date_d_objet").html(' - '+$(this).val());
+        });
+
+        $('#description').on('input',function(e){
+            $("#desc_objet").html($(this).val());
+        });
     </script>
 </body>
 
