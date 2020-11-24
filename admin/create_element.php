@@ -103,7 +103,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="verticalAlign">Alignement vertical de la photo <b style="color:red;">*</b></label>
-                                        <input id="verticalAlign" class="form-control w-100" name="verticalAlign" type="range" min="-100" max="100" value="0" class="slider" id="myRange" oninput="updateSlider(this.value)">
+                                        <input id="verticalAlign" class="form-control w-100" name="verticalAlign" type="range" min="-150" max="150" value="0" class="slider" id="myRange" oninput="updateSlider(this.value)">
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -128,12 +128,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="container">
-                                                <p><span class="label-info">Type d'objet :</span> </p>
-                                                <p> <span class="label-info">Date d'arrivée et de départ :</span> <span id="date_a_objet"></span><span id="date_d_objet"></span></p>
+                                                <p><span class="label-info">Type :</span> <span id="type_objet"></span></p>
+                                                <p> <span class="label-info" id="label_dates">Date d'arrivée et de départ :</span> <span id="date_a_objet"></span><span id="date_d_objet"></span></p>
                                                 <p> <span class="label-info">Description :</span><br><span id="desc_objet"></span>
                                                 </p>
-                                                <p><span class="label-info">Liens utiles :</span><br> <a href="#">Lorem ipsum dolor sit amet, consectetur
-                                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></p>
+                                                <p><span class="label-info">Liens utiles :</span><br> <span id="liens_objet"></span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -200,6 +199,14 @@
                         var infos = json1.entities[identifier];
                         $("#nom_objet").html(infos.labels.fr.value);
 
+
+                        /* REMISE A ZERO DE TOUS LES CHAMPS SI JAMAIS ON CHANGE DE LIEN */
+                        $("#date_a_objet").html("");
+                        $("#date_d_objet").html(""); // remise à zéro si il y avait une personne décédée avant
+                        $("#type_objet").html("");
+                        $("#desc_objet").html("");
+                        $("#liens_objet").html("");
+
                         // partie image
                         var img = json1.entities[identifier].claims.P18[0].mainsnak.datavalue.value;
                         img = img.split(' ').join('_');
@@ -214,18 +221,62 @@
 
                         // fin partie image
 
+                        // Partie TYPE
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5){ // s'il s'agit d'un humain
+                            if (infos.claims.P21[0].mainsnak.datavalue.value["numeric-id"] == 6581097){ // s'il s'agit d'un male
+                                $("#type_objet").html("Humain (Homme)");
+                            } else if(infos.claims.P21[0].mainsnak.datavalue.value["numeric-id"] == 6581072){ // s'il s'agit d'une femme
+                                $("#type_objet").html("Humain (Femme)");
+                            } else {
+                                $("#type_objet").html("Humain");
+                            }
+                        } else {
+                            $("#type_objet").html("Objet");
+                        }
 
-                        $('#description').on('input', function(e) {
-                            $("#desc_objet").html($(this).val());
-                        });
+                        // Partie date arrivée date départ
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5){ // s'il s'agit d'un humain
+                            $("#label_dates").html("Année de naissance :");
+                            var date_naissance = infos.claims.P569[0].mainsnak.datavalue.value.time;
+                            date_naissance = date_naissance.split("-");
+                            date_naissance = String(date_naissance).substring(1, 5);
+                            $("#date_a_objet").html(date_naissance);
 
-                        $('#dateArrivee').on('input', function(e) {
-                            $("#date_a_objet").html($(this).val());
-                        });
+                            if (typeof infos.claims.P570 !== 'undefined') {
+                                $("#label_dates").html("Année de naissance et de mort :");
+                                var date_deces = infos.claims.P570[0].mainsnak.datavalue.value.time;
+                                date_deces = date_deces.split("-");
+                                date_deces = String(date_deces).substring(1, 5);
+                                $("#date_d_objet").html(" - "+date_deces);
+                            }
+                        } else {
+                            $("#label_dates").html("Date d'arrivée et de départ :");
+                            // TODO: faire dates des objets mtn
+                        }
 
-                        $('#dateDepart').on('input', function(e) {
-                            $("#date_d_objet").html(' - ' + $(this).val());
-                        });
+                        // Partie description 
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5){ // s'il s'agit d'un humain
+                            $("#desc_objet").html(infos.descriptions.fr.value.charAt(0).toUpperCase() + infos.descriptions.fr.value.slice(1)); // On met avec une majuscule la String retournée
+                        }
+
+                        // Partie liens utiles
+                        if (typeof infos.claims.P6058 !== 'undefined'){ // Si page Larousse
+                            $("#liens_objet").append("<a href='https://www.larousse.fr/encyclopedie/"+infos.claims.P6058[0].mainsnak.datavalue.value+"' target='_blank'>Encyclopédie Larousse</a><br>");
+                        }
+
+                        if (typeof infos.claims.P268 !== 'undefined'){ // Si page BNF
+                            $("#liens_objet").append("<a href='https://catalogue.bnf.fr/ark:/12148/cb"+infos.claims.P268[0].mainsnak.datavalue.value+"' target='_blank'>Bibliothèque Nationale de France</a><br>");
+                        }
+
+                        if (typeof infos.claims.P214 !== 'undefined'){ // Si page BNF
+                            $("#liens_objet").append("<a href='https://viaf.org/viaf/"+infos.claims.P214[0].mainsnak.datavalue.value+"/' target='_blank'>Fichier d'autorité international virtuel</a><br>");
+                        }
+
+                        if (typeof infos.sitelinks !== 'undefined'){ // Si page wikipedia
+                            $("#liens_objet").append("<a href='"+infos.sitelinks.frwiki.url+"' target='_blank'>Wikipédia</a><br>");
+                        }
+
+
                     }
                 }
 
