@@ -159,7 +159,6 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="container container-img" id="imagePreview">
-                                                <!--div class="top-left">[Ici, la photo de l'objet]</!-->
                                                 <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
                                                 <div class="bottom-right" id="nom_objet">Libellé</div>

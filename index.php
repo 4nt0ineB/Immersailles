@@ -165,13 +165,11 @@
             <!--MAP-->
             <div id="mapid" style="width: 100%; height: 575px;">
 
-                <div id="noscroll">
+                <div id="noscroll" style="display:none;">
                     <div class="float-right info-bubble" id="overlay">
                         <div class="container">
                             <div class="row">
-                                <div class="container container-img">
-                                    <img src="img/fauteuil.jpg">
-                                    <!--div class="top-left">[Ici, la photo de l'objet]</!-->
+                                 <div class="container container-img" id="imagePreview">
                                     <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
                                     <div class="bottom-right" id="nom_objet">NOM DE L'OBJET</div>
@@ -195,8 +193,8 @@
                         </div>
 
                     </div>
-
-
+                </div>
+                <div id="noscroll_left">
                     <div class="float-left box_timeline timelineleft">
                         <div class="entry">
                             <div class="core">

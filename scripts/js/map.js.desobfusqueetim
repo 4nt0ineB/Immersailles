@@ -69,19 +69,44 @@ createMarkers(1);
 	  }
 
 	function onClick(){
-		document.getElementById("overlay").style.opacity = "1";
-		document.getElementById("nom_objet").innerHTML = "Objet marqueur";
+        document.getElementById("noscroll").style.display = "block";
+        setTimeout(function(){ // On attends 500 ms avant de cacher le bloc noscroll
+            document.getElementById("overlay").style.opacity = "1";
+            document.getElementById("nom_objet").innerHTML = "Objet marqueur";
+        }, 0);
 	}
 
 	function hideOverlay(){
 		if (document.getElementById("overlay").style.opacity == "1"){
 			document.getElementById("overlay").style.opacity = "0";
-		}
+        }
+        setTimeout(function(){ // On attends 500 ms avant de cacher le bloc noscroll
+            document.getElementById("noscroll").style.display = "none";
+        }, 500);
 	}
 
 	
+    var div_left = L.DomUtil.get('noscroll_left');
+	L.DomEvent.on(div_left, 'mousewheel', L.DomEvent.stopPropagation);
+    L.DomEvent.on(div_left, 'click', L.DomEvent.stopPropagation);
+    
+    document.getElementById("noscroll_left").addEventListener('mouseover', function () {
+        map.dragging.disable();
+    });
+
+    document.getElementById("noscroll_left").addEventListener('mouseout', function () {
+        map.dragging.enable();
+    });
 
 
-        var div = L.DomUtil.get('noscroll');
-  L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
-  L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+
+    var div = L.DomUtil.get('noscroll');
+	L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+	L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+	document.getElementById("noscroll").addEventListener('mouseover', function () {
+        map.dragging.disable();
+    });
+
+    document.getElementById("noscroll").addEventListener('mouseout', function () {
+        map.dragging.enable();
+    });
