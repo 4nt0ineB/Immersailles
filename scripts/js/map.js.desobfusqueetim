@@ -1,9 +1,10 @@
 var request = new XMLHttpRequest();
-	  request.open("GET", "././api.php", false);
-	  request.send(null);
-	  var jsonInterprete = JSON.parse(request.responseText);
-	  var jsonMarkers = jsonInterprete.Markers;
-	  var jsonMaps = jsonInterprete.Maps;
+request.open("GET", "././api.php", false);
+request.send(null);
+var jsonInterprete = JSON.parse(request.responseText);
+var jsonMarkers = jsonInterprete.Markers;
+var jsonMaps = jsonInterprete.Maps;
+var jsonObjects = jsonInterprete.Objects;
 
 
 var map = L.map('mapid', {
@@ -24,10 +25,6 @@ var map = L.map('mapid', {
 
 	map.fitBounds(bounds);
 
-	map.on('click', function(e) {
-    console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
-});
-
 	var immersaillesIcon = L.icon({
     iconUrl: '././img/marker.png',
 
@@ -43,8 +40,9 @@ createMarkers(1);
 			var obj = jsonMarkers[i]; // on crée une variable temp.
 			if (typeof obj.latitude === 'undefined'){ // si le marqueur a une latitude nulle c meme pas la peine de continuer, c le tableau vide
 				// ne rien faire
-			} else if (obj.map == map_id){ // sinon
+            } else if (obj.map == map_id){ // sinon
 				var marker = L.marker([obj.latitude, obj.longitude], {icon: immersaillesIcon}).addTo(map).on('click', onClick);
+                marker.objectID = obj.object;
 				markersDisplayed.push(marker);
 			}
 		}
@@ -68,12 +66,47 @@ createMarkers(1);
 		}
 	  }
 
-	function onClick(){
+	function onClick(e){
+        var marker = e.target;
+
         document.getElementById("noscroll").style.display = "block";
         setTimeout(function(){ // On attends 500 ms avant de cacher le bloc noscroll
             document.getElementById("overlay").style.opacity = "1";
-            document.getElementById("nom_objet").innerHTML = "Objet marqueur";
+
+            for(let i = 0; i < jsonObjects.length; i++) {
+                var object = jsonObjects[i];
+                if (object.id == marker.objectID){
+
+                    /* REMISE A ZERO DE TOUS LES CHAMPS SI JAMAIS ON CHANGE DE MARKER */
+                    $("#date_a_objet").html("");
+                    $("#date_d_objet").html(""); 
+                    $("#type_objet").html("");
+                    $("#desc_objet").html("");
+                    $("#liens_objet").html("");
+
+
+                    document.getElementById("nom_objet").innerHTML = object.name;
+                    document.getElementById("imagePreview").style.background = "url('"+object.image+"')";
+                    document.getElementById("imagePreview").style.backgroundSize = "calc(100% + " + object.zoomScale + "px)";
+                    document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + "+object.verticalAlign+"px)";
+                    document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+                    document.getElementById("type_objet").innerHTML = object.type;
+
+                    $("#label_dates").html("Année de naissance :");
+                    $("#date_a_objet").html(object.start_date);
+
+                    if (typeof object.end_date !== 'undefined' && object.end_date != null) {
+                        $("#label_dates").html("Année de naissance et de mort :");
+                        $("#date_d_objet").html(" - "+object.end_date);
+                    }
+                    $("#desc_objet").html(object.description);
+
+                }
+            }
+
         }, 0);
+
+        
 	}
 
 	function hideOverlay(){

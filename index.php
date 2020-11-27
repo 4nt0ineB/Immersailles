@@ -177,17 +177,10 @@
                             </div>
                             <div class="row">
                                 <div class="container">
-                                    <p><span class="label-info">Type d'objet :</span> Oeuvre d'art - Fauteuil</p>
-                                    <p> <span class="label-info">Date d'arrivée et de départ :</span> 1682</p>
-                                    <p> <span class="label-info">Localisation :</span> appartement de Louis XIV</p>
-                                    <p> <span class="label-info">Description :</span><br>Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur.
-                                    </p>
-                                    <p><span class="label-info">Liens utiles :</span><br> Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p><span class="label-info">Type :</span> <span id="type_objet"></span></p>
+                                    <p> <span class="label-info" id="label_dates">Date d'arrivée et de départ :</span> <span id="date_a_objet"></span><span id="date_d_objet"></span></p>
+                                    <p> <span class="label-info">Description :</span><br><span id="desc_objet"></span></p>
+                                    <p><span class="label-info">Liens utiles :</span><br> <span id="liens_objet"></span></p>
                                 </div>
                             </div>
                         </div>

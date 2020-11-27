@@ -12,6 +12,7 @@ header('Content-Type: application/json');
 
 $markersList = $db->query("SELECT * FROM MARKERS");
 $mapList = $db->query("SELECT * FROM MAPS");
+$objectsList = $db->query("SELECT * FROM OBJECTS");
 
 $data = array();
 
@@ -39,6 +40,22 @@ foreach ($markersList as $marker) {
     $data["Markers"][$i]["longitude"] = $marker["longitude"];
     $data["Markers"][$i]["map"] = $marker["id_map"];
     $data["Markers"][$i]["level"] = $marker["level"];
+    $data["Markers"][$i]["object"] = $marker["id_object"];
+}
+
+$i = 0;
+foreach ($objectsList as $object) {
+    $i += 1;
+    $data["Objects"][] = array();
+    $data["Objects"][$i]["id"] = $object["id_object"];
+    $data["Objects"][$i]["type"] = $object["type"];
+    $data["Objects"][$i]["name"] = $object["name"];
+    $data["Objects"][$i]["start_date"] = $object["start_date"];
+    $data["Objects"][$i]["end_date"] = $object["end_date"];
+    $data["Objects"][$i]["description"] = $object["description"];
+    $data["Objects"][$i]["image"] = $object["image"];
+    $data["Objects"][$i]["verticalAlign"] = $object["verticalAlign"];
+    $data["Objects"][$i]["zoomScale"] = $object["zoomScale"];
 }
 
 
