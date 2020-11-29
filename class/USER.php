@@ -57,16 +57,21 @@ class User
     public function refreshSession()
     {
 
-        $result = DB::$db->query("SELECT session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = $this->idUser ORDER BY session_date DESC
+        $result = DB::$db->query("SELECT id_s, session_id, pwd_hash FROM USERS NATURAL JOIN SESSIONS WHERE USERS.id_user = $this->idUser ORDER BY session_date DESC
         LIMIT 1")->fetch();
-        if ($result["pwd_hash"] != $this->psswd_hash) {
+        if ($result["pwd_hash"] != $this->psswd_hash) { // si mdp à changé -> déconnexion
             header("refresh:3; logout.php");
             return 0;
         }
-        if ($result["session_id"] != $this->sessionId) {
+        if ($result["session_id"] != $this->sessionId) { // si autre session ouverte -> déconnexion
             header("refresh:3; logout.php");
             return 0;
         }
+
+        //mise à jour du statut de connexion
+        $id_s = $result["id_s"];
+        DB::$db->query("UPDATE SESSIONS SET session_date = NOW() WHERE id_s = $id_s");
+
         return 1;
     }
 
@@ -165,7 +170,9 @@ class User
      */
     public static function numberConnectedUsers()
     {
-        $r = DB::$db->query("SELECT count(*) AS nb FROM SESSIONS WHERE session_info = \"connected\"")->fetch();
+        $inactivity = date("Y-m-d H:i:s", strtotime("-30 minute", strtotime(date("Y-m-d H:i:s"))));
+        $r = DB::$db->query("SELECT count(*) AS nb FROM SESSIONS WHERE session_info = 'connected' AND session_date >= DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL -30 MINUTE)
+        ")->fetch();
         return $r["nb"];
     }
 
