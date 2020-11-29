@@ -53,7 +53,26 @@
                 <div id="box">
                     <h3>Gestion des objets</h3>
                     <br>
+                    <?php
+                    if (isset($_POST['subdelete'])) {
 
+                        if ("e" == "ee") {
+                    ?>
+                            <div class="alert alert-success" role="alert">
+                                L'utilisateur a bien été supprimé.
+                            </div>
+                        <?php
+                            header("refresh:1; manage_objects.php");   // redirection
+                        } else {
+                        ?>
+                            <div class="alert alert-warning" role="alert">
+                                Une erreur s'est produite, l'utilisateur n'a pas pu être supprimé.
+                            </div>
+                    <?php
+                            header("refresh:1; manage_objects.php");
+                        }
+                    }
+                    ?>
                     <div class="row float-right" style="margin: 10px auto;"><a href="create_element.php" class="btn btn-dark">Créer un nouvel objet</a></div>
                     <br>
                     <table id="datatable" class="table table-striped table-bordered" width="100%">
@@ -79,7 +98,7 @@
                                     <td>' . $o['location'] . '</td>
                                     <td>' . $o['description'] . '</td>';
                                 echo '<td>
-                                        <a href="create_object.php?mod=' . $o['id_object'] . '" class="btn btn-primary" style="margin-right: 20px;">
+                                        <a href="create_element.php?mod=' . $o['id_object'] . '" class="btn btn-primary" style="margin-right: 20px;">
                                             <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="black" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -107,6 +126,8 @@
 
         </div>
 
+
+
         <!-- Modal -->
         <div class="modal fade" id="addBookDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -125,7 +146,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         <form method="post" action="">
-                            <input type="hidden" name="user_id" id="user_id" value="">
+                            <input type="hidden" name="obj_id" id="obj_id" value="">
                             <button type="submit" name="subdelete" class="btn btn-primary">Supprimer</button>
                         </form>
                     </div>
@@ -136,7 +157,7 @@
         <script>
             $(document).on("click", ".open-AddBookDialog", function() {
                 var myBookId = $(this).data('id');
-                $(".modal-footer #user_id").val(myBookId);
+                $(".modal-footer #obj_id").val(myBookId);
             });
         </script>
 

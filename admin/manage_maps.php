@@ -63,14 +63,14 @@
                                 Le plan ainsi que ses marqueurs on été supprimés.
                             </div>
                         <?php
-                            header("refresh:1, manage_maps.php");
+                            header("refresh:2, manage_maps.php");
                         } else {
                         ?>
                             <div class="alert alert-warning" role="alert">
                                 Une erreur est survenue, le plan n'a pas pu être supprimé.
                             </div>
                     <?php
-                            header("refresh:1, manage_maps.php");
+                            header("refresh:2, create_map.php");
                         }
                     }
                     ?>
