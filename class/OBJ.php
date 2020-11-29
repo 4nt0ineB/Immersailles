@@ -11,10 +11,10 @@ class OBJ
      */
     public static function createObject($id_wiki, $verticalAlign = 0, $zoomScale = 0)
     {
-        if (DB::$db->query("SELECT id_object FROM OBJECTS WHERE id_wiki = $id_wiki")->rowCount() > 0) {
+        if (DB::$db->query("SELECT id_object FROM OBJECTS WHERE id_wiki = \"$id_wiki\"")->rowCount() > 0) {
             return false;
         }
-        return DB::$db->query("INSERT INTO OBJECT VALUES(DEFAULT, $id_wiki, $verticalAlign, $zoomScale");
+        return DB::$db->query("INSERT INTO OBJECTS VALUES(DEFAULT, \"$id_wiki\", $verticalAlign, $zoomScale)");
     }
 
     /**
@@ -22,6 +22,6 @@ class OBJ
      */
     public static function updateObject($id_objet, $id_wiki, $verticalAlign = 0, $zoomScale = 0)
     {
-        return DB::$db->query("UPDATE OBJECT SET id_wiki = $id_wiki, verticalAlign = $verticalAlign, zoomScale= $zoomScale WHERE id_object = $id_objet");
+        return DB::$db->query("UPDATE OBJECTS SET id_wiki = \"$id_wiki\", verticalAlign = $verticalAlign, zoomScale= $zoomScale WHERE id_object = $id_objet");
     }
 }

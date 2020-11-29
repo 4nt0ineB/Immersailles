@@ -48,12 +48,7 @@ foreach ($objectsList as $object) {
     $i += 1;
     $data["Objects"][] = array();
     $data["Objects"][$i]["id"] = $object["id_object"];
-    $data["Objects"][$i]["type"] = $object["type"];
-    $data["Objects"][$i]["name"] = $object["name"];
-    $data["Objects"][$i]["start_date"] = $object["start_date"];
-    $data["Objects"][$i]["end_date"] = $object["end_date"];
-    $data["Objects"][$i]["description"] = $object["description"];
-    $data["Objects"][$i]["image"] = $object["image"];
+    $data["Objects"][$i]["wikidata"] = $object["id_wiki"];
     $data["Objects"][$i]["verticalAlign"] = $object["verticalAlign"];
     $data["Objects"][$i]["zoomScale"] = $object["zoomScale"];
 }

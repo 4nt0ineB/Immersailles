@@ -206,14 +206,14 @@
                                 L'objet a été <?php echo ($isModify) ? 'modifié.' : 'créé. '; ?> Redirection...
                             </div>
                         <?php
-                            header("refresh:1, manage_objects.php");
+                            echo '<meta http-equiv="refresh" content="1;URL=manage_objects.php">';
                         } else {
                         ?>
                             <div class="alert alert-warning" role="alert">
                                 L'objet n'a pas pu être <?php echo ($isModify) ? 'modifié.' : 'créé. Soit l\'objet existe déjà, soit il s\'agit d\'une erreur.'; ?> Redirection...
                             </div>
                     <?php
-                            header("refresh:2, create_element.php");
+                            echo '<meta http-equiv="refresh" content="2;URL=create_element.php">';
                         }
                     }
                     ?>

@@ -77,29 +77,121 @@ createMarkers(1);
                 var object = jsonObjects[i];
                 if (object.id == marker.objectID){
 
-                    /* REMISE A ZERO DE TOUS LES CHAMPS SI JAMAIS ON CHANGE DE MARKER */
-                    $("#date_a_objet").html("");
-                    $("#date_d_objet").html(""); 
-                    $("#type_objet").html("");
-                    $("#desc_objet").html("");
-                    $("#liens_objet").html("");
+                var wikidata = object.wikidata;
+                var verticalAlign = object.verticalAlign;
+                var zoomScale = object.zoomScale;
 
+                var xhr = null;
 
-                    document.getElementById("nom_objet").innerHTML = object.name;
-                    document.getElementById("imagePreview").style.background = "url('"+object.image+"')";
-                    document.getElementById("imagePreview").style.backgroundSize = "calc(100% + " + object.zoomScale + "px)";
-                    document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + "+object.verticalAlign+"px)";
-                    document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
-                    document.getElementById("type_objet").innerHTML = object.type;
-
-                    $("#label_dates").html("Année de naissance :");
-                    $("#date_a_objet").html(object.start_date);
-
-                    if (typeof object.end_date !== 'undefined' && object.end_date != null) {
-                        $("#label_dates").html("Année de naissance et de mort :");
-                        $("#date_d_objet").html(" - "+object.end_date);
+                getXmlHttpRequestObject = function() {
+                    if (!xhr) {
+                        xhr = new XMLHttpRequest();
                     }
-                    $("#desc_objet").html(object.description);
+                    return xhr;
+                };
+
+                updateLiveData = function() {
+                    var url = "https://www.wikidata.org/wiki/Special:EntityData/" + wikidata + ".json";
+                    xhr = getXmlHttpRequestObject();
+                    xhr.onreadystatechange = evenHandler;
+                    xhr.open("GET", url, true);
+                    xhr.send(null);
+
+                };
+
+                updateLiveData();
+
+
+                function evenHandler() {
+                    // Check response is ready or not
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var json1 = JSON.parse(xhr.responseText);
+                        var infos = json1.entities[wikidata];
+                        $("#nom_objet").html(infos.labels.fr.value);
+                        $("#libelle").val(infos.labels.fr.value);
+
+
+                        /* REMISE A ZERO DE TOUS LES CHAMPS SI JAMAIS ON CHANGE DE LIEN */
+                        $("#date_a_objet").html("");
+                        $("#date_d_objet").html("");
+                        $("#type_objet").html("");
+                        $("#desc_objet").html("");
+                        $("#liens_objet").html("");
+
+                        // partie image
+                        var img = json1.entities[wikidata].claims.P18[0].mainsnak.datavalue.value;
+                        img = img.split(' ').join('_');
+                        var hash = md5(img).substring(0, 2);
+
+                        document.getElementById("imagePreview").style.background = "url(https://upload.wikimedia.org/wikipedia/commons/" + hash[0] + "/" + hash[0] + hash[1] + "/" + img + ")";
+                        document.getElementById("imagePreview").style.backgroundSize = "calc(100% + " + zoomScale + "px)";
+                        document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + "+ verticalAlign +"px)";
+                        document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+
+                        // fin partie image
+
+                        // Partie TYPE
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5) { // s'il s'agit d'un humain
+                            if (infos.claims.P21[0].mainsnak.datavalue.value["numeric-id"] == 6581097) { // s'il s'agit d'un male
+                                $("#type_objet").html("Humain (Homme)");
+                            } else if (infos.claims.P21[0].mainsnak.datavalue.value["numeric-id"] == 6581072) { // s'il s'agit d'une femme
+                                $("#type_objet").html("Humain (Femme)");
+                            } else {
+                                $("#type_objet").html("Humain");
+                            }
+                        } else {
+                            $("#type_objet").html("Objet");
+                        }
+
+                        // Partie date arrivée date départ
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5) { // s'il s'agit d'un humain
+                            $("#label_dates").html("Année de naissance :");
+                            var date_naissance = infos.claims.P569[0].mainsnak.datavalue.value.time;
+                            date_naissance = date_naissance.split("-");
+                            date_naissance = String(date_naissance).substring(1, 5);
+                            $("#date_a_objet").html(date_naissance);
+                            $("#datenaissance").val(date_naissance);
+
+                            if (typeof infos.claims.P570 !== 'undefined') {
+                                $("#label_dates").html("Année de naissance et de mort :");
+                                var date_deces = infos.claims.P570[0].mainsnak.datavalue.value.time;
+                                date_deces = date_deces.split("-");
+                                date_deces = String(date_deces).substring(1, 5);
+                                $("#date_d_objet").html(" - " + date_deces);
+                                $("#datedeces").val(date_deces);
+                            }
+                        } else {
+                            $("#label_dates").html("Date d'arrivée et de départ :");
+                            // TODO: faire dates des objets mtn
+                        }
+
+                        // Partie description 
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5) { // s'il s'agit d'un humain
+                            $("#desc_objet").html(infos.descriptions.fr.value.charAt(0).toUpperCase() + infos.descriptions.fr.value.slice(1)); // On met avec une majuscule la String retournée
+                            $("#description").val(infos.descriptions.fr.value.charAt(0).toUpperCase() + infos.descriptions.fr.value.slice(1));
+                        }
+
+                        // Partie liens utiles
+                        if (typeof infos.claims.P6058 !== 'undefined') { // Si page Larousse
+                            $("#liens_objet").append("<a href='https://www.larousse.fr/encyclopedie/" + infos.claims.P6058[0].mainsnak.datavalue.value + "' target='_blank'>Encyclopédie Larousse</a><br>");
+                        }
+
+                        if (typeof infos.claims.P268 !== 'undefined') { // Si page BNF
+                            $("#liens_objet").append("<a href='https://catalogue.bnf.fr/ark:/12148/cb" + infos.claims.P268[0].mainsnak.datavalue.value + "' target='_blank'>Bibliothèque Nationale de France</a><br>");
+                        }
+
+                        if (typeof infos.claims.P214 !== 'undefined') { // Si page BNF
+                            $("#liens_objet").append("<a href='https://viaf.org/viaf/" + infos.claims.P214[0].mainsnak.datavalue.value + "/' target='_blank'>Fichier d'autorité international virtuel</a><br>");
+                        }
+
+                        if (typeof infos.sitelinks !== 'undefined') { // Si page wikipedia
+                            $("#liens_objet").append("<a href='" + infos.sitelinks.frwiki.url + "' target='_blank'>Wikipédia</a><br>");
+                        }
+
+
+                    }
+                }
 
                 }
             }
