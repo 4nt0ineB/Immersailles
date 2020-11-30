@@ -170,7 +170,7 @@
                     <div class="float-right info-bubble" id="overlay">
                         <div class="container">
                             <div class="row">
-                                 <div class="container container-img" id="imagePreview">
+                                 <div class="container container-img" id="imagePreview" style="background:url(./img/loader.gif)">
                                     <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
                                     <div class="bottom-right" id="nom_objet"></div>

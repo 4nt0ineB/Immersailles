@@ -103,6 +103,23 @@ createMarkers(1);
 
 
                 function evenHandler() {
+
+                    /* AJAX LOADER IMMERSAILLES */
+                    document.getElementById("imagePreview").style.background = "url(./img/loader.gif)";
+                    document.getElementById("imagePreview").style.backgroundSize = "20%";
+                    document.getElementById("imagePreview").style.backgroundPosition = "center";
+                    document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+
+                    var loading_img = "<img src='./img/loader.gif' style='width:32px;'>";
+                    $("#date_a_objet").html(loading_img);
+                    $("#nom_objet").html(loading_img);
+                    $("#date_d_objet").html(loading_img);
+                    $("#type_objet").html(loading_img);
+                    $("#desc_objet").html(loading_img);
+                    $("#liens_objet").html(loading_img);
+                    /* FIN LOADER CUSTOM IMMERSAILLES */
+
+
                     // Check response is ready or not
                     if (xhr.readyState == 4 && xhr.status == 200) {
 
