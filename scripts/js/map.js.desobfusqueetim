@@ -113,7 +113,7 @@ createMarkers(1);
                     var loading_img = "<img src='./img/loader.gif' style='width:32px;'>";
                     $("#date_a_objet").html(loading_img);
                     $("#nom_objet").html(loading_img);
-                    $("#date_d_objet").html(loading_img);
+                    $("#date_d_objet").html(""); // vide pr eviter double icône chargement
                     $("#type_objet").html(loading_img);
                     $("#desc_objet").html(loading_img);
                     $("#liens_objet").html(loading_img);

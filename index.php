@@ -104,7 +104,7 @@
                     ?>
 
                         <div class="entry">
-                            <a href="#" id="<?= htmlspecialchars($f["identifier"])?>" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;" onclick="getYearsByFloor('<?= htmlspecialchars($f['identifier'])?>')">
+                            <a href="#" id="<?= htmlspecialchars($f["identifier"])?>" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;" onclick="getYearsByFloor('<?= htmlspecialchars($f['identifier'])?>');colorClickedLink('<?= htmlspecialchars($f['identifier'])?>')">
                                 <div id="core_<?= htmlspecialchars($f["identifier"])?>" class="core">
                                     <span><?= htmlspecialchars($f["label"])?></span>
                                 </div>
