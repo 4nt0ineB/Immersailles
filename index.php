@@ -36,106 +36,6 @@
 
         gtag('config', 'G-F4VEN54R8E');
     </script>
-    <style>
-        @media (min-width:992px) {
-            .vertical-nav {
-                position: fixed;
-                top: 56px;
-                left: 0;
-                width: 200px;
-                height: auto;
-                background-color: #ffffff;
-                float: right;
-                padding-top: 30px
-            }
-        }
-
-        .rightnav ul {
-            background-color: #ffffff;
-        }
-
-        .rightnav li a {
-            display: block;
-            color: #000;
-            padding: 12px 10px;
-        }
-
-        /* Change the link color on hover */
-        .rightnav li a:hover {
-            background-color: #555;
-            color: white;
-        }
-
-
-        .timelineleft {
-            padding-left: 50px;
-            overflow: visible;
-            padding-bottom: 50px;
-        }
-
-        .entry {
-            margin-left: -10px;
-            position: relative;
-            border-radius: 5px;
-            height: 100px;
-            overflow: visible;
-
-        }
-
-        .core span {
-            vertical-align: middle;
-            display: table-cell;
-            text-shadow: 0px 1px 2px #ababab;
-            padding-top: 5px;
-            font-size: 13px;
-            left: -15px;
-            position:relative;
-        }
-
-        .core {
-            width: inherit;
-            height: inherit;
-            display: table;
-            text-align: end;
-        }
-
-        .entry:before {
-            content: "";
-            position: absolute;
-            width: 3px;
-            height: 150%;
-            display: block;
-            border-radius: 0px;
-            border: 0.2px solid #dddcdc;
-            background: #dddcdc;
-            left: -60.7%;
-        }
-
-        .core:before {
-            content: '';
-            display: block;
-            position: absolute;
-            border: 2px solid #C8AD7F;
-            background-color: #ffffff;
-            top: 45%;
-            left: -71.9%;
-            border-radius: 13px;
-            box-shadow: 0 0 2px #888;
-            height: 13px;
-            width: 13px;
-        }
-
-        .box_timeline {
-            position: relative;
-            z-index: 888;
-            padding-right: 5px;
-            border-top-right-radius: 8px;
-            top: 80px;
-            background-color: rgb(255 255 255 / 64%);
-            box-shadow: 1px 1px 5px rgb(0 0 0 / 68%);
-            border-bottom-right-radius: 8px;
-        }
-    </style>
 
 </head>
 
@@ -189,28 +89,30 @@
                     </div>
                 </div>
                 <div id="noscroll_left">
-                    <div class="float-left box_timeline timelineleft">
+                    <div class="float-left box_timeline timelineleft" id="leftTimeline">
+
+                    <?php
+                    require_once('./class/DB.php');
+                    try {
+                        $DB = DB::getInstance();
+                        $db = DB::$db;
+                    } catch (PDOException $e) {
+                        echo $e->getMessage();
+                    }
+                    $floors = DB::$db->query("SELECT * FROM FLOORS");
+                    while ($f = $floors->fetch()) {                    
+                    ?>
+
                         <div class="entry">
-                            <div class="core">
-                                <span>Étage 2</span>
-                            </div>
-                        </div>
-                        <br /><br />
-                        <div class="entry">
-                            <a href="#" id="etage1" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
-                                <div id="core_etage1" class="core">
-                                    <span>Étage 1</span>
+                            <a href="#" id="<?= htmlspecialchars($f["identifier"])?>" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;" onclick="getYearsByFloor('<?= htmlspecialchars($f['identifier'])?>')">
+                                <div id="core_<?= htmlspecialchars($f["identifier"])?>" class="core">
+                                    <span><?= htmlspecialchars($f["label"])?></span>
                                 </div>
                             </a>
                         </div>
-                        <br /><br />
-                        <div class="entry">
-                            <a href="#" id="rdc" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;">
-                                <div id="core_rdc" class="core">
-                                    <span>RDC</span>
-                                </div>
-                            </a>
-                        </div>
+                        
+                    <?php } ?>
+                        
 
                     </div>
 
@@ -237,14 +139,20 @@
                 <div class="events-wrapper">
                     <div class="events">
                         <ol style="list-style-type: none;">
-
-                            <li><a href="#0" onclick="changeMapByYear(1631)" data-date="00/00/1635" class="selected">1635</a></li>
-                            <li><a href="#0" data-date="00/00/1789">1789</a></li>
-                            <li><a href="#0" data-date="00/00/1820">1820</a></li>
-                            <li><a href="#0" data-date="00/00/1950">1950</a></li>
+                        <?php
+                        $years = DB::$db->query("SELECT DISTINCT year,MAPS.id_map,YEARS.id_year FROM YEARS,MAPS WHERE YEARS.id_year = MAPS.id_year GROUP BY year ASC");
+                        $first_row = true;
+                        while ($y = $years->fetch()) {      
+                            if ($first_row){
+                                echo '<li><a href="#0" onclick="changeMapLayer('.$y["id_map"].');getFloorsByYear('.$y["id_year"].')" data-date="00/00/'.$y["year"].'" class="selected">'.$y["year"].'</a></li>';
+                                $first_row = false;
+                            }  else {
+                                echo '<li><a href="#0" onclick="changeMapLayer('.$y["id_map"].');getFloorsByYear('.$y["id_year"].')" data-date="00/00/'.$y["year"].'">'.$y["year"].'</a></li>';
+                            }    
+                        ?>
+                        <?php }  ?>
 
                         </ol>
-
                         <span class="filling-line" aria-hidden="true"></span>
                     </div>
                     <!-- .events -->

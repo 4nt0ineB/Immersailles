@@ -13,6 +13,8 @@ header('Content-Type: application/json');
 $markersList = $db->query("SELECT * FROM MARKERS");
 $mapList = $db->query("SELECT * FROM MAPS");
 $objectsList = $db->query("SELECT * FROM OBJECTS");
+$floorsList = $db->query("SELECT * FROM FLOORS");
+$yearsList = $db->query("SELECT * FROM YEARS");
 
 $data = array();
 
@@ -28,6 +30,15 @@ foreach ($mapList as $map) {
     $data["Maps"][$i]["zoom"] = $map["zoom"];
     $data["Maps"][$i]["etage"] = $map["id_floor"];
     $data["Maps"][$i]["annee"] = $map["id_year"];
+}
+
+$i = 0;
+foreach ($floorsList as $floor) {
+    $i += 1;
+    $data["Floors"][] = array();
+    $data["Floors"][$i]["id"] = $floor["id_floor"];
+    $data["Floors"][$i]["label"] = $floor["label"];
+    $data["Floors"][$i]["identifier"] = $floor["identifier"];
 }
 
 
@@ -51,6 +62,14 @@ foreach ($objectsList as $object) {
     $data["Objects"][$i]["wikidata"] = $object["id_wiki"];
     $data["Objects"][$i]["verticalAlign"] = $object["verticalAlign"];
     $data["Objects"][$i]["zoomScale"] = $object["zoomScale"];
+}
+
+$i = 0;
+foreach ($yearsList as $year) {
+    $i += 1;
+    $data["Years"][] = array();
+    $data["Years"][$i]["id"] = $year["id_year"];
+    $data["Years"][$i]["year"] = $year["year"];
 }
 
 
