@@ -70,7 +70,7 @@
                     <div class="float-right info-bubble" id="overlay">
                         <div class="container">
                             <div class="row">
-                                 <div class="container container-img" id="imagePreview" style="background:url(./img/loader.gif)">
+                                <div class="container container-img" id="imagePreview" style="background:url(./img/loader.gif)">
                                     <div class="top-right"> <a href="#" onclick="hideOverlay()">X</a> </div>
 
                                     <div class="bottom-right" id="nom_objet"></div>
@@ -91,28 +91,28 @@
                 <div id="noscroll_left">
                     <div class="float-left box_timeline timelineleft" id="leftTimeline">
 
-                    <?php
-                    require_once('./class/DB.php');
-                    try {
-                        $DB = DB::getInstance();
-                        $db = DB::$db;
-                    } catch (PDOException $e) {
-                        echo $e->getMessage();
-                    }
-                    $floors = DB::$db->query("SELECT * FROM FLOORS");
-                    while ($f = $floors->fetch()) {                    
-                    ?>
+                        <?php
+                        require_once('./class/DB.php');
+                        try {
+                            $DB = DB::getInstance();
+                            $db = DB::$db;
+                        } catch (PDOException $e) {
+                            echo $e->getMessage();
+                        }
+                        $floors = DB::$db->query("SELECT * FROM FLOORS");
+                        while ($f = $floors->fetch()) {
+                        ?>
 
-                        <div class="entry">
-                            <a href="#" id="<?= htmlspecialchars($f["identifier"])?>" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;" onclick="getYearsByFloor('<?= htmlspecialchars($f['identifier'])?>');colorClickedLink('<?= htmlspecialchars($f['identifier'])?>')">
-                                <div id="core_<?= htmlspecialchars($f["identifier"])?>" class="core">
-                                    <span><?= htmlspecialchars($f["label"])?></span>
-                                </div>
-                            </a>
-                        </div>
-                        
-                    <?php } ?>
-                        
+                            <div class="entry">
+                                <a href="#" id="<?= htmlspecialchars($f["identifier"]) ?>" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;" onclick="getYearsByFloor('<?= htmlspecialchars($f['identifier']) ?>');colorClickedLink('<?= htmlspecialchars($f['identifier']) ?>')">
+                                    <div id="core_<?= htmlspecialchars($f["identifier"]) ?>" class="core">
+                                        <span><?= htmlspecialchars($f["label"]) ?></span>
+                                    </div>
+                                </a>
+                            </div>
+
+                        <?php } ?>
+
 
                     </div>
 
@@ -139,18 +139,18 @@
                 <div class="events-wrapper">
                     <div class="events">
                         <ol style="list-style-type: none;">
-                        <?php
-                        $years = DB::$db->query("SELECT DISTINCT year,MAPS.id_map,YEARS.id_year FROM YEARS,MAPS WHERE YEARS.id_year = MAPS.id_year GROUP BY year ASC");
-                        $first_row = true;
-                        while ($y = $years->fetch()) {      
-                            if ($first_row){
-                                echo '<li><a href="#0" onclick="changeMapLayer('.$y["id_map"].');getFloorsByYear('.$y["id_year"].')" data-date="00/00/'.$y["year"].'" class="selected">'.$y["year"].'</a></li>';
-                                $first_row = false;
-                            }  else {
-                                echo '<li><a href="#0" onclick="changeMapLayer('.$y["id_map"].');getFloorsByYear('.$y["id_year"].')" data-date="00/00/'.$y["year"].'">'.$y["year"].'</a></li>';
-                            }    
-                        ?>
-                        <?php }  ?>
+                            <?php
+                            $years = DB::$db->query("SELECT DISTINCT year,MAPS.id_map,YEARS.id_year FROM YEARS,MAPS WHERE YEARS.id_year = MAPS.id_year GROUP BY year ASC");
+                            $first_row = true;
+                            while ($y = $years->fetch()) {
+                                if ($first_row) {
+                                    echo '<li><a href="#0" onclick="changeMapLayer(' . $y["id_map"] . ');getFloorsByYear(' . $y["id_year"] . ')" data-date="00/00/' . $y["year"] . '" class="selected">' . $y["year"] . '</a></li>';
+                                    $first_row = false;
+                                } else {
+                                    echo '<li><a href="#0" onclick="changeMapLayer(' . $y["id_map"] . ');getFloorsByYear(' . $y["id_year"] . ')" data-date="00/00/' . $y["year"] . '">' . $y["year"] . '</a></li>';
+                                }
+                            ?>
+                            <?php }  ?>
 
                         </ol>
                         <span class="filling-line" aria-hidden="true"></span>

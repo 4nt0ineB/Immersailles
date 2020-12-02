@@ -28,6 +28,49 @@
       width: 33.3%;
       padding-right: 17px;
     }
+
+    /* Promoted links */
+    .promoted-link {
+      border: px black solid;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+      box-shadow: 10px 10px 10px rgba(209, 209, 209, 1);
+
+    }
+
+    .promoted-link>img {
+      width: 100%;
+    }
+
+    .promoted-link>.description {
+      background-color: rgb(0, 0, 0, 0.75);
+      position: absolute;
+      top: 75%;
+      width: 100%;
+      height: 100%;
+      transition: all 0.3s ease-in-out;
+      color: white;
+    }
+
+    .promoted-link .title {
+      margin-left: 10px;
+
+
+    }
+
+    .promoted-link>.description>.detail {
+      color: grey;
+      margin-top: -25px;
+    }
+
+    .promoted-link:hover .description {
+
+      transition: all 0.3s ease-in-out;
+      top: 10%;
+      background-color: rgb(0, 0, 0, 0.75);
+    }
   </style>
 
 
@@ -75,16 +118,63 @@
 
             <div class="row" style="margin-top: 10px;">
               <div class="col-lg-12">
-                <a href="manage_users.php" class="btn btn-dark">Gestion des utilisateurs</a>
-                <a href="manage_markers.php" class="btn btn-dark">Gestion des marqueurs</a>
-                <a href="manage_maps.php" class="btn btn-dark">Gestion des plans</a>
-                <a href="manage_objects.php" class="btn btn-dark">Gestion des objets</a>
+
               </div>
+            </div>
+            <div class="row content-justify-center" style="margin-top: 10px;">
+              <div class="col-lg-2 offset-lg-2 content-justify-center">
+                <a class="text-left" href="manage_users.php">
+                  <div class="promoted-link">
+                    <img src="../img/musketeer.png">
+                    <div class="description">
+                      <div class="title">Utilisateurs</div>
+                      <br>
+                      <div class="detail">Gérer les utilisateurs</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-2 content-justify-center">
+                <a class="text-left" href="manage_markers.php">
+                  <div class="promoted-link">
+                    <img src="../img/markerpromote.png">
+                    <div class=" description">
+                      <div class="title">Marqueurs</div>
+                      <br>
+                      <div class="detail">Gérer les marqueurs</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-2 content-justify-center">
+                <a class="text-left" href="manage_maps.php">
+                  <div class="promoted-link">
+                    <img src="../img/planpromote.png">
+                    <div class="description">
+                      <div class="title">Plans</div>
+                      <br>
+                      <div class="detail">Gérer les plans</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-lg-2 content-justify-center">
+                <a class="text-left" href="manage_objects.php">
+                  <div class="promoted-link">
+                    <img src="../img/objetpromote.png">
+                    <div class="description">
+                      <div class="title">Objets</div>
+                      <br>
+                      <div class="detail">Gérer les objets</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
             </div>
             <div class="row content-justify-center" style="margin-top: 10px;">
               <div class="col-lg-12 content-justify-center">
                 <a class="text-center" href="./logout.php">Se déconnecter</a>
-
               </div>
             </div>
 
