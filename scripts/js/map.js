@@ -1,1 +1,254 @@
-var _0x4d72=['style','toUpperCase','send','././admin/upload/plan_1735.png','join','datavalue','P214','P6058','LatLngBounds','parse','open','none','calc(100%\x20+\x20','hauteur','url','verticalAlign','backgroundRepeat','20%','#date_a_objet','#liens_objet','mapid','onreadystatechange','noscroll','time','imagePreview','imageOverlay','push','slice','append','<a\x20href=\x27https://viaf.org/viaf/','mouseout','#desc_objet','backgroundSize','frwiki','disable','<a\x20href=\x27https://www.larousse.fr/encyclopedie/','dragging','https://www.wikidata.org/wiki/Special:EntityData/','#nom_objet','<a\x20href=\x27','././api.php','display','objectID','value','substring','#label_dates','#date_d_objet','html','Maps','DomUtil','#type_objet','P570','mouseover','responseText','getElementById','split','P18','Simple','object','latitude','/\x27\x20target=\x27_blank\x27>Fichier\x20d\x27autorité\x20international\x20virtuel</a><br>','numeric-id','Année\x20de\x20naissance\x20et\x20de\x20mort\x20:','P31','stopPropagation','mainsnak','descriptions','marker','addEventListener','background','charAt','zoomScale','overlay','P268','\x20-\x20','<img\x20src=\x27./img/loader.gif\x27\x20style=\x27width:32px;\x27>','length','P21','addTo','entities','mousewheel','Date\x20d\x27arrivée\x20et\x20de\x20départ\x20:','setMaxBounds','get','wikidata','no-repeat','claims','Objects','././img/marker.png','opacity','#description','px)','val','fitBounds','DomEvent','undefined','map','backgroundPosition','noscroll_left','\x27\x20target=\x27_blank\x27>Wikipédia</a><br>','target','Humain\x20(Femme)','Objet','url(https://upload.wikimedia.org/wikipedia/commons/','CRS','removeLayer','labels','<a\x20href=\x27https://catalogue.bnf.fr/ark:/12148/cb','.json','#datedeces','largeur','P569','click'];(function(_0x2e7ccc,_0x5a426b){var _0x4d7200=function(_0x1becf3){while(--_0x1becf3){_0x2e7ccc['push'](_0x2e7ccc['shift']());}};_0x4d7200(++_0x5a426b);}(_0x4d72,0x1a2));var _0x1bec=function(_0x2e7ccc,_0x5a426b){_0x2e7ccc=_0x2e7ccc-0x1c3;var _0x4d7200=_0x4d72[_0x2e7ccc];return _0x4d7200;};var _0x1a909a=_0x1bec,request=new XMLHttpRequest();request[_0x1a909a(0x1ef)]('GET',_0x1a909a(0x20d),![]),request['send'](null);var jsonInterprete=JSON[_0x1a909a(0x1ee)](request[_0x1a909a(0x21a)]),jsonMarkers=jsonInterprete['Markers'],jsonMaps=jsonInterprete[_0x1a909a(0x215)],jsonObjects=jsonInterprete[_0x1a909a(0x1cb)],map=L[_0x1a909a(0x1d4)](_0x1a909a(0x1f9),{'attributionControl':![],'crs':L[_0x1a909a(0x1dc)][_0x1a909a(0x21e)],'zoom':-1.8,'minZoom':-1.8,'maxZoom':0x1});map[_0x1a909a(0x1c6)](new L[(_0x1a909a(0x1ed))]([0x90f,0x0],[0x0,0x196b]));var bounds=[[0x0,0x0],[0x90f,0x196b]],image=L[_0x1a909a(0x1fe)](_0x1a909a(0x1e8),bounds)[_0x1a909a(0x233)](map),currentMapLayer=image,markersDisplayed=[];map[_0x1a909a(0x1d1)](bounds);var immersaillesIcon=L['icon']({'iconUrl':_0x1a909a(0x1cc),'iconSize':[0x26,0x32],'iconAnchor':[0x26/0x2,0x32],'popupAnchor':[0x0,-0x28]});createMarkers(0x1);function createMarkers(_0x6fd96c){var _0x27a7ba=_0x1a909a;for(let _0x1eb17e=0x0;_0x1eb17e<jsonMarkers['length'];_0x1eb17e++){var _0x3bf8c3=jsonMarkers[_0x1eb17e];if(typeof _0x3bf8c3['latitude']===_0x27a7ba(0x1d3)){}else{if(_0x3bf8c3['map']==_0x6fd96c){var _0x37ba39=L[_0x27a7ba(0x228)]([_0x3bf8c3[_0x27a7ba(0x220)],_0x3bf8c3['longitude']],{'icon':immersaillesIcon})['addTo'](map)['on'](_0x27a7ba(0x1e4),onClick);_0x37ba39[_0x27a7ba(0x20f)]=_0x3bf8c3[_0x27a7ba(0x21f)],markersDisplayed[_0x27a7ba(0x1ff)](_0x37ba39);}}}}function changeMapLayer(_0x4342c3){var _0x5920e6=_0x1a909a;for(let _0x51ed7c=0x0;_0x51ed7c<jsonMaps[_0x5920e6(0x231)];_0x51ed7c++){var _0x3fefff=jsonMaps[_0x51ed7c];if(_0x3fefff['id']==_0x4342c3){map[_0x5920e6(0x1dd)](currentMapLayer);var _0x1107fe=[[0x0,0x0],[_0x3fefff[_0x5920e6(0x1f2)],_0x3fefff[_0x5920e6(0x1e2)]]],_0x5c72fe=L[_0x5920e6(0x1fe)](_0x3fefff['lien'],_0x1107fe)[_0x5920e6(0x233)](map);map['setMaxBounds'](new L['LatLngBounds']([_0x3fefff[_0x5920e6(0x1f2)],0x0],[0x0,_0x3fefff[_0x5920e6(0x1e2)]])),currentMapLayer=_0x5c72fe;for(var _0x446b15=0x0;_0x446b15<markersDisplayed[_0x5920e6(0x231)];_0x446b15++){map[_0x5920e6(0x1dd)](markersDisplayed[_0x446b15]);}markersDisplayed=[],createMarkers(_0x3fefff['id']);}}}function onClick(_0x2dfd09){var _0x133fa3=_0x1a909a,_0x198be9=_0x2dfd09[_0x133fa3(0x1d8)];document[_0x133fa3(0x21b)](_0x133fa3(0x1fb))[_0x133fa3(0x1e5)][_0x133fa3(0x20e)]='block',setTimeout(function(){var _0xe450c9=_0x133fa3;document[_0xe450c9(0x21b)](_0xe450c9(0x22d))['style'][_0xe450c9(0x1cd)]='1';for(let _0x48ab9b=0x0;_0x48ab9b<jsonObjects[_0xe450c9(0x231)];_0x48ab9b++){var _0x2167ad=jsonObjects[_0x48ab9b];if(_0x2167ad['id']==_0x198be9['objectID']){var _0x16a1ce=_0x2167ad[_0xe450c9(0x1c8)],_0x2bd284=_0x2167ad[_0xe450c9(0x1f4)],_0x1aa3f0=_0x2167ad[_0xe450c9(0x22c)],_0x12bb8c=null;getXmlHttpRequestObject=function(){return!_0x12bb8c&&(_0x12bb8c=new XMLHttpRequest()),_0x12bb8c;},updateLiveData=function(){var _0x379b20=_0xe450c9,_0x319124=_0x379b20(0x20a)+_0x16a1ce+_0x379b20(0x1e0);_0x12bb8c=getXmlHttpRequestObject(),_0x12bb8c[_0x379b20(0x1fa)]=_0x2a4046,_0x12bb8c[_0x379b20(0x1ef)]('GET',_0x319124,!![]),_0x12bb8c[_0x379b20(0x1e7)](null);},updateLiveData();function _0x2a4046(){var _0x2155f3=_0xe450c9;document['getElementById']('imagePreview')['style'][_0x2155f3(0x22a)]='url(./img/loader.gif)',document[_0x2155f3(0x21b)](_0x2155f3(0x1fd))[_0x2155f3(0x1e5)][_0x2155f3(0x205)]=_0x2155f3(0x1f6),document[_0x2155f3(0x21b)]('imagePreview')[_0x2155f3(0x1e5)][_0x2155f3(0x1d5)]='center',document['getElementById']('imagePreview')[_0x2155f3(0x1e5)][_0x2155f3(0x1f5)]=_0x2155f3(0x1c9);var _0x2c46ee=_0x2155f3(0x230);$(_0x2155f3(0x1f7))['html'](_0x2c46ee),$(_0x2155f3(0x20b))[_0x2155f3(0x214)](_0x2c46ee),$(_0x2155f3(0x213))[_0x2155f3(0x214)](''),$(_0x2155f3(0x217))['html'](_0x2c46ee),$(_0x2155f3(0x204))[_0x2155f3(0x214)](_0x2c46ee),$('#liens_objet')[_0x2155f3(0x214)](_0x2c46ee);if(_0x12bb8c['readyState']==0x4&&_0x12bb8c['status']==0xc8){var _0x41ac43=JSON['parse'](_0x12bb8c[_0x2155f3(0x21a)]),_0x4b072f=_0x41ac43[_0x2155f3(0x1c3)][_0x16a1ce];$(_0x2155f3(0x20b))['html'](_0x4b072f[_0x2155f3(0x1de)]['fr'][_0x2155f3(0x210)]),$('#libelle')[_0x2155f3(0x1d0)](_0x4b072f[_0x2155f3(0x1de)]['fr'][_0x2155f3(0x210)]),$(_0x2155f3(0x1f7))[_0x2155f3(0x214)](''),$(_0x2155f3(0x213))[_0x2155f3(0x214)](''),$(_0x2155f3(0x217))[_0x2155f3(0x214)](''),$(_0x2155f3(0x204))[_0x2155f3(0x214)](''),$(_0x2155f3(0x1f8))[_0x2155f3(0x214)]('');var _0x300c98=_0x41ac43[_0x2155f3(0x1c3)][_0x16a1ce][_0x2155f3(0x1ca)][_0x2155f3(0x21d)][0x0][_0x2155f3(0x226)][_0x2155f3(0x1ea)][_0x2155f3(0x210)];_0x300c98=_0x300c98[_0x2155f3(0x21c)]('\x20')[_0x2155f3(0x1e9)]('_');var _0x4a59be=md5(_0x300c98)[_0x2155f3(0x211)](0x0,0x2);document[_0x2155f3(0x21b)](_0x2155f3(0x1fd))[_0x2155f3(0x1e5)][_0x2155f3(0x22a)]=_0x2155f3(0x1db)+_0x4a59be[0x0]+'/'+_0x4a59be[0x0]+_0x4a59be[0x1]+'/'+_0x300c98+')',document[_0x2155f3(0x21b)](_0x2155f3(0x1fd))[_0x2155f3(0x1e5)][_0x2155f3(0x205)]=_0x2155f3(0x1f1)+_0x1aa3f0+_0x2155f3(0x1cf),document[_0x2155f3(0x21b)](_0x2155f3(0x1fd))[_0x2155f3(0x1e5)][_0x2155f3(0x1d5)]='50%\x20calc(50%\x20+\x20'+_0x2bd284+_0x2155f3(0x1cf),document[_0x2155f3(0x21b)](_0x2155f3(0x1fd))[_0x2155f3(0x1e5)][_0x2155f3(0x1f5)]='no-repeat';if(_0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x224)][0x0]['mainsnak'][_0x2155f3(0x1ea)][_0x2155f3(0x210)][_0x2155f3(0x222)]==0x5){if(_0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x232)][0x0][_0x2155f3(0x226)][_0x2155f3(0x1ea)][_0x2155f3(0x210)][_0x2155f3(0x222)]==0x646b69)$(_0x2155f3(0x217))['html']('Humain\x20(Homme)');else _0x4b072f['claims'][_0x2155f3(0x232)][0x0][_0x2155f3(0x226)]['datavalue'][_0x2155f3(0x210)][_0x2155f3(0x222)]==0x646b50?$(_0x2155f3(0x217))['html'](_0x2155f3(0x1d9)):$(_0x2155f3(0x217))[_0x2155f3(0x214)]('Humain');}else $(_0x2155f3(0x217))[_0x2155f3(0x214)](_0x2155f3(0x1da));if(_0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x224)][0x0][_0x2155f3(0x226)]['datavalue'][_0x2155f3(0x210)][_0x2155f3(0x222)]==0x5){$(_0x2155f3(0x212))[_0x2155f3(0x214)]('Année\x20de\x20naissance\x20:');var _0x39e9c9=_0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x1e3)][0x0][_0x2155f3(0x226)]['datavalue'][_0x2155f3(0x210)][_0x2155f3(0x1fc)];_0x39e9c9=_0x39e9c9['split']('-'),_0x39e9c9=String(_0x39e9c9)[_0x2155f3(0x211)](0x1,0x5),$(_0x2155f3(0x1f7))['html'](_0x39e9c9),$('#datenaissance')[_0x2155f3(0x1d0)](_0x39e9c9);if(typeof _0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x218)]!==_0x2155f3(0x1d3)){$(_0x2155f3(0x212))[_0x2155f3(0x214)](_0x2155f3(0x223));var _0x101b46=_0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x218)][0x0][_0x2155f3(0x226)]['datavalue']['value'][_0x2155f3(0x1fc)];_0x101b46=_0x101b46[_0x2155f3(0x21c)]('-'),_0x101b46=String(_0x101b46)['substring'](0x1,0x5),$('#date_d_objet')[_0x2155f3(0x214)](_0x2155f3(0x22f)+_0x101b46),$(_0x2155f3(0x1e1))[_0x2155f3(0x1d0)](_0x101b46);}}else $(_0x2155f3(0x212))[_0x2155f3(0x214)](_0x2155f3(0x1c5));_0x4b072f['claims'][_0x2155f3(0x224)][0x0][_0x2155f3(0x226)][_0x2155f3(0x1ea)][_0x2155f3(0x210)][_0x2155f3(0x222)]==0x5&&($(_0x2155f3(0x204))['html'](_0x4b072f['descriptions']['fr'][_0x2155f3(0x210)]['charAt'](0x0)[_0x2155f3(0x1e6)]()+_0x4b072f[_0x2155f3(0x227)]['fr'][_0x2155f3(0x210)][_0x2155f3(0x200)](0x1)),$(_0x2155f3(0x1ce))[_0x2155f3(0x1d0)](_0x4b072f[_0x2155f3(0x227)]['fr']['value'][_0x2155f3(0x22b)](0x0)[_0x2155f3(0x1e6)]()+_0x4b072f['descriptions']['fr'][_0x2155f3(0x210)][_0x2155f3(0x200)](0x1))),typeof _0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x1ec)]!==_0x2155f3(0x1d3)&&$('#liens_objet')[_0x2155f3(0x201)](_0x2155f3(0x208)+_0x4b072f['claims'][_0x2155f3(0x1ec)][0x0][_0x2155f3(0x226)]['datavalue']['value']+'\x27\x20target=\x27_blank\x27>Encyclopédie\x20Larousse</a><br>'),typeof _0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x22e)]!==_0x2155f3(0x1d3)&&$(_0x2155f3(0x1f8))[_0x2155f3(0x201)](_0x2155f3(0x1df)+_0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x22e)][0x0][_0x2155f3(0x226)][_0x2155f3(0x1ea)]['value']+'\x27\x20target=\x27_blank\x27>Bibliothèque\x20Nationale\x20de\x20France</a><br>'),typeof _0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x1eb)]!==_0x2155f3(0x1d3)&&$(_0x2155f3(0x1f8))['append'](_0x2155f3(0x202)+_0x4b072f[_0x2155f3(0x1ca)][_0x2155f3(0x1eb)][0x0][_0x2155f3(0x226)][_0x2155f3(0x1ea)][_0x2155f3(0x210)]+_0x2155f3(0x221)),typeof _0x4b072f['sitelinks']!=='undefined'&&$(_0x2155f3(0x1f8))[_0x2155f3(0x201)](_0x2155f3(0x20c)+_0x4b072f['sitelinks'][_0x2155f3(0x206)][_0x2155f3(0x1f3)]+_0x2155f3(0x1d7));}}}}},0x0);}function hideOverlay(){var _0x20fc4a=_0x1a909a;document['getElementById'](_0x20fc4a(0x22d))['style'][_0x20fc4a(0x1cd)]=='1'&&(document[_0x20fc4a(0x21b)]('overlay')[_0x20fc4a(0x1e5)][_0x20fc4a(0x1cd)]='0'),setTimeout(function(){var _0x18bfd2=_0x20fc4a;document['getElementById'](_0x18bfd2(0x1fb))[_0x18bfd2(0x1e5)][_0x18bfd2(0x20e)]=_0x18bfd2(0x1f0);},0x1f4);}var div_left=L[_0x1a909a(0x216)]['get'](_0x1a909a(0x1d6));L[_0x1a909a(0x1d2)]['on'](div_left,_0x1a909a(0x1c4),L['DomEvent'][_0x1a909a(0x225)]),L[_0x1a909a(0x1d2)]['on'](div_left,_0x1a909a(0x1e4),L[_0x1a909a(0x1d2)][_0x1a909a(0x225)]),document[_0x1a909a(0x21b)]('noscroll_left')[_0x1a909a(0x229)]('mouseover',function(){var _0x3cd4c8=_0x1a909a;map[_0x3cd4c8(0x209)][_0x3cd4c8(0x207)]();}),document[_0x1a909a(0x21b)]('noscroll_left')['addEventListener'](_0x1a909a(0x203),function(){var _0x536287=_0x1a909a;map[_0x536287(0x209)]['enable']();});var div=L[_0x1a909a(0x216)][_0x1a909a(0x1c7)](_0x1a909a(0x1fb));L[_0x1a909a(0x1d2)]['on'](div,_0x1a909a(0x1c4),L[_0x1a909a(0x1d2)][_0x1a909a(0x225)]),L[_0x1a909a(0x1d2)]['on'](div,_0x1a909a(0x1e4),L[_0x1a909a(0x1d2)][_0x1a909a(0x225)]),document[_0x1a909a(0x21b)](_0x1a909a(0x1fb))[_0x1a909a(0x229)](_0x1a909a(0x219),function(){var _0x4468df=_0x1a909a;map['dragging'][_0x4468df(0x207)]();}),document[_0x1a909a(0x21b)](_0x1a909a(0x1fb))['addEventListener'](_0x1a909a(0x203),function(){var _0x580770=_0x1a909a;map[_0x580770(0x209)]['enable']();});
+var request = new XMLHttpRequest();
+request.open("GET", "././api.php", false);
+request.send(null);
+var jsonInterprete = JSON.parse(request.responseText);
+var jsonMarkers = jsonInterprete.Markers;
+var jsonMaps = jsonInterprete.Maps;
+var jsonObjects = jsonInterprete.Objects;
+
+
+var map = L.map('mapid', {
+			attributionControl: false,
+            crs: L.CRS.Simple,
+            zoom: -1.8,
+            minZoom:-1.8,
+            maxZoom:1
+        });
+
+    map.setMaxBounds(new L.LatLngBounds([2319,0], [0,6507]));
+
+
+    var bounds = [[0,0], [2319,6507]];
+	var image = L.imageOverlay('././admin/upload/plan_1735.png', bounds).addTo(map);
+	var currentMapLayer = image;
+	var markersDisplayed = [];
+
+	map.fitBounds(bounds);
+
+	var immersaillesIcon = L.icon({
+    iconUrl: '././img/marker.png',
+
+    iconSize:     [38, 50],
+    iconAnchor: [38/2,50],
+    popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+});
+	
+createMarkers(1);
+
+	function createMarkers(map_id){
+		for(let i = 0; i < jsonMarkers.length; i++) { // pour chaque marqueur
+			var obj = jsonMarkers[i]; // on crée une variable temp.
+			if (typeof obj.latitude === 'undefined'){ // si le marqueur a une latitude nulle c meme pas la peine de continuer, c le tableau vide
+				// ne rien faire
+            } else if (obj.map == map_id){ // sinon
+				var marker = L.marker([obj.latitude, obj.longitude], {icon: immersaillesIcon}).addTo(map).on('click', onClick);
+                marker.objectID = obj.object;
+				markersDisplayed.push(marker);
+			}
+		}
+	}
+
+	function changeMapLayer(value){
+		for(let i = 0; i < jsonMaps.length; i++) {
+			var layer = jsonMaps[i];
+			if (layer.id == value){
+				map.removeLayer(currentMapLayer);
+				var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
+				var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
+				map.setMaxBounds(new L.LatLngBounds([layer.hauteur,0], [0,layer.largeur])); 
+				currentMapLayer = newMap;
+				for (var j = 0; j < markersDisplayed.length; j++) {
+					map.removeLayer(markersDisplayed[j]);
+				}
+				markersDisplayed = [];
+				createMarkers(layer.id);
+			}
+		}
+	  }
+
+	function onClick(e){
+        var marker = e.target;
+
+        document.getElementById("noscroll").style.display = "block";
+        setTimeout(function(){ // On attends 500 ms avant de cacher le bloc noscroll
+            document.getElementById("overlay").style.opacity = "1";
+
+            for(let i = 0; i < jsonObjects.length; i++) {
+                var object = jsonObjects[i];
+                if (object.id == marker.objectID){
+
+                var wikidata = object.wikidata;
+                var verticalAlign = object.verticalAlign;
+                var zoomScale = object.zoomScale;
+
+                var xhr = null;
+
+                getXmlHttpRequestObject = function() {
+                    if (!xhr) {
+                        xhr = new XMLHttpRequest();
+                    }
+                    return xhr;
+                };
+
+                updateLiveData = function() {
+                    var url = "https://www.wikidata.org/wiki/Special:EntityData/" + wikidata + ".json";
+                    xhr = getXmlHttpRequestObject();
+                    xhr.onreadystatechange = evenHandler;
+                    xhr.open("GET", url, true);
+                    xhr.send(null);
+
+                };
+
+                updateLiveData();
+
+
+                function evenHandler() {
+
+                    /* AJAX LOADER IMMERSAILLES */
+                    document.getElementById("imagePreview").style.background = "url(./img/loader.gif)";
+                    document.getElementById("imagePreview").style.backgroundSize = "20%";
+                    document.getElementById("imagePreview").style.backgroundPosition = "center";
+                    document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+
+                    var loading_img = "<img src='./img/loader.gif' style='width:32px;'>";
+                    $("#date_a_objet").html(loading_img);
+                    $("#nom_objet").html(loading_img);
+                    $("#date_d_objet").html(""); // vide pr eviter double icône chargement
+                    $("#type_objet").html(loading_img);
+                    $("#desc_objet").html(loading_img);
+                    $("#liens_objet").html(loading_img);
+                    /* FIN LOADER CUSTOM IMMERSAILLES */
+
+
+                    // Check response is ready or not
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+
+                        var json1 = JSON.parse(xhr.responseText);
+                        var infos = json1.entities[wikidata];
+                        $("#nom_objet").html(infos.labels.fr.value);
+                        $("#libelle").val(infos.labels.fr.value);
+
+
+                        /* REMISE A ZERO DE TOUS LES CHAMPS SI JAMAIS ON CHANGE DE LIEN */
+                        $("#date_a_objet").html("");
+                        $("#date_d_objet").html("");
+                        $("#type_objet").html("");
+                        $("#desc_objet").html("");
+                        $("#liens_objet").html("");
+
+                        // partie image
+                        var img = json1.entities[wikidata].claims.P18[0].mainsnak.datavalue.value;
+                        img = img.split(' ').join('_');
+                        var hash = md5(img).substring(0, 2);
+
+                        document.getElementById("imagePreview").style.background = "url('https://upload.wikimedia.org/wikipedia/commons/" + hash[0] + "/" + hash[0] + hash[1] + "/" + img + "')";
+                        document.getElementById("imagePreview").style.backgroundSize = "calc(100% + " + zoomScale + "px)";
+                        document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + "+ verticalAlign +"px)";
+                        document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+
+                        // fin partie image
+
+                        // Partie TYPE
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5) { // s'il s'agit d'un humain
+                            if (infos.claims.P21[0].mainsnak.datavalue.value["numeric-id"] == 6581097) { // s'il s'agit d'un male
+                                $("#type_objet").html("Humain (Homme)");
+                            } else if (infos.claims.P21[0].mainsnak.datavalue.value["numeric-id"] == 6581072) { // s'il s'agit d'une femme
+                                $("#type_objet").html("Humain (Femme)");
+                            } else {
+                                $("#type_objet").html("Humain");
+                            }
+                        } else {
+                            $("#type_objet").html("Objet");
+                        }
+
+                        // Partie date arrivée date départ
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5) { // s'il s'agit d'un humain
+                            $("#label_dates").html("Année de naissance :");
+                            var date_naissance = infos.claims.P569[0].mainsnak.datavalue.value.time;
+                            date_naissance = date_naissance.split("-");
+                            date_naissance = String(date_naissance).substring(1, 5);
+                            $("#date_a_objet").html(date_naissance);
+                            $("#datenaissance").val(date_naissance);
+
+                            if (typeof infos.claims.P570 !== 'undefined') {
+                                $("#label_dates").html("Année de naissance et de mort :");
+                                var date_deces = infos.claims.P570[0].mainsnak.datavalue.value.time;
+                                date_deces = date_deces.split("-");
+                                date_deces = String(date_deces).substring(1, 5);
+                                $("#date_d_objet").html(" - " + date_deces);
+                                $("#datedeces").val(date_deces);
+                            }
+                        } else {
+                            $("#label_dates").html("Date d'arrivée et de départ :");
+                            // TODO: faire dates des objets mtn
+                        }
+
+                        // Partie description 
+                        if (infos.claims.P31[0].mainsnak.datavalue.value["numeric-id"] == 5) { // s'il s'agit d'un humain
+                            $("#desc_objet").html(infos.descriptions.fr.value.charAt(0).toUpperCase() + infos.descriptions.fr.value.slice(1)); // On met avec une majuscule la String retournée
+                            $("#description").val(infos.descriptions.fr.value.charAt(0).toUpperCase() + infos.descriptions.fr.value.slice(1));
+                        }
+
+                        // Partie liens utiles
+                        if (typeof infos.claims.P6058 !== 'undefined') { // Si page Larousse
+                            $("#liens_objet").append("<a href='https://www.larousse.fr/encyclopedie/" + infos.claims.P6058[0].mainsnak.datavalue.value + "' target='_blank'>Encyclopédie Larousse</a><br>");
+                        }
+
+                        if (typeof infos.claims.P268 !== 'undefined') { // Si page BNF
+                            $("#liens_objet").append("<a href='https://catalogue.bnf.fr/ark:/12148/cb" + infos.claims.P268[0].mainsnak.datavalue.value + "' target='_blank'>Bibliothèque Nationale de France</a><br>");
+                        }
+
+                        if (typeof infos.claims.P214 !== 'undefined') { // Si page BNF
+                            $("#liens_objet").append("<a href='https://viaf.org/viaf/" + infos.claims.P214[0].mainsnak.datavalue.value + "/' target='_blank'>Fichier d'autorité international virtuel</a><br>");
+                        }
+
+                        if (typeof infos.sitelinks !== 'undefined') { // Si page wikipedia
+                            $("#liens_objet").append("<a href='" + infos.sitelinks.frwiki.url + "' target='_blank'>Wikipédia</a><br>");
+                        }
+
+
+                    }
+                }
+
+                }
+            }
+
+        }, 0);
+
+        
+	}
+
+	function hideOverlay(){
+		if (document.getElementById("overlay").style.opacity == "1"){
+			document.getElementById("overlay").style.opacity = "0";
+        }
+        setTimeout(function(){ // On attends 500 ms avant de cacher le bloc noscroll
+            document.getElementById("noscroll").style.display = "none";
+        }, 500);
+	}
+
+	
+    var div_left = L.DomUtil.get('noscroll_left');
+	L.DomEvent.on(div_left, 'mousewheel', L.DomEvent.stopPropagation);
+    L.DomEvent.on(div_left, 'click', L.DomEvent.stopPropagation);
+    
+    document.getElementById("noscroll_left").addEventListener('mouseover', function () {
+        map.dragging.disable();
+    });
+
+    document.getElementById("noscroll_left").addEventListener('mouseout', function () {
+        map.dragging.enable();
+    });
+
+
+
+    var div = L.DomUtil.get('noscroll');
+	L.DomEvent.on(div, 'mousewheel', L.DomEvent.stopPropagation);
+	L.DomEvent.on(div, 'click', L.DomEvent.stopPropagation);
+	document.getElementById("noscroll").addEventListener('mouseover', function () {
+        map.dragging.disable();
+    });
+
+    document.getElementById("noscroll").addEventListener('mouseout', function () {
+        map.dragging.enable();
+    });

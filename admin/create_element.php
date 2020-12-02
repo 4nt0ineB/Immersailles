@@ -295,10 +295,7 @@
                         var img = json1.entities[identifier].claims.P18[0].mainsnak.datavalue.value;
                         img = img.split(' ').join('_');
                         var hash = md5(img).substring(0, 2);
-
-                        //background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Louis_XIV_of_France.jpg/800px-Louis_XIV_of_France.jpg);
-
-                        document.getElementById("imagePreview").style.background = "url(https://upload.wikimedia.org/wikipedia/commons/" + hash[0] + "/" + hash[0] + hash[1] + "/" + img + ")";
+                        document.getElementById("imagePreview").style.background = "url('https://upload.wikimedia.org/wikipedia/commons/" + hash[0] + "/" + hash[0] + hash[1] + "/" + img + "')";
                         document.getElementById("imagePreview").style.backgroundSize = "cover";
                         document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + 50px)";
                         document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
