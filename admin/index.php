@@ -55,9 +55,13 @@
       padding-left: 10px;
     }
 
+    .promoted-link>.description>.title {
+      font-weight: 550;
+    }
+
 
     .promoted-link>.description>.detail {
-      color: grey;
+      color: #C8AD7F;
       margin-top: -25px;
     }
 
