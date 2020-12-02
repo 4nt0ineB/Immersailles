@@ -46,7 +46,7 @@
 
     <!--Div before Map container-->
 
-    <div class="row">
+    <div class="row" style="margin-right:0px;">
         <div class="col-lg">
             <div class="row">
                 <!--<span style="color: #aabbd4">Objets (330)</span>-->
@@ -61,8 +61,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row" style="margin-right:0px;">
+        <div class="col-md-12" style="padding-right: 0px;">
             <!--MAP-->
             <div id="mapid" style="width: 100%; height: 575px;">
 
