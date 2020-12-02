@@ -37,10 +37,12 @@
                         $longitude = $_POST["longitude"];
                         $planID = $_POST["planid"]; 
                         $user_id = $row["id_user"];
+                        $id_year = $_POST["date"];
+                        $id_object = $_POST["objet"];
                         if (strlen($latitude) == 0){
                             $errorMsg[] = "Vous devez placer le nouveau marqueur sur la carte sélectionnée.";
                         } else {
-                            $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), NULL, $planID, NULL)");
+                            $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), $id_object, $planID, $id_year)");
                             $successMsg = "Votre marqueur a été créé avec succès !";
                         }
                     }
@@ -125,9 +127,11 @@
                                     <select class="form-control select2" name="objet" id="objet">
                                         <?php
                                         $objects = $db->query("SELECT * FROM OBJECTS");
-                                        while ($o = $objects->fetch()) :  ?>
-                                            <option value="<?php echo $o["id_object"]; ?>"><?php echo htmlspecialchars($o["name"]); ?></option>
-                                        <?php endwhile; ?>
+                                        while ($o = $objects->fetch()) {
+                                            $data = getWikidataDetails($o["id_wiki"]);
+                                            $idwiki = $o["id_wiki"];  ?>
+                                            <option value="<?php echo $o["id_object"]; ?>"><?php echo htmlspecialchars($data->entities->$idwiki->labels->fr->value); ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
