@@ -52,13 +52,9 @@
       height: 100%;
       transition: all 0.3s ease-in-out;
       color: white;
+      padding-left: 10px;
     }
 
-    .promoted-link .title {
-      margin-left: 10px;
-
-
-    }
 
     .promoted-link>.description>.detail {
       color: grey;
