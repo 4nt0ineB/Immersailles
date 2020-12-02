@@ -8,7 +8,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Se connecter</title>
+  <title>Panel de gestion</title>
   <?php require_once("includes/head.html") ?>
   <script src="../scripts/js/inactivity.js"></script>
 
@@ -171,11 +171,6 @@
                 </a>
               </div>
 
-            </div>
-            <div class="row content-justify-center" style="margin-top: 10px;">
-              <div class="col-lg-12 content-justify-center">
-                <a class="text-center" href="./logout.php">Se déconnecter</a>
-              </div>
             </div>
 
           </div>

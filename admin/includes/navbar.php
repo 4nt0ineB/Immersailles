@@ -8,6 +8,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto text-center">
             <li class="nav-item">
+                <a class="nav-link scroll" href="./logout.php"><img src="../img/disconnect.png" style="width:16px;height:16px;"></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link scroll" href="../">RETOUR SUR LE SITE <span class="sr-only">(current)</span></a>
             </li>
 
