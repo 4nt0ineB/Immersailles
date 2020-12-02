@@ -41,10 +41,7 @@
                         echo "L'identificateur ne se rapporte à aucun objet répertorié";
                         die;
                     }
-                }
-
-                if (isset($_REQUEST['createObject'])) // si le btn submitCourse est cliqué
-                {
+                    $data_o = $data_o->fetch();
                 }
                 ?>
 
@@ -91,13 +88,18 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="urlwikidata">Importer les informations (URL Wikidata)</label>
-                                <input type="url" pattern="http(s?)://www.wikidata.org/wiki/([a-zA-z0-9\-_]+){1,}" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) {
-                                                                                                                                                                                                                                                    echo "https://www.wikidata.org/wiki/" . $data_o['id_wiki'];
-                                                                                                                                                                                                                                                } ?>">
+                                <input type="url" pattern="http(s?)://www.wikidata.org/wiki/([a-zA-z0-9\-_]+){1,}" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo "https://www.wikidata.org/wiki/" . $data_o['id_wiki'];?>">
                                 <center>
-                                    <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><i class="fas fa-file-download"></i>&nbsp;<?php if ($isModify) echo "Modifier ";
-                                                                                                                                                                                                                    else echo "Charger " ?>l'URL WikiDATA</button>
+                                    <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><i class="fas fa-file-download"></i>&nbsp;<?php if ($isModify) echo "Modifier ";                                                                                                                                                                    else echo "Charger " ?>l'URL WikiDATA</button>
                                 </center>
+                                <?php if ($isModify){
+                                    echo '<script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        
+                                        loadPreview(document.getElementById("urlwikidata").value, '.$data_o['verticalAlign'].', '.$data_o['zoomScale'].');
+                                    }, false);
+                                    </script>';
+                                }?>
 
                                 <hr>
 
@@ -124,24 +126,24 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="libelle">Libellé <b style="color:red;">*</b></label>
-                                        <input readonly type="text" class="form-control" name="libelle" id="libelle" placeholder="Libellé de l'objet/de la personne" required value="<?php if ($isModify) echo $infos["name"] ?>">
+                                        <input readonly type="text" class="form-control" name="libelle" id="libelle" placeholder="Libellé de l'objet/de la personne" required value="">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="datenaissance">Année d'arrivée / Année de naissance <b style="color:red;">*</b></label>
-                                        <input readonly type="number" class="form-control" name="datenaissance" id="datenaissance" placeholder="XXXX" required value="<?php if ($isModify) echo $infos["start_date"] ?>">
+                                        <input readonly type="number" class="form-control" name="datenaissance" id="datenaissance" placeholder="XXXX" required value="">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="datedeces">Année de départ / Année de décès <b style="color:red;">*</b></label>
-                                        <input readonly type="number" class="form-control" name="datedeces" id="datedeces" placeholder="XXXX" required value="<?php if ($isModify) echo $infos["end_date"] ?>">
+                                        <input readonly type="number" class="form-control" name="datedeces" id="datedeces" placeholder="XXXX" required value="">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <label for="description">Description <b style="color:red;">*</b></label>
-                                        <textarea readonly class="form-control" id="description" name="description" placeholder="Description de l'objet/de la personne"><?php if ($isModify) echo $infos["description"] ?></textarea>
+                                        <textarea readonly class="form-control" id="description" name="description" placeholder="Description de l'objet/de la personne"></textarea>
                                     </div>
                                 </div>
 
@@ -188,13 +190,13 @@
                         </div>
                     </form>
                     <?php
-                    if (isset($_POST['createObject']) || $isModify) {
+                    if (isset($_POST['createObject'])) {
                         $success = 0;
-                        if (isset($_POST['createObject'])) {
+                        if (isset($_POST['createObject']) && !$isModify) {
                             if (OBJ::createObject(basename($_POST['urlwikidata']), $_POST['verticalAlign'], $_POST['backgroundZoom'])) {
                                 $success = 1;
                             }
-                        } else if ($isModify) {
+                        } else if (isset($_POST['createObject']) && $isModify) {
                             if (OBJ::updateObject($_GET['mod'], basename($_POST['urlwikidata']), $_POST['verticalAlign'], $_POST['backgroundZoom'])) {
                                 $success = 1;
                             }
@@ -241,19 +243,7 @@
             document.getElementById("imagePreview").style.backgroundSize = "calc(100% + " + value + "px)";
         }
 
-        window.addEventListener('load', function() { // Afficher l'image uploadée direct
-            document.querySelector('input[type="file"]').addEventListener('change', function() {
-                if (this.files && this.files[0]) {
-                    // document.getElementById("imagePreview").style.background = URL.createObjectURL(this.files[0]); // set src to blob url
-                    document.getElementById("imagePreview").style.background = "url(" + URL.createObjectURL(this.files[0]) + ")";
-                    document.getElementById("imagePreview").style.backgroundSize = "cover";
-                    document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + 50px)";
-                    document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
-                }
-            });
-        });
-
-        function loadPreview(urlWikidata) {
+        function loadPreview(urlWikidata, align, zoom) {
 
             if (urlWikidata.includes("https://www.wikidata.org/wiki/")) {
 
@@ -311,6 +301,8 @@
                         document.getElementById("imagePreview").style.backgroundSize = "cover";
                         document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + 50px)";
                         document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
+                        if (typeof align !== 'undefined'){updateSliderAlign(align);}
+                        if (typeof zoom !== 'undefined'){updateSliderZoom(zoom);}
 
                         // fin partie image
 
@@ -382,24 +374,6 @@
 
         }
 
-
-        /* PARTIE MODIFICATION MANUELLE PAR UTILISATEUR EN DIRECT */
-
-        $('#libelle').on('input', function(e) {
-            $("#nom_objet").html($(this).val());
-        });
-
-        $('#datenaissance').on('input', function(e) {
-            $("#date_a_objet").html($(this).val());
-        });
-
-        $('#datedeces').on('input', function(e) {
-            $("#date_d_objet").html(' - ' + $(this).val());
-        });
-
-        $('#description').on('input', function(e) {
-            $("#desc_objet").html($(this).val());
-        });
     </script>
 </body>
 
