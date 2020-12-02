@@ -141,7 +141,7 @@ createMarkers(1);
                         img = img.split(' ').join('_');
                         var hash = md5(img).substring(0, 2);
 
-                        document.getElementById("imagePreview").style.background = "url(https://upload.wikimedia.org/wikipedia/commons/" + hash[0] + "/" + hash[0] + hash[1] + "/" + img + ")";
+                        document.getElementById("imagePreview").style.background = "url('https://upload.wikimedia.org/wikipedia/commons/" + hash[0] + "/" + hash[0] + hash[1] + "/" + img + "')";
                         document.getElementById("imagePreview").style.backgroundSize = "calc(100% + " + zoomScale + "px)";
                         document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + "+ verticalAlign +"px)";
                         document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
