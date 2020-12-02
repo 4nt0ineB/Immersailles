@@ -155,6 +155,13 @@
                                     </div>
                                 </div>
 
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 text-center">
+                                        <button type="submit" name="createObject" class="btn btn-success"><?php if ($isModify) echo "Modifier ";
+                                                                                                            else echo "Ajouter " ?>l'objet</button>
+                                    </div>
+                                </div>
+
                             </div>
 
 
@@ -179,12 +186,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <button type="submit" name="createObject" class="btn btn-success"><?php if ($isModify) echo "Modifier ";
-                                                                                                        else echo "Ajouter " ?>l'objet</button>
                                 </div>
                             </div>
                         </div>
