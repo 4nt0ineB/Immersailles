@@ -28,3 +28,8 @@ function generateRandomString($length = 10)
     }
     return $randomString;
 }
+
+function getWikidataDetails($id){
+    $wikiData = file_get_contents('https://www.wikidata.org/wiki/Special:EntityData/'.$id.'.json');
+    return json_decode($wikiData);
+}

@@ -1,4 +1,5 @@
 <?php require_once("../includes/mysql.php"); ?>
+<?php require_once("includes/functions.php"); ?>
 <?php require_once("includes/checkperms.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -80,8 +81,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Libellé</th>
-                                <th>Date d'arrivée</th>
-                                <th>Lieu</th>
+                                <th>Wikidata</th>
+                                <th>Année d'arrivée</th>
+                                <th>Année de départ</th>
                                 <th>Description</th>
                                 <th>Actions</th>
                             </tr>
@@ -91,12 +93,22 @@
                             <?php
                             $objects = $db->query("SELECT * FROM OBJECTS");
                             while ($o = $objects->fetch()) {
+                                $data = getWikidataDetails($o["id_wiki"]);
+                                $idwiki = $o["id_wiki"];
                                 echo '<tr>
-                                    <td>' . $o['id_object'] . '</td>
-                                    <td>' . $o['name'] . '</td>
-                                    <td>' . $o['start_date'] . '</td>
-                                    <td>' . $o['location'] . '</td>
-                                    <td>' . $o['description'] . '</td>';
+                                    <td>' . $o["id_object"] . '</td>
+                                    <td>' . $data->entities->$idwiki->labels->fr->value . '</td>
+                                    <td>' . $idwiki . '</td>';
+                                    $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
+                                    echo'<td>' . substr($date_arrivee[0],1) . '</td>';
+                                    if (isset($data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time)){
+                                        $date_depart = explode('-', $data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time);
+                                        echo '<td>' . substr($date_depart[0],1)  . '</td>';
+                                    } else {
+                                        echo '<td></td>';
+                                    }
+                                    echo'
+                                    <td>' . ucfirst($data->entities->$idwiki->descriptions->fr->value) . '</td>';
                                 echo '<td>
                                         <a href="create_element.php?mod=' . $o['id_object'] . '" class="btn btn-primary" style="margin-right: 20px;">
                                             <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="black" xmlns="http://www.w3.org/2000/svg">
