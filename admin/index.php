@@ -129,12 +129,12 @@
               if (in_array($uRole, array(1, 2))) {
                 if ($uRole != 1) {
               ?>
-                  <div class="col-md-2 content-justify-center"></div>
+                  <div class="col-md-2 text-center"></div>
                 <?php
                 }
                 if (in_array($uRole, array(1))) {
                 ?>
-                  <div class="col-lg-2 content-justify-center">
+                  <div class="col-lg-2 text-center">
                     <a class="text-left" href="manage_users.php">
                       <div class="promoted-link">
                         <img src="../img/musketeer.png">
@@ -150,7 +150,7 @@
                 }
                 if (in_array($uRole, array(1, 2))) {
                 ?>
-                  <div class="col-md-2 content-justify-center">
+                  <div class="col-md-2 text-center">
                     <a class="text-left" href="manage_markers.php">
                       <div class="promoted-link">
                         <img src="../img/markerpromote.png">
@@ -166,7 +166,7 @@
                 }
                 if (in_array($uRole, array(1))) {
                 ?>
-                  <div class="col-md-2 content-justify-center">
+                  <div class="col-md-2 text-center">
                     <a class="text-left" href="manage_maps.php">
                       <div class="promoted-link">
                         <img src="../img/planpromote.png">
@@ -182,7 +182,7 @@
                 }
                 if (in_array($uRole, array(1, 2))) {
                 ?>
-                  <div class="col-md-2 content-justify-center">
+                  <div class="col-md-2 text-center">
                     <a class="text-left" href="manage_objects.php">
                       <div class="promoted-link">
                         <img src="../img/objetpromote.png">
@@ -198,7 +198,7 @@
                 }
                 if (in_array($uRole, array(1))) {
                 ?>
-                  <div class="col-md-2 content-justify-center">
+                  <div class="col-md-2 text-center">
                     <a class="text-left" href="manage_years.php">
                       <div class="promoted-link">
                         <img src="../img/clocks.jpg">
