@@ -6,17 +6,23 @@ class User
     private $name;
     private $sessionId;
     private $psswd_hash;
-    public function __construct($idUser, $psswd)
+    private $role;
+    public function __construct($idUser, $psswd, $role)
     {
         $this->sessionId = "";
         $this->idUser = $idUser;
         $this->psswd_hash = $psswd;
+        $this->role = $role;
     }
     public function getId()
     {
         return $this->idUser;
     }
 
+    public function getRole()
+    {
+        return $this->role;
+    }
     /**
      *  Définit après l'instanciation de l'utilisateur avant la connexion.
      */
@@ -31,11 +37,14 @@ class User
     public function connect()
     {
         $result = DB::$db->query("SELECT id_s, session_info FROM SESSIONS WHERE id_user = $this->idUser ORDER BY session_date DESC
-        LIMIT 1")->fetch(); // précédente session quitté sans déconnexion
+        LIMIT 1"); // précédente session quitté sans déconnexion
 
-        if ($result["session_info"] != "disconnected") {
-            $id = $result['id_s'];
-            DB::$db->query("UPDATE SESSIONS SET session_info = \"disconnected\" WHERE id_s = $id");
+        if ($result->rowCount() > 0) {
+            $result = $result->fetch();
+            if ($result["session_info"] != "disconnected") {
+                $id = $result['id_s'];
+                DB::$db->query("UPDATE SESSIONS SET session_info = \"disconnected\" WHERE id_s = $id");
+            }
         }
 
         DB::$db->query("INSERT INTO SESSIONS VALUES (NULL, \"$this->sessionId\", $this->idUser, DEFAULT, \"connected\")");
@@ -176,6 +185,36 @@ class User
         return $r["nb"];
     }
 
+    /**
+     * 
+     */
+    public function checkPageAutorisation()
+    {
+        $autorisationByPage = [
+            "index.php" => [1, 2],
+            "create_element.php" => [1, 2],
+            "create_map.php" => [1],
+            "create_marker.php" => [1, 2],
+            "create_user.php" => [1],
+            "edit_marker.php" => [1, 2],
+            "manage_maps.php" => [1],
+            "manage_markers.php" => [1, 2],
+            "manage_objects.php" => [1, 2],
+            "manage_users.php" => [1],
+        ];
+
+        foreach (array_keys($autorisationByPage) as $p) {
+            if ($p == basename($_SERVER['PHP_SELF'])) {
+                foreach ($autorisationByPage[$p] as $permId) {
+                    if ($permId == $this->role) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     /** 
      * Retourne l'utilisateur associé  à un token valide (existe plus cooldown non dépassé) 
      */
@@ -197,6 +236,8 @@ class User
         }
         return $randomString;
     }
+
+
     /** 
      * Envoie un mail de recup mdp avec un lien avec un token dans le GET 
      */

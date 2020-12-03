@@ -3,6 +3,9 @@ session_start();
 
 if (isset($_SESSION['user'])) {
   $_SESSION["user"]->refreshSession(); // on check la validité de la session user
+  if (!$_SESSION['user']->checkPageAutorisation()) {
+    header("location: index.php");
+  }
 
   $id = $_SESSION['user']->getId();
 

@@ -122,54 +122,87 @@
               </div>
             </div>
             <div class="row content-justify-center" style="margin-top: 10px;">
-              <div class="col-lg-2 offset-lg-2 content-justify-center">
-                <a class="text-left" href="manage_users.php">
-                  <div class="promoted-link">
-                    <img src="../img/musketeer.png">
-                    <div class="description">
-                      <div class="title">Utilisateurs</div>
-                      <br>
-                      <div class="detail">Gérer les utilisateurs</div>
-                    </div>
+
+              <?php
+              $u = $_SESSION['user'];
+              $uRole = $u->getRole();
+              if (in_array($uRole, array(1, 2))) {
+                if ($uRole != 1) {
+              ?>
+                  <div class="col-lg-2 offset-lg-2 content-justify-center"></div>
+                <?php
+                }
+                if (in_array($uRole, array(1))) {
+                ?>
+                  <div class="col-lg-2 offset-lg-2 content-justify-center">
+                    <a class="text-left" href="manage_users.php">
+                      <div class="promoted-link">
+                        <img src="../img/musketeer.png">
+                        <div class="description">
+                          <div class="title">Utilisateurs</div>
+                          <br>
+                          <div class="detail">Gérer les utilisateurs</div>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-              <div class="col-lg-2 content-justify-center">
-                <a class="text-left" href="manage_markers.php">
-                  <div class="promoted-link">
-                    <img src="../img/markerpromote.png">
-                    <div class=" description">
-                      <div class="title">Marqueurs</div>
-                      <br>
-                      <div class="detail">Gérer les marqueurs</div>
-                    </div>
+                <?php
+                }
+                if (in_array($uRole, array(1, 2))) {
+                ?>
+                  <div class="col-lg-2 content-justify-center">
+                    <a class="text-left" href="manage_markers.php">
+                      <div class="promoted-link">
+                        <img src="../img/markerpromote.png">
+                        <div class=" description">
+                          <div class="title">Marqueurs</div>
+                          <br>
+                          <div class="detail">Gérer les marqueurs</div>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-              <div class="col-lg-2 content-justify-center">
-                <a class="text-left" href="manage_maps.php">
-                  <div class="promoted-link">
-                    <img src="../img/planpromote.png">
-                    <div class="description">
-                      <div class="title">Plans</div>
-                      <br>
-                      <div class="detail">Gérer les plans</div>
-                    </div>
+                <?php
+                }
+                if (in_array($uRole, array(1))) {
+                ?>
+                  <div class="col-lg-2 content-justify-center">
+                    <a class="text-left" href="manage_maps.php">
+                      <div class="promoted-link">
+                        <img src="../img/planpromote.png">
+                        <div class="description">
+                          <div class="title">Plans</div>
+                          <br>
+                          <div class="detail">Gérer les plans</div>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-              <div class="col-lg-2 content-justify-center">
-                <a class="text-left" href="manage_objects.php">
-                  <div class="promoted-link">
-                    <img src="../img/objetpromote.png">
-                    <div class="description">
-                      <div class="title">Objets</div>
-                      <br>
-                      <div class="detail">Gérer les objets</div>
-                    </div>
+                <?php
+                }
+                if (in_array($uRole, array(1, 2))) {
+                ?>
+                  <div class="col-lg-2 content-justify-center">
+                    <a class="text-left" href="manage_objects.php">
+                      <div class="promoted-link">
+                        <img src="../img/objetpromote.png">
+                        <div class="description">
+                          <div class="title">Objets</div>
+                          <br>
+                          <div class="detail">Gérer les objets</div>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
+                <?php
+                }
+                ?>
+
+
+
+              <?php
+              }
+              ?>
 
             </div>
 

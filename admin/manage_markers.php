@@ -33,6 +33,7 @@
 
 
                 <div id="box">
+
                     <h3>Gestion des marqueurs</h3>
                     <br>
                     <div class="row float-right" style="margin: 10px auto;"><a href="create_marker.php" class="btn btn-dark">Créer un nouveau marqueur</a></div>
