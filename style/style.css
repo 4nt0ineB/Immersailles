@@ -520,3 +520,10 @@ fieldset[disabled] .btn-primary:hover {
     box-shadow: 1px 1px 5px rgb(0 0 0 / 68%);
     border-bottom-right-radius: 8px;
 }
+
+.authorSpan {
+    color: grey;
+    font-size: 13px;
+    line-height: 50px;
+    font-style: italic;
+}

@@ -49,6 +49,13 @@ function getFloorsByYear(yearSelected) {
         break;
       }
   }
+  for(let i =0; i < jsonYears.length; i++){
+    var yearObj = jsonYears[i]; 
+    if (yearSelected == yearObj.id){
+        document.getElementById("yearSelected").innerHTML = yearObj.year;
+        break;
+    }
+  }
 }
 
 function colorClickedLink(link){

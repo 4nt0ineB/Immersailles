@@ -59,6 +59,9 @@
                     </ul>
             </div>
         </div>
+            <div class="col-lg text-center"><h5 style="height: 100%;line-height: 40px;"><span id="yearSelected"></span><span id="mapSelected"></span></h5></div>
+
+            <div class="col-lg text-right"><span id="authorMap" class="authorSpan">source ici</span></div>
     </div>
 
     <div class="row" style="margin-right:0px;">

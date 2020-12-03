@@ -32,8 +32,8 @@ var map = L.map('mapid', {
     iconAnchor: [38/2,50],
     popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
 });
-	
-createMarkers(1);
+
+changeMapLayer(jsonMaps[1].id); // On set la map d'accueil comme la première dans l'API par défaut...
 
 	function createMarkers(map_id){
 		for(let i = 0; i < jsonMarkers.length; i++) { // pour chaque marqueur
@@ -52,7 +52,8 @@ createMarkers(1);
 		for(let i = 0; i < jsonMaps.length; i++) {
 			var layer = jsonMaps[i];
 			if (layer.id == value){
-				map.removeLayer(currentMapLayer);
+                map.removeLayer(currentMapLayer);
+                document.getElementById("mapSelected").innerHTML = "&nbsp;-&nbsp;"+layer.libelle;
 				var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
 				var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
 				map.setMaxBounds(new L.LatLngBounds([layer.hauteur,0], [0,layer.largeur])); 
@@ -61,7 +62,8 @@ createMarkers(1);
 					map.removeLayer(markersDisplayed[j]);
 				}
 				markersDisplayed = [];
-				createMarkers(layer.id);
+                createMarkers(layer.id);
+                break;
 			}
 		}
 	  }
