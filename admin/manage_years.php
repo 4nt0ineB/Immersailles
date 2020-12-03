@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestion des objets</title>
+    <title>Gestion des années</title>
     <?php require_once("includes/head.html"); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -52,7 +52,7 @@
 
 
                 <div id="box">
-                    <h3>Gestion des objets</h3>
+                    <h3>Gestion des années</h3>
                     <br>
                     <?php
                     if (isset($_POST['subdelete'])) {
@@ -60,60 +60,50 @@
                         if ("e" == "ee") {
                     ?>
                             <div class="alert alert-success" role="alert">
-                                L'objet a bien été supprimé.
+                                L'année a bien été supprimé.
                             </div>
                         <?php
                             header("refresh:1; manage_objects.php");   // redirection
                         } else {
                         ?>
                             <div class="alert alert-warning" role="alert">
-                                Une erreur s'est produite, l'objet n'a pas pu être supprimé.
+                                Une erreur s'est produite, l'année n'a pas pu être supprimée.
                             </div>
                     <?php
                             header("refresh:1; manage_objects.php");
                         }
                     }
                     ?>
-                    <div class="row float-right" style="margin: 10px auto;"><a href="create_element.php" class="btn btn-dark">Créer un nouvel objet</a></div>
+                    <div class="row float-right" style="margin: 10px auto;"><a href="create_year.php" class="btn btn-dark">Créer une nouvelle année</a></div>
                     <br>
                     <table id="datatable" class="table table-striped table-bordered" width="100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Libellé</th>
-                                <th>Wikidata</th>
-                                <th>Année d'arrivée</th>
-                                <th>Année de départ</th>
+                                <th>Année</th>
+                                <th>Nb. cartes associées</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             <?php
-                            $objects = $db->query("SELECT * FROM OBJECTS");
-                            while ($o = $objects->fetch()) {
-                                $data = getWikidataDetails($o["id_wiki"]);
-                                $idwiki = $o["id_wiki"];
+                            $years = $db->query("SELECT * FROM YEARS");
+                            while ($y = $years->fetch()) {
+                                $year=$y["year"];
+                                $countMapWithYear = $db->query("SELECT * FROM MAPS,YEARS WHERE MAPS.id_year=YEARS.id_year AND YEARS.year=$year")->rowCount();
                                 echo '<tr>
-                                    <td>' . $o["id_object"] . '</td>
-                                    <td>' . $data->entities->$idwiki->labels->fr->value . '</td>
-                                    <td>' . $idwiki . '</td>';
-                                    $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
-                                    echo'<td>' . substr($date_arrivee[0],1) . '</td>';
-                                    if (isset($data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time)){
-                                        $date_depart = explode('-', $data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time);
-                                        echo '<td>' . substr($date_depart[0],1)  . '</td>';
-                                    } else {
-                                        echo '<td></td>';
-                                    }
+                                    <td>' . $y["id_year"] . '</td>
+                                    <td>' . $year . '</td>
+                                    <td>' . $countMapWithYear . '</td>';
                                 echo '<td>
-                                        <a href="create_element.php?mod=' . $o['id_object'] . '" class="btn btn-primary" style="margin-right: 20px;">
+                                        <a href="create_year.php?mod=' . $y['id_year'] . '" class="btn btn-primary" style="margin-right: 20px;">
                                             <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="black" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                             </svg>
                                         </a>
-                                        <a id="btnsupp" data-toggle="modal" data-id="' . $o['id_object'] . '" title="Add this item" class="open-AddBookDialog btn btn-primary" href="#addBookDialog">
+                                        <a id="btnsupp" data-toggle="modal" data-id="' . $y['id_year'] . '" title="Add this item" class="open-AddBookDialog btn btn-primary" href="#addBookDialog">
                                             <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="black" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
                                             </svg>
@@ -148,7 +138,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Attention l'objet sera définitivement supprimé, ainsi que ses données.</p>
+                        <p>Attention l'année sera définitivement supprimée, ainsi que les cartes et objets qui lui sont associées.</p>
                         <br>
                         <p>Souhaitez-vous continuer ?</p>
                     </div>
