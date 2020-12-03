@@ -57,7 +57,7 @@
                     <?php
                     if (isset($_POST['subdelete'])) {
 
-                        if ("e" == "ee") {
+                        if (OBJ::deleteObject($_POST['obj_id'])) {
                     ?>
                             <div class="alert alert-success" role="alert">
                                 L'objet a bien été supprimé.
@@ -98,14 +98,14 @@
                                     <td>' . $o["id_object"] . '</td>
                                     <td>' . $data->entities->$idwiki->labels->fr->value . '</td>
                                     <td>' . $idwiki . '</td>';
-                                    $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
-                                    echo'<td>' . substr($date_arrivee[0],1) . '</td>';
-                                    if (isset($data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time)){
-                                        $date_depart = explode('-', $data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time);
-                                        echo '<td>' . substr($date_depart[0],1)  . '</td>';
-                                    } else {
-                                        echo '<td></td>';
-                                    }
+                                $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
+                                echo '<td>' . substr($date_arrivee[0], 1) . '</td>';
+                                if (isset($data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time)) {
+                                    $date_depart = explode('-', $data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time);
+                                    echo '<td>' . substr($date_depart[0], 1)  . '</td>';
+                                } else {
+                                    echo '<td></td>';
+                                }
                                 echo '<td>
                                         <a href="create_element.php?mod=' . $o['id_object'] . '" class="btn btn-primary" style="margin-right: 20px;">
                                             <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="black" xmlns="http://www.w3.org/2000/svg">

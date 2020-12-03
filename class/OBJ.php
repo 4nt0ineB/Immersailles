@@ -24,4 +24,12 @@ class OBJ
     {
         return DB::$db->query("UPDATE OBJECTS SET id_wiki = \"$id_wiki\", verticalAlign = $verticalAlign, zoomScale= $zoomScale WHERE id_object = $id_objet");
     }
+
+    /**
+     * Supprime l'objet avec l'id donné
+     */
+    public static function deleteObject($id_objet)
+    {
+        return DB::$db->query("DELETE FROM OBJECTS WHERE id_object = $id_objet");
+    }
 }

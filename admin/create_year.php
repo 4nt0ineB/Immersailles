@@ -64,11 +64,11 @@
                         $success = 0;
 
                         if (isset($_POST["createYear"]) && !$modifyYear) {
-                            if (MAP::createMap($_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1, $_POST['etage'], $_POST['annee'])) {
+                            if (YEAR::createYear($_POST['annee'], $_POST['libelle'])) {
                                 $success = 1;
                             }
                         } else if ($modifyYear) {
-                            if (MAP::modifyYear($_POST['idYear'], $_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1,  $_POST['etage'], $_POST['annee'])) {
+                            if (YEAR::modifyYear($_GET['mod'], $_POST['annee'], $_POST['libelle'])) {
                                 $success = 1;
                             }
                         }
@@ -80,7 +80,7 @@
                                 ?>
                             </div>
                         <?php
-                            header("refresh:2, manage_maps.php"); // redirection
+                            header("refresh:2, manage_years.php"); // redirection
                         } else {
                         ?>
                             <div class="alert alert-warning" role="alert">
@@ -88,14 +88,10 @@
                                 ?>
                             </div>
                     <?php
-                            //header("refresh:5, login.php"); // refresh
+                            header("refresh:5, create_year.php"); // refresh
                         }
                     }
-
-
-
                     ?>
-
 
                     <form method="POST" style=" text-align: left;">
                         <?php
@@ -112,12 +108,12 @@
                             <div class="form-group col-md-12">
                                 <label for="annee">Année à insérer <b style="color:red;">*</b></label>
                                 <input type="number" class="form-control" name="annee" id="annee" placeholder="Année" required <?php if ($modifyYear) echo 'value="' . $yearData['year'] . '"'; ?>>
+                                <label for="libelle"> Libellé de l'année <b style="color:red;">*</b></label>
+                                <input type="text" class="form-control" name="libelle" id="libelle" placeholder="Libellé" required <?php if ($modifyYear) echo 'value="' . $yearData['label'] . '"'; ?>>
                             </div>
                         </div>
 
-
-
-                        <button type="submit" name="createMap" class="btn btn-dark"><?php echo ($modifyYear) ? "Modifier l'année" : "Créer l'année"; ?> </button>
+                        <button type="submit" name="createYear" class="btn btn-dark"><?php echo ($modifyYear) ? "Modifier l'année" : "Créer l'année"; ?> </button>
                     </form>
                     <br>
                     <hr><br>

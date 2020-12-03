@@ -56,22 +56,22 @@
                     <br>
                     <?php
                     if (isset($_POST['subdelete'])) {
-
-                        if ("e" == "ee") {
+                        echo $_POST['year_id'];
+                        if (YEAR::deleteYear($_POST['year_id'])) {
                     ?>
                             <div class="alert alert-success" role="alert">
                                 L'année a bien été supprimé.
                             </div>
                         <?php
-                            header("refresh:1; manage_objects.php");   // redirection
                         } else {
                         ?>
                             <div class="alert alert-warning" role="alert">
                                 Une erreur s'est produite, l'année n'a pas pu être supprimée.
                             </div>
                     <?php
-                            header("refresh:1; manage_objects.php");
+
                         }
+                        header("refresh:1; manage_years.php");
                     }
                     ?>
                     <div class="row float-right" style="margin: 10px auto;"><a href="create_year.php" class="btn btn-dark">Créer une nouvelle année</a></div>
@@ -81,6 +81,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Année</th>
+                                <th>Libellé</th>
                                 <th>Nb. cartes associées</th>
                                 <th>Actions</th>
                             </tr>
@@ -90,11 +91,12 @@
                             <?php
                             $years = $db->query("SELECT * FROM YEARS");
                             while ($y = $years->fetch()) {
-                                $year=$y["year"];
+                                $year = $y["year"];
                                 $countMapWithYear = $db->query("SELECT * FROM MAPS,YEARS WHERE MAPS.id_year=YEARS.id_year AND YEARS.year=$year")->rowCount();
                                 echo '<tr>
                                     <td>' . $y["id_year"] . '</td>
                                     <td>' . $year . '</td>
+                                    <td>' . $y["label"] . '</td>
                                     <td>' . $countMapWithYear . '</td>';
                                 echo '<td>
                                         <a href="create_year.php?mod=' . $y['id_year'] . '" class="btn btn-primary" style="margin-right: 20px;">
@@ -145,7 +147,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         <form method="post" action="">
-                            <input type="hidden" name="obj_id" id="obj_id" value="">
+                            <input type="hidden" name="year_id" id="year_id" value="">
                             <button type="submit" name="subdelete" class="btn btn-primary">Supprimer</button>
                         </form>
                     </div>
@@ -156,7 +158,7 @@
         <script>
             $(document).on("click", ".open-AddBookDialog", function() {
                 var myBookId = $(this).data('id');
-                $(".modal-footer #obj_id").val(myBookId);
+                $(".modal-footer #year_id").val(myBookId);
             });
         </script>
 
