@@ -129,12 +129,11 @@
               if (in_array($uRole, array(1, 2))) {
                 if ($uRole != 1) {
               ?>
-                  <div class="col-md-2 text-center"></div>
                 <?php
                 }
                 if (in_array($uRole, array(1))) {
                 ?>
-                  <div class="col-lg-2 text-center">
+                  <div class="col-md-2 text-center">
                     <a class="text-left" href="manage_users.php">
                       <div class="promoted-link">
                         <img src="../img/musketeer.png">
