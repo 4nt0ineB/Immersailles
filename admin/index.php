@@ -31,17 +31,17 @@
 
     /* Promoted links */
     .promoted-link {
-      border: px black solid;
       border-radius: 10px;
       position: relative;
       overflow: hidden;
+      height: 80%;
       margin-top: 10px;
       box-shadow: 10px 10px 10px rgba(209, 209, 209, 1);
 
     }
 
     .promoted-link>img {
-      width: 100%;
+        width: 100%;
     }
 
     .promoted-link>.description {
@@ -121,7 +121,7 @@
 
               </div>
             </div>
-            <div class="row content-justify-center" style="margin-top: 10px;">
+            <div class="row justify-content-center" style="margin-top: 10px;">
 
               <?php
               $u = $_SESSION['user'];
@@ -129,12 +129,12 @@
               if (in_array($uRole, array(1, 2))) {
                 if ($uRole != 1) {
               ?>
-                  <div class="col-lg-2 offset-lg-2 content-justify-center"></div>
+                  <div class="col-md-2 content-justify-center"></div>
                 <?php
                 }
                 if (in_array($uRole, array(1))) {
                 ?>
-                  <div class="col-lg-2 offset-lg-2 content-justify-center">
+                  <div class="col-lg-2 content-justify-center">
                     <a class="text-left" href="manage_users.php">
                       <div class="promoted-link">
                         <img src="../img/musketeer.png">
@@ -150,7 +150,7 @@
                 }
                 if (in_array($uRole, array(1, 2))) {
                 ?>
-                  <div class="col-lg-2 content-justify-center">
+                  <div class="col-md-2 content-justify-center">
                     <a class="text-left" href="manage_markers.php">
                       <div class="promoted-link">
                         <img src="../img/markerpromote.png">
@@ -166,7 +166,7 @@
                 }
                 if (in_array($uRole, array(1))) {
                 ?>
-                  <div class="col-lg-2 content-justify-center">
+                  <div class="col-md-2 content-justify-center">
                     <a class="text-left" href="manage_maps.php">
                       <div class="promoted-link">
                         <img src="../img/planpromote.png">
@@ -182,7 +182,7 @@
                 }
                 if (in_array($uRole, array(1, 2))) {
                 ?>
-                  <div class="col-lg-2 content-justify-center">
+                  <div class="col-md-2 content-justify-center">
                     <a class="text-left" href="manage_objects.php">
                       <div class="promoted-link">
                         <img src="../img/objetpromote.png">
@@ -196,13 +196,24 @@
                   </div>
                 <?php
                 }
+                if (in_array($uRole, array(1))) {
                 ?>
-
-
-
-              <?php
+                  <div class="col-md-2 content-justify-center">
+                    <a class="text-left" href="manage_years.php">
+                      <div class="promoted-link">
+                        <img src="../img/clocks.jpg">
+                        <div class="description">
+                          <div class="title">Années</div>
+                          <br>
+                          <div class="detail">Gérer les années</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                <?php
+                }
               }
-              ?>
+                ?>
 
             </div>
 
