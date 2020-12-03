@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_SESSION['user'])) {
   $_SESSION["user"]->refreshSession(); // on check la validité de la session user
-  if (!$_SESSION['user']->checkPageAutorisation()) {
+  if (!$_SESSION['user']->checkPageAutorisation()) { // check de l'autorisation d'accès à la page selon le rôle
     header("location: index.php");
   }
 

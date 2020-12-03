@@ -196,11 +196,13 @@ class User
             "create_map.php" => [1],
             "create_marker.php" => [1, 2],
             "create_user.php" => [1],
+            "create_year.php" => [1],
             "edit_marker.php" => [1, 2],
             "manage_maps.php" => [1],
             "manage_markers.php" => [1, 2],
             "manage_objects.php" => [1, 2],
             "manage_users.php" => [1],
+            "manage_years.php" => [1],
         ];
 
         foreach (array_keys($autorisationByPage) as $p) {
