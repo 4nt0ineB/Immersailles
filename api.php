@@ -70,6 +70,7 @@ foreach ($yearsList as $year) {
     $data["Years"][] = array();
     $data["Years"][$i]["id"] = $year["id_year"];
     $data["Years"][$i]["year"] = $year["year"];
+    $data["Years"][$i]["label"] = $year["label"];
 }
 
 

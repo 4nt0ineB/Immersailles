@@ -53,7 +53,6 @@ changeMapLayer(jsonMaps[1].id); // On set la map d'accueil comme la première da
 			var layer = jsonMaps[i];
 			if (layer.id == value){
                 map.removeLayer(currentMapLayer);
-                document.getElementById("mapSelected").innerHTML = "&nbsp;-&nbsp;"+layer.libelle;
 				var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
 				var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
 				map.setMaxBounds(new L.LatLngBounds([layer.hauteur,0], [0,layer.largeur])); 
