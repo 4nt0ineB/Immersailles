@@ -30,6 +30,7 @@ foreach ($mapList as $map) {
     $data["Maps"][$i]["zoom"] = $map["zoom"];
     $data["Maps"][$i]["etage"] = $map["id_floor"];
     $data["Maps"][$i]["annee"] = $map["id_year"];
+    $data["Maps"][$i]["source"] = $map["src"];
 }
 
 $i = 0;

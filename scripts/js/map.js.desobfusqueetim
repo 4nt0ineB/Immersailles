@@ -60,6 +60,11 @@ changeMapLayer(jsonMaps[1].id); // On set la map d'accueil comme la première da
 				map.setMaxBounds(new L.LatLngBounds([layer.hauteur,0], [0,layer.largeur])); 
                 currentMapLayer = newMap;
                 currentMapId = layer.id;
+                if (typeof layer.source !== 'undefined'){
+                    document.getElementById("authorMap").innerHTML = layer.source;
+                } else {
+                    document.getElementById("authorMap").innerHTML = "";
+                }
 				for (var j = 0; j < markersDisplayed.length; j++) {
 					map.removeLayer(markersDisplayed[j]);
 				}
