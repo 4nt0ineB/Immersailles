@@ -50,7 +50,6 @@ foreach ($markersList as $marker) {
     $data["Markers"][$i]["latitude"] = $marker["latitude"];
     $data["Markers"][$i]["longitude"] = $marker["longitude"];
     $data["Markers"][$i]["map"] = $marker["id_map"];
-    $data["Markers"][$i]["level"] = $marker["level"];
     $data["Markers"][$i]["object"] = $marker["id_object"];
 }
 
@@ -60,6 +59,7 @@ foreach ($objectsList as $object) {
     $data["Objects"][] = array();
     $data["Objects"][$i]["id"] = $object["id_object"];
     $data["Objects"][$i]["wikidata"] = $object["id_wiki"];
+    $data["Objects"][$i]["type"] = $object["type"];
     $data["Objects"][$i]["verticalAlign"] = $object["verticalAlign"];
     $data["Objects"][$i]["zoomScale"] = $object["zoomScale"];
 }

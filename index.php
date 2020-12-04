@@ -50,12 +50,22 @@
         <div class="col-lg">
             <div class="row">
                 <!--<span style="color: #aabbd4">Objets (330)</span>-->
+                <?php
+                    require_once('./class/DB.php');
+                    try {
+                        $DB = DB::getInstance();
+                        $db = DB::$db;
+                    } catch (PDOException $e) {
+                        echo $e->getMessage();
+                    }
+                $person_count = $db->query("SELECT COUNT(*) FROM OBJECTS,MARKERS WHERE type='person' AND OBJECTS.id_object=MARKERS.id_object GROUP BY OBJECTS.id_object")->rowCount();
+                $item_count = $db->query("SELECT COUNT(*) FROM OBJECTS,MARKERS WHERE type='item' AND OBJECTS.id_object=MARKERS.id_object GROUP BY OBJECTS.id_object")->rowCount();
+                ?>
                 <span style="font-size:20px;" class="pl-4">Trier par&nbsp;
                     <ul class="nav2">
-                        <li><a href="">Tout(330)</a></li>
-                        <li><a href="">Oeuvres d'art (120)</a></li>
-                        <li><a href=""> Mobilier (100)</a></li>
-                        <li><a href="">Décoration (110)</a></li>
+                        <li><a href="#\" onclick="orderMarkersBy('all')">Tout(<?=$person_count+$item_count;?>)</a></li>
+                        <li><a href="#\" onclick="orderMarkersBy('person')">Personnes (<?=$person_count;?>)</a></li>
+                        <li><a href="#\" onclick="orderMarkersBy('item')"> Mobilier (<?=$item_count;?>)</a></li>
                     </ul>
             </div>
         </div>
@@ -95,13 +105,6 @@
                     <div class="float-left box_timeline timelineleft" id="leftTimeline">
 
                         <?php
-                        require_once('./class/DB.php');
-                        try {
-                            $DB = DB::getInstance();
-                            $db = DB::$db;
-                        } catch (PDOException $e) {
-                            echo $e->getMessage();
-                        }
                         $floors = DB::$db->query("SELECT * FROM FLOORS");
                         while ($f = $floors->fetch()) {
                         ?>
