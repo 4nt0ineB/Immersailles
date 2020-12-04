@@ -10,11 +10,12 @@ function getRole($number)
     }
 }
 
-function getStatus($status){
-    if ($status == 1){
+function getStatus($status)
+{
+    if ($status == 1) {
         return "<b><FONT color='green'>Actif</FONT></b>";
     } else {
-        return "<b><FONT color='red'>Inctif</FONT></b>";
+        return "<b><FONT color='red'>Inactif</FONT></b>";
     }
 }
 
@@ -29,7 +30,8 @@ function generateRandomString($length = 10)
     return $randomString;
 }
 
-function getWikidataDetails($id){
-    $wikiData = file_get_contents('https://www.wikidata.org/wiki/Special:EntityData/'.$id.'.json');
+function getWikidataDetails($id)
+{
+    $wikiData = file_get_contents('https://www.wikidata.org/wiki/Special:EntityData/' . $id . '.json');
     return json_decode($wikiData);
 }

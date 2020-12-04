@@ -81,6 +81,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Libellé</th>
+                                <th>Type</th>
                                 <th>Wikidata</th>
                                 <th>Année d'arrivée</th>
                                 <th>Année de départ</th>
@@ -97,6 +98,7 @@
                                 echo '<tr>
                                     <td>' . $o["id_object"] . '</td>
                                     <td>' . $data->entities->$idwiki->labels->fr->value . '</td>
+                                    <td>' . $o["type"] . '</td>
                                     <td>' . $idwiki . '</td>';
                                 $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
                                 echo '<td>' . substr($date_arrivee[0], 1) . '</td>';

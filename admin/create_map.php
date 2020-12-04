@@ -64,11 +64,12 @@
                         $success = 0;
 
                         if (isset($_POST["createMap"]) && !$modifyMap) {
-                            if (MAP::createMap($_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1, $_POST['etage'], $_POST['annee'])) {
+                            if (MAP::createMap($_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1, $_POST['etage'], $_POST['annee'], $_POST['src'])) {
                                 $success = 1;
                             }
                         } else if ($modifyMap) {
-                            if (MAP::modifyMap($_POST['idMap'], $_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1,  $_POST['etage'], $_POST['annee'])) {
+
+                            if (MAP::modifyMap($_POST['idMap'], $_POST['statut'], $_POST['imgName'], $_POST['libelle'], 1,  $_POST['etage'], $_POST['annee'], $_POST['src'])) {
                                 $success = 1;
                             }
                         }
@@ -198,6 +199,12 @@
                                                                             }
                                                                             ?> id="statut" value="0">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="src">Source <b style="color:red;"></b></label>
+                                    <input type="text" class="form-control" name="src" id="src" pattern="http(s?)(:\/\/)(*)" placeholder="Libellé du plan" title="Un lien vers une source" <?php if ($modifyMap) echo 'value="' . $mapData['src'] . '"'; ?>>
                                 </div>
                             </div>
                         </div>

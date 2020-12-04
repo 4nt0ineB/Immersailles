@@ -32,20 +32,20 @@
 
                 <h2 id="title-current-place" style="padding: 10px;">Panel de gestion</h2>
                 <?php
-                    if (isset($_POST["createMarker"])){
-                        $latitude = $_POST["latitude"];
-                        $longitude = $_POST["longitude"];
-                        $planID = $_POST["planid"]; 
-                        $user_id = $row["id_user"];
-                        $id_year = $_POST["date"];
-                        $id_object = $_POST["objet"];
-                        if (strlen($latitude) == 0){
-                            $errorMsg[] = "Vous devez placer le nouveau marqueur sur la carte sélectionnée.";
-                        } else {
-                            $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), $id_object, $planID, $id_year)");
-                            $successMsg = "Votre marqueur a été créé avec succès !";
-                        }
+                if (isset($_POST["createMarker"])) {
+                    $latitude = $_POST["latitude"];
+                    $longitude = $_POST["longitude"];
+                    $planID = $_POST["planid"];
+                    $user_id = $row["id_user"];
+                    $id_year = $_POST["date"];
+                    $id_object = $_POST["objet"];
+                    if (strlen($latitude) == 0) {
+                        $errorMsg[] = "Vous devez placer le nouveau marqueur sur la carte sélectionnée.";
+                    } else {
+                        $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), $id_object, $planID, $id_year)");
+                        $successMsg = "Votre marqueur a été créé avec succès !";
                     }
+                }
                 ?>
 
                 <div id="box">
@@ -82,18 +82,18 @@
                     <div class="row">
                         <div class="col-md-3 mb-1">
                             <form method="post">
-                            Étage correspondant :
-                            <select class="form-control select2" onchange="changeMap();" name="etage" id="etage">
-                                <?php
-                                $floors = $db->query("SELECT * FROM FLOORS");
-                                while ($floor_item = $floors->fetch()) :  ?>
-                                    <option value="<?php echo $floor_item["id_floor"]; ?>"><?php echo htmlspecialchars($floor_item["label"]); ?></option>
-                                <?php endwhile; ?>
-                            </select>
+                                Étage correspondant :
+                                <select class="form-control select2" onchange="changeMap();" name="etage" id="etage">
+                                    <?php
+                                    $floors = $db->query("SELECT * FROM FLOORS");
+                                    while ($floor_item = $floors->fetch()) :  ?>
+                                        <option value="<?php echo $floor_item["id_floor"]; ?>"><?php echo htmlspecialchars($floor_item["label"]); ?></option>
+                                    <?php endwhile; ?>
+                                </select>
                         </div>
 
                         <div class="col-md-3 mb-1">
-                        Date correspondante :
+                            Date correspondante :
                             <select class="form-control select2" onchange="changeMap();" name="date" id="date">
                                 <?php
                                 $years = $db->query("SELECT * FROM YEARS");
@@ -139,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        </form>
                     </div>
                     <br><br>
                     <a href="index.php" class="btn btn-dark">Retour à l'accueil</a>

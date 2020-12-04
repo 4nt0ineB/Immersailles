@@ -83,6 +83,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Libellé</th>
+                                <th>Étage</th>
+                                <th>Année</th>
+                                <th>Source</th>
                                 <th>Statut</th>
                                 <th>Actions</th>
                             </tr>
@@ -90,11 +93,14 @@
                         <tbody>
 
                             <?php
-                            $maps = $db->query("SELECT * FROM MAPS");
+                            $maps = $db->query("SELECT * FROM MAPS JOIN YEARS ON MAPS.id_year = YEARS.id_year JOIN FLOORS ON MAPS.id_floor = FLOORS.id_floor");
                             while ($m = $maps->fetch()) {
                                 echo '<tr>
                                     <td>' . $m['id_map'] . '</td>
                                     <td>' . $m['libelle'] . '</td>
+                                    <td>' . $m['label'] . '</td>
+                                    <td>' . $m['year'] . '</td>
+                                    <td><a href="' . $m['src'] . '">voir</a></td>
                                     <td>' . getStatus($m['status']) . '</td>
                                     <td>
                                         <a href="create_map.php?mod=' . $m['id_map'] . '" class="btn btn-primary" style="margin-right: 20px;">

@@ -88,21 +88,40 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="urlwikidata">Importer les informations (URL Wikidata)</label>
-                                <input type="url" pattern="http(s?)://www.wikidata.org/wiki/([a-zA-z0-9\-_]+){1,}" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo "https://www.wikidata.org/wiki/" . $data_o['id_wiki'];?>">
+                                <input type="url" pattern="http(s?)://www.wikidata.org/wiki/([a-zA-z0-9\-_]+){1,}" class="form-control" name="urlwikidata" id="urlwikidata" placeholder="https://www.wikidata.org/wiki/XXXX" required value="<?php if ($isModify) echo "https://www.wikidata.org/wiki/" . $data_o['id_wiki']; ?>">
                                 <center>
-                                    <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><i class="fas fa-file-download"></i>&nbsp;<?php if ($isModify) echo "Modifier ";                                                                                                                                                                    else echo "Charger " ?>l'URL WikiDATA</button>
+                                    <button type="button" name="loadUrl" class="btn btn-dark mt-2" onclick="loadPreview(document.getElementById('urlwikidata').value)"><i class="fas fa-file-download"></i>&nbsp;<?php if ($isModify) echo "Modifier ";
+                                                                                                                                                                                                                    else echo "Charger " ?>l'URL WikiDATA</button>
                                 </center>
-                                <?php if ($isModify){
+                                <?php if ($isModify) {
                                     echo '<script>
                                     document.addEventListener("DOMContentLoaded", function() {
                                         
-                                        loadPreview(document.getElementById("urlwikidata").value, '.$data_o['verticalAlign'].', '.$data_o['zoomScale'].');
+                                        loadPreview(document.getElementById("urlwikidata").value, ' . $data_o['verticalAlign'] . ', ' . $data_o['zoomScale'] . ');
                                     }, false);
                                     </script>';
-                                }?>
+                                } ?>
 
                                 <hr>
-
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="type">Type <b style="color:red;">*</b></label>
+                                        <select class="form-control select2" name="type" id="type">
+                                            <option <?php if ($isModify) {
+                                                        if ($data_o['type'] == "person") {
+                                                            echo " selected ";
+                                                        }
+                                                    }
+                                                    ?>value="person">Personne</option>
+                                            <option <?php if ($isModify) {
+                                                        if ($data_o['type'] == "item") {
+                                                            echo " selected ";
+                                                        }
+                                                    }
+                                                    ?>value="item">Objet</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="verticalAlign">Alignement vertical de la photo <b style="color:red;">*</b></label>
@@ -194,11 +213,11 @@
                     if (isset($_POST['createObject'])) {
                         $success = 0;
                         if (isset($_POST['createObject']) && !$isModify) {
-                            if (OBJ::createObject(basename($_POST['urlwikidata']), $_POST['verticalAlign'], $_POST['backgroundZoom'])) {
+                            if (OBJ::createObject(basename($_POST['urlwikidata']), $_POST['verticalAlign'], $_POST['backgroundZoom'], $_POST['type'])) {
                                 $success = 1;
                             }
                         } else if (isset($_POST['createObject']) && $isModify) {
-                            if (OBJ::updateObject($_GET['mod'], basename($_POST['urlwikidata']), $_POST['verticalAlign'], $_POST['backgroundZoom'])) {
+                            if (OBJ::updateObject($_GET['mod'], basename($_POST['urlwikidata']), $_POST['verticalAlign'], $_POST['backgroundZoom'], $_POST['type'])) {
                                 $success = 1;
                             }
                         }
@@ -299,8 +318,12 @@
                         document.getElementById("imagePreview").style.backgroundSize = "cover";
                         document.getElementById("imagePreview").style.backgroundPosition = "50% calc(50% + 50px)";
                         document.getElementById("imagePreview").style.backgroundRepeat = "no-repeat";
-                        if (typeof align !== 'undefined'){updateSliderAlign(align);}
-                        if (typeof zoom !== 'undefined'){updateSliderZoom(zoom);}
+                        if (typeof align !== 'undefined') {
+                            updateSliderAlign(align);
+                        }
+                        if (typeof zoom !== 'undefined') {
+                            updateSliderZoom(zoom);
+                        }
 
                         // fin partie image
 
@@ -371,7 +394,6 @@
             }
 
         }
-
     </script>
 </body>
 
