@@ -42,7 +42,7 @@
                     if (strlen($latitude) == 0) {
                         $errorMsg[] = "Vous devez placer le nouveau marqueur sur la carte sélectionnée.";
                     } else {
-                        $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `level`, `creator_date`, `id_object`, `id_map`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", 0, NOW(), $id_object, $planID, $id_year)");
+                        $db->query("INSERT INTO `MARKERS` (`id_marker`, `latitude`, `longitude`, `creator_date`, `id_object`, `id_map`, `id_year`) VALUES (NULL, \"$latitude\", \"$longitude\", NOW(), $id_object, $planID, $id_year)");
                         $successMsg = "Votre marqueur a été créé avec succès !";
                     }
                 }
