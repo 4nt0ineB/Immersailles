@@ -61,7 +61,7 @@ changeMapLayer(jsonMaps[1].id); // On set la map d'accueil comme la première da
                 currentMapLayer = newMap;
                 currentMapId = layer.id;
                 if (typeof layer.source !== 'undefined'){
-                    document.getElementById("authorMap").innerHTML = layer.source;
+                    document.getElementById("authorMap").innerHTML = "<a href='"+layer.source+"' target='_blank'>Voir la source</a>";
                 } else {
                     document.getElementById("authorMap").innerHTML = "";
                 }

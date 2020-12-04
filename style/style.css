@@ -521,7 +521,7 @@ fieldset[disabled] .btn-primary:hover {
     border-bottom-right-radius: 8px;
 }
 
-.authorSpan {
+.authorSpan a {
     color: grey;
     font-size: 13px;
     line-height: 50px;
