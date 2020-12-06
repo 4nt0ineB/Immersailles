@@ -35,10 +35,10 @@ for(let i = 0; i < jsonYears.length; i++) {
 getFloorsByYear(id_year);
 
 function getFloorsByYear(yearSelected) {
+var leftTimeline = document.getElementById("leftTimeline");
+$('#leftTimeline').empty();
   for(let i = 0; i < jsonMaps.length; i++) {  
     var mapObj = jsonMaps[i]; 
-    var leftTimeline = document.getElementById("leftTimeline");
-    $('#leftTimeline').empty();
     if (yearSelected == mapObj.annee){
         for(let i = 0; i < jsonFloors.length; i++) {  
           var floorObj = jsonFloors[i]; 
@@ -46,7 +46,6 @@ function getFloorsByYear(yearSelected) {
             leftTimeline.innerHTML += '<div class="entry"><a href="#" id="'+floorObj.identifier+'" style="display: block;height: 100%;outline: none;color:#C8AD7F !important;" onclick="changeMapLayer(\''+mapObj.id+'\');colorClickedLink(\''+floorObj.identifier+'\')"><div id="core_'+floorObj.identifier+'" class="core"><span>'+floorObj.label+'</span></div></a></div>';
           }
         }
-        break;
       }
   }
   for(let i =0; i < jsonYears.length; i++){

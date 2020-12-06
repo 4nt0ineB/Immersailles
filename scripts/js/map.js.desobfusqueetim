@@ -57,7 +57,8 @@ changeMapLayer(jsonMaps[1].id); // On set la map d'accueil comme la première da
                 map.removeLayer(currentMapLayer);
 				var newBounds = [[0,0], [layer.hauteur, layer.largeur]];
 				var newMap = L.imageOverlay(layer.lien, newBounds).addTo(map);
-				map.setMaxBounds(new L.LatLngBounds([layer.hauteur,0], [0,layer.largeur])); 
+                map.setMaxBounds(new L.LatLngBounds([layer.hauteur,0], [0,layer.largeur])); 
+                map.setZoom(layer.zoom);
                 currentMapLayer = newMap;
                 currentMapId = layer.id;
                 if (layer.source != null){
