@@ -56,7 +56,6 @@
                     <br>
                     <?php
                     if (isset($_POST['subdelete'])) {
-                        echo $_POST['year_id'];
                         if (YEAR::deleteYear($_POST['year_id'])) {
                     ?>
                             <div class="alert alert-success" role="alert">

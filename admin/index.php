@@ -41,7 +41,7 @@
     }
 
     .promoted-link>img {
-        width: 100%;
+      width: 100%;
     }
 
     .promoted-link>.description {
@@ -93,34 +93,6 @@
         <div id="box">
           <h3>Bienvenue <?php echo $row["surname"]; ?></h3>
           <div class="container">
-
-            <div class="row text-left">
-              <div class="col card_recap mr-3">
-                <div class="text_recap">Utilisateurs<br><span>Nombre total d'utilisateurs connectés</span></div>
-                <div class="align-middle text_right">
-                  <?php
-                  echo User::numberConnectedUsers();
-                  ?>
-                </div>
-
-              </div>
-              <div class="col card_recap mr-3" style="background-image: radial-gradient(circle 248px at center, #5f5f5f 0%, #505050 47%, #3e3e3e 100%) !important;">
-                <div class="text_recap">Marqueurs<br><span>Nombre total de marqueurs</span></div>
-                <div class="text_right"><?php
-                                        echo $db->query("SELECT * FROM MARKERS")->rowCount();
-                                        ?></div>
-              </div>
-              <div class="col card_recap" style="background-image: linear-gradient(to bottom, #C8AD7F 0%, #af8132 100%) !important">
-                <div class="text_recap">Plans<br><span>Nombre total de plans disponibles</span></div>
-                <div class="text_right">3</div>
-              </div>
-            </div>
-
-            <div class="row" style="margin-top: 10px;">
-              <div class="col-lg-12">
-
-              </div>
-            </div>
             <div class="row justify-content-center" style="margin-top: 10px;">
 
               <?php
@@ -209,11 +181,39 @@
                       </div>
                     </a>
                   </div>
-                <?php
+              <?php
                 }
               }
-                ?>
+              ?>
 
+            </div>
+
+
+
+            <div class="row text-left">
+              <a href="logs.php" class="mr-4 linkSuperStyleHover" style="border-radius: 5px;">
+                <div class="col card_recap mr-5">
+
+                  <div class="text_recap">Utilisateurs<br><span>Nombre total d'utilisateurs connectés</span></div>
+
+                  <div class="align-middle text_right">
+                    <?php
+                    echo User::numberConnectedUsers();
+                    ?>
+                  </div>
+
+                </div>
+              </a>
+              <div class="col card_recap mr-3" style="background-image: radial-gradient(circle 248px at center, #5f5f5f 0%, #505050 47%, #3e3e3e 100%) !important;">
+                <div class="text_recap">Marqueurs<br><span>Nombre total de marqueurs</span></div>
+                <div class="text_right"><?php
+                                        echo $db->query("SELECT * FROM MARKERS")->rowCount();
+                                        ?></div>
+              </div>
+              <div class="col card_recap" style="background-image: linear-gradient(to bottom, #C8AD7F 0%, #af8132 100%) !important">
+                <div class="text_recap">Plans<br><span>Nombre total de plans disponibles</span></div>
+                <div class="text_right">3</div>
+              </div>
             </div>
 
           </div>

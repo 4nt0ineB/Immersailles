@@ -315,10 +315,14 @@ footer {
     height: 75px;
     padding: 5px;
     border-radius: 5px;
-    display: inline-block;
+    
     margin: 0 auto;
     color: #fff;
     background-image: linear-gradient(-20deg, #2b5876 0, #4e4376 100%) !important
+}
+
+.linkSuperStyleHover:hover{
+    box-shadow:  0 0 25px #2b5876, 0 0 5px darkblue;
 }
 
 .text_recap {

@@ -14,6 +14,7 @@ class User
         $this->psswd_hash = $psswd;
         $this->role = $role;
     }
+
     public function getId()
     {
         return $this->idUser;
@@ -51,6 +52,7 @@ class User
         return 1;
     }
 
+
     /** 
      * remet à NULL session_id de l'utilisateur 
      */
@@ -83,6 +85,7 @@ class User
 
         return 1;
     }
+
 
     /** 
      * Renvoie true si l'id de l'utilisateur existe 
@@ -186,11 +189,12 @@ class User
     }
 
     /**
-     * 
+     * Renvoie true si l'utilisateur à la droit d'accès à la page
      */
     public function checkPageAutorisation()
     {
         $autorisationByPage = [
+            "logs.php" => [1],
             "index.php" => [1, 2],
             "create_element.php" => [1, 2],
             "create_map.php" => [1],

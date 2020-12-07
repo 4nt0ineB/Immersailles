@@ -14,7 +14,7 @@ class YEAR
     public static function createYear($year, $label)
     {
         try {
-            DB::$db->query("INSERT INTO YEARS VALUES(DEFAULT, $year, label=\"$label\")");
+            DB::$db->query("INSERT INTO YEARS VALUES(DEFAULT, $year, \"$label\")");
             return true;
         } catch (Exception $e) {
             return false;
