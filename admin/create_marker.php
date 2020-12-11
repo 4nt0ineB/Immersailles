@@ -169,9 +169,6 @@
 
         document.getElementById("plan").value = document.getElementById("etage").options[document.getElementById("etage").selectedIndex].text; // pré remplissage de la case plan a droite
 
-        document.getElementById("planid").value = document.getElementById("etage").options[document.getElementById("etage").selectedIndex].value; // pré remplissage de la case plan ID cachée a droite
-
-
         function changeMap() {
             var etage = document.getElementById("etage");
             var etageSelected = etage.options[etage.selectedIndex].value;
@@ -180,6 +177,8 @@
             var anneeSelected = annee.options[annee.selectedIndex].value;
 
             changeMapLayer(etageSelected, anneeSelected);
+            document.getElementById("planid").value = getMapLayer(etageSelected, anneeSelected);
+
         }
 
         var LastMarkerPut = null;

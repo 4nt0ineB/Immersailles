@@ -70,7 +70,6 @@ function changeMapLayer(etage, annee){
 			currentMapLayer = newMap;
 
 			for (var j = 0; j < markersDisplayed.length; j++) {
-				console.log(markersDisplayed);
 				map.removeLayer(markersDisplayed[j]);
 			}
 			markersDisplayed = [];
@@ -81,6 +80,15 @@ function changeMapLayer(etage, annee){
 			for (var j = 0; j < markersDisplayed.length; j++) {
 				map.removeLayer(markersDisplayed[j]);
 			}
+		}
+	}
+}
+
+function getMapLayer(etage, annee){
+	for(let i = 0; i < jsonMaps.length; i++) {
+		var layer = jsonMaps[i];
+		if (layer.etage == etage && layer.annee == annee){
+			return layer.id;
 		}
 	}
 }
