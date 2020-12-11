@@ -113,8 +113,12 @@ if (isset($_GET["id"])) {
                                         <select class="form-control select2" name="objet" id="objet" required>
                                             <?php
                                             $objects = $db->query("SELECT * FROM OBJECTS");
-                                            while ($o = $objects->fetch()) :  ?>
-                                                <option value="<?php echo $o["id_object"]; ?>"><?php echo htmlspecialchars($o["name"]); ?></option>
+                                            while ($o = $objects->fetch()) :
+                                                $data = getWikidataDetails($o["id_wiki"]);
+                                                $idwiki = $o["id_wiki"];
+                                            ?>
+
+                                                <option value="<?php echo $o["id_object"]; ?>"><?php echo htmlspecialchars($data->entities->$idwiki->labels->fr->value); ?></option>
                                             <?php endwhile; ?>
                                         </select>
                                     </div>
