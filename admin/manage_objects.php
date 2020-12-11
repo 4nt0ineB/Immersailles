@@ -100,8 +100,13 @@
                                     <td>' . $data->entities->$idwiki->labels->fr->value . '</td>
                                     <td>' . $o["type"] . '</td>
                                     <td>' . $idwiki . '</td>';
-                                $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
-                                echo '<td>' . substr($date_arrivee[0], 1) . '</td>';
+                                if ($o["type"] != "item") {
+                                    $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
+                                    echo '<td>' . substr($date_arrivee[0], 1) . '</td>';
+                                } else {
+                                    '<td></td>';
+                                }
+
                                 if (isset($data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time)) {
                                     $date_depart = explode('-', $data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time);
                                     echo '<td>' . substr($date_depart[0], 1)  . '</td>';
