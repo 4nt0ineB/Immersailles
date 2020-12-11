@@ -100,7 +100,7 @@
                                     <td>' . $m['libelle'] . '</td>
                                     <td>' . $m['label'] . '</td>
                                     <td>' . $m['year'] . '</td>
-                                    <td><a href="' . $m['src'] . '">voir</a></td>
+                                    <td><a href="' . $m['src'] . '" target="_blank">voir</a></td>
                                     <td>' . getStatus($m['status']) . '</td>
                                     <td>
                                         <a href="create_map.php?mod=' . $m['id_map'] . '" class="btn btn-primary" style="margin-right: 20px;">
