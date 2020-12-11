@@ -104,7 +104,7 @@
                                     $date_arrivee = explode('-', $data->entities->$idwiki->claims->P569[0]->mainsnak->datavalue->value->time);
                                     echo '<td>' . substr($date_arrivee[0], 1) . '</td>';
                                 } else {
-                                    '<td></td>';
+                                    echo '<td></td>';
                                 }
 
                                 if (isset($data->entities->$idwiki->claims->P570[0]->mainsnak->datavalue->value->time)) {
