@@ -3,6 +3,7 @@ var request = new XMLHttpRequest();
 	  request.send(null);
 	  var jsonInterprete = JSON.parse(request.responseText);
 	  var jsonMarkers = jsonInterprete.Markers;
+	  var jsonObjects = jsonInterprete.Objects;
 	  var jsonMaps = jsonInterprete.Maps;
 
 
@@ -43,7 +44,19 @@ function createMarkers(map_id){
 		if (typeof obj.latitude === 'undefined'){ // si le marqueur a une latitude nulle c meme pas la peine de continuer, c le tableau vide
 			// ne rien faire
 		} else if (obj.map == map_id){ // sinon
-			var marker = L.marker([obj.latitude, obj.longitude], {icon: immersaillesIcon}).addTo(map).bindPopup('Titre<br><a href="edit_marker.php?id='+obj.id+'">Modifier</a>');
+
+			var markerName;
+
+			for(let i = 0; i < jsonObjects.length; i++) { // pour chaque marqueur
+				var object = jsonObjects[i]; // on crée une variable temp.
+
+				if (obj.object == object.id){
+					markerName = object.wikidata;
+					break;
+				}
+			}
+			
+			var marker = L.marker([obj.latitude, obj.longitude], {icon: immersaillesIcon}).addTo(map).bindPopup(markerName+'<br><a href="edit_marker.php?id='+obj.id+'">Modifier</a>');
 			markersDisplayed.push(marker);
 		}
 	}
